@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A4ADD6DE1F78ACCF0095C9BE /* TTInputBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADD6DD1F78ACCF0095C9BE /* TTInputBar.m */; };
+		A4ADD6E11F78AD390095C9BE /* TTInputPanenSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADD6E01F78AD390095C9BE /* TTInputPanenSource.m */; };
+		A4ADD6E41F78AD7C0095C9BE /* TTInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADD6E31F78AD7C0095C9BE /* TTInputSource.m */; };
+		A4ADD6E71F78AD9F0095C9BE /* TTInputPanelBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADD6E61F78AD9F0095C9BE /* TTInputPanelBar.m */; };
+		A4ADD6EA1F78ADDA0095C9BE /* TTInput.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADD6E91F78ADDA0095C9BE /* TTInput.m */; };
+		A4ADD6ED1F78B09B0095C9BE /* TTInputBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADD6EC1F78B09B0095C9BE /* TTInputBarItem.m */; };
+		A4ADD6F31F78B0CC0095C9BE /* TTInputPanelBarlItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADD6F21F78B0CC0095C9BE /* TTInputPanelBarlItem.m */; };
+		A4ADD6F61F78B1DB0095C9BE /* TTInputSrouceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADD6F51F78B1DB0095C9BE /* TTInputSrouceItem.m */; };
+		A4ADD6F91F78B1ED0095C9BE /* TTInputPanelSourceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADD6F81F78B1ED0095C9BE /* TTInputPanelSourceItem.m */; };
 		A4C1C51C1F72650300F9DFD8 /* TTInputPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1C51B1F72650300F9DFD8 /* TTInputPanel.m */; };
 		A4C1C51D1F72650300F9DFD8 /* TTInputPanel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A4C1C51A1F72650300F9DFD8 /* TTInputPanel.h */; };
 /* End PBXBuildFile section */
@@ -25,6 +34,24 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A4ADD6DC1F78ACCF0095C9BE /* TTInputBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputBar.h; sourceTree = "<group>"; };
+		A4ADD6DD1F78ACCF0095C9BE /* TTInputBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTInputBar.m; sourceTree = "<group>"; };
+		A4ADD6DF1F78AD390095C9BE /* TTInputPanenSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputPanenSource.h; sourceTree = "<group>"; };
+		A4ADD6E01F78AD390095C9BE /* TTInputPanenSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTInputPanenSource.m; sourceTree = "<group>"; };
+		A4ADD6E21F78AD7C0095C9BE /* TTInputSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputSource.h; sourceTree = "<group>"; };
+		A4ADD6E31F78AD7C0095C9BE /* TTInputSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTInputSource.m; sourceTree = "<group>"; };
+		A4ADD6E51F78AD9F0095C9BE /* TTInputPanelBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputPanelBar.h; sourceTree = "<group>"; };
+		A4ADD6E61F78AD9F0095C9BE /* TTInputPanelBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTInputPanelBar.m; sourceTree = "<group>"; };
+		A4ADD6E81F78ADDA0095C9BE /* TTInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInput.h; sourceTree = "<group>"; };
+		A4ADD6E91F78ADDA0095C9BE /* TTInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTInput.m; sourceTree = "<group>"; };
+		A4ADD6EB1F78B09B0095C9BE /* TTInputBarItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputBarItem.h; sourceTree = "<group>"; };
+		A4ADD6EC1F78B09B0095C9BE /* TTInputBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTInputBarItem.m; sourceTree = "<group>"; };
+		A4ADD6F11F78B0CC0095C9BE /* TTInputPanelBarlItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputPanelBarlItem.h; sourceTree = "<group>"; };
+		A4ADD6F21F78B0CC0095C9BE /* TTInputPanelBarlItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTInputPanelBarlItem.m; sourceTree = "<group>"; };
+		A4ADD6F41F78B1DB0095C9BE /* TTInputSrouceItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputSrouceItem.h; sourceTree = "<group>"; };
+		A4ADD6F51F78B1DB0095C9BE /* TTInputSrouceItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTInputSrouceItem.m; sourceTree = "<group>"; };
+		A4ADD6F71F78B1ED0095C9BE /* TTInputPanelSourceItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputPanelSourceItem.h; sourceTree = "<group>"; };
+		A4ADD6F81F78B1ED0095C9BE /* TTInputPanelSourceItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTInputPanelSourceItem.m; sourceTree = "<group>"; };
 		A4C1C5171F72650300F9DFD8 /* libTTInputPanel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTTInputPanel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4C1C51A1F72650300F9DFD8 /* TTInputPanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputPanel.h; sourceTree = "<group>"; };
 		A4C1C51B1F72650300F9DFD8 /* TTInputPanel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTInputPanel.m; sourceTree = "<group>"; };
@@ -42,6 +69,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A4ADD6D81F78AC990095C9BE /* bar */ = {
+			isa = PBXGroup;
+			children = (
+				A4ADD6DC1F78ACCF0095C9BE /* TTInputBar.h */,
+				A4ADD6DD1F78ACCF0095C9BE /* TTInputBar.m */,
+				A4ADD6E51F78AD9F0095C9BE /* TTInputPanelBar.h */,
+				A4ADD6E61F78AD9F0095C9BE /* TTInputPanelBar.m */,
+				A4ADD6EB1F78B09B0095C9BE /* TTInputBarItem.h */,
+				A4ADD6EC1F78B09B0095C9BE /* TTInputBarItem.m */,
+				A4ADD6F11F78B0CC0095C9BE /* TTInputPanelBarlItem.h */,
+				A4ADD6F21F78B0CC0095C9BE /* TTInputPanelBarlItem.m */,
+			);
+			path = bar;
+			sourceTree = "<group>";
+		};
+		A4ADD6D91F78AC990095C9BE /* sources */ = {
+			isa = PBXGroup;
+			children = (
+				A4ADD6DF1F78AD390095C9BE /* TTInputPanenSource.h */,
+				A4ADD6E01F78AD390095C9BE /* TTInputPanenSource.m */,
+				A4ADD6E21F78AD7C0095C9BE /* TTInputSource.h */,
+				A4ADD6E31F78AD7C0095C9BE /* TTInputSource.m */,
+				A4ADD6F41F78B1DB0095C9BE /* TTInputSrouceItem.h */,
+				A4ADD6F51F78B1DB0095C9BE /* TTInputSrouceItem.m */,
+				A4ADD6F71F78B1ED0095C9BE /* TTInputPanelSourceItem.h */,
+				A4ADD6F81F78B1ED0095C9BE /* TTInputPanelSourceItem.m */,
+			);
+			path = sources;
+			sourceTree = "<group>";
+		};
 		A4C1C50E1F72650300F9DFD8 = {
 			isa = PBXGroup;
 			children = (
@@ -61,8 +118,12 @@
 		A4C1C5191F72650300F9DFD8 /* TTInputPanel */ = {
 			isa = PBXGroup;
 			children = (
+				A4ADD6D81F78AC990095C9BE /* bar */,
+				A4ADD6D91F78AC990095C9BE /* sources */,
 				A4C1C51A1F72650300F9DFD8 /* TTInputPanel.h */,
 				A4C1C51B1F72650300F9DFD8 /* TTInputPanel.m */,
+				A4ADD6E81F78ADDA0095C9BE /* TTInput.h */,
+				A4ADD6E91F78ADDA0095C9BE /* TTInput.m */,
 				A4C1C5231F72654100F9DFD8 /* TTInputPanelPre.pch */,
 			);
 			path = TTInputPanel;
@@ -124,7 +185,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4ADD6DE1F78ACCF0095C9BE /* TTInputBar.m in Sources */,
+				A4ADD6F61F78B1DB0095C9BE /* TTInputSrouceItem.m in Sources */,
+				A4ADD6F31F78B0CC0095C9BE /* TTInputPanelBarlItem.m in Sources */,
+				A4ADD6E11F78AD390095C9BE /* TTInputPanenSource.m in Sources */,
 				A4C1C51C1F72650300F9DFD8 /* TTInputPanel.m in Sources */,
+				A4ADD6F91F78B1ED0095C9BE /* TTInputPanelSourceItem.m in Sources */,
+				A4ADD6E41F78AD7C0095C9BE /* TTInputSource.m in Sources */,
+				A4ADD6EA1F78ADDA0095C9BE /* TTInput.m in Sources */,
+				A4ADD6E71F78AD9F0095C9BE /* TTInputPanelBar.m in Sources */,
+				A4ADD6ED1F78B09B0095C9BE /* TTInputBarItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +346,7 @@
 				A4C1C5221F72650300F9DFD8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
