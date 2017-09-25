@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TTInputPanelBarlItem : NSObject
+@interface TTInputPanelBarlItem : UIView
+
+- (instancetype)initWithInputItem:(TTInputBarItem *)item;
 
 @end

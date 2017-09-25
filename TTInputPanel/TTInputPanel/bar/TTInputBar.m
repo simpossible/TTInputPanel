@@ -8,14 +8,19 @@
 
 #import "TTInputBar.h"
 
+@interface TTInputBar()
+
+@end
+
 @implementation TTInputBar
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (instancetype)initWithBarItems:(NSArray *)array {
+    if (self = [super init]) {
+        self.items = [NSMutableArray arrayWithArray:array];
+    }
+    return self;
 }
-*/
+
+
 
 @end

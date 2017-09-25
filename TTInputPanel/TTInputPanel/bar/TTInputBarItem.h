@@ -10,4 +10,12 @@
 
 @interface TTInputBarItem : NSObject
 
+@property (nonatomic, assign) CGFloat width;
+
+@property (nonatomic, assign) CGFloat height;
+
+@property (nonatomic, assign) UIEdgeInsets margin;
+
+@property (nonatomic, copy) NSString * name;
+
 @end

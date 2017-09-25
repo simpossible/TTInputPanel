@@ -7,7 +7,23 @@
 //
 
 #import "TTInputPanelBarlItem.h"
+#import "TTInputBarItem.h"
+
+@interface TTInputPanelBarlItem ()
+
+@property (nonatomic, strong) TTInputBarItem *inputItem;
+
+@end
 
 @implementation TTInputPanelBarlItem
+
+- (instancetype)initWithInputItem:(TTInputBarItem *)item {
+    if (self = [super init]) {
+        self.inputItem = item;
+    }
+    return self;
+}
+
+
 
 @end

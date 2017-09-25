@@ -122,7 +122,22 @@ Pod::Spec.new do |s|
 
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
-  # s.prefix = "${SRCROOT}/TTInputPanel/TTInputPanelPre.pch"
+  s.prefix_header_contents = '#ifndef TTInputPanel_pch
+#define TTInputPanel_pch
+
+#import <UIKit/UIKit.h>
+
+#import "TTInputPanel.h"
+#import "TTInputBar.h"
+#import "TTInputPanelBar.h"
+#import "TTInputSource.h"
+#import "TTInputPanenSource.h"
+
+#import "TTInput.h"
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* TTInputPanel_pch */'
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -132,7 +147,7 @@ Pod::Spec.new do |s|
 
   # s.requires_arc = true
 
-  s.xcconfig = {"GCC_PREFIX_HEADER" => "${SRCROOT}/TTInputPanel/TTInputPanelPre.pch"}#{}"HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
+  # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
 
 end

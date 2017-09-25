@@ -10,4 +10,6 @@
 
 @interface TTInputPanelBar : UIView
 
+- (instancetype)initWithBar:(TTInputBar *)bar;
+
 @end

@@ -10,4 +10,13 @@
 
 @interface TTInput : NSObject
 
+@property (nonatomic, strong) TTInputBar * inpurtBar;
+
+@property (nonatomic, strong) NSMutableArray<TTInputSource *> * sources;
+
+
+- (void)intiialFromJsonData:(NSData *)data;
+
++ (instancetype)inputFromJsonData:(NSData *)data;
+
 @end

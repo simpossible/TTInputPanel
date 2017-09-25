@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TTInput.h"
 
 @interface TTInputPanel : UIView
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		97C78BE755603FE11567F4F8 /* libPods-TTInputPanel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7171894847C4583F75C7197 /* libPods-TTInputPanel.a */; };
 		A4ADD6DE1F78ACCF0095C9BE /* TTInputBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADD6DD1F78ACCF0095C9BE /* TTInputBar.m */; };
 		A4ADD6E11F78AD390095C9BE /* TTInputPanenSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADD6E01F78AD390095C9BE /* TTInputPanenSource.m */; };
 		A4ADD6E41F78AD7C0095C9BE /* TTInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADD6E31F78AD7C0095C9BE /* TTInputSource.m */; };
@@ -34,6 +35,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		200F2A223821B6DC08969C37 /* Pods-TTInputPanel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTInputPanel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TTInputPanel/Pods-TTInputPanel.debug.xcconfig"; sourceTree = "<group>"; };
+		A41352F71F79128E006472BF /* TTInputPanelDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputPanelDefine.h; sourceTree = "<group>"; };
 		A4ADD6DC1F78ACCF0095C9BE /* TTInputBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputBar.h; sourceTree = "<group>"; };
 		A4ADD6DD1F78ACCF0095C9BE /* TTInputBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTInputBar.m; sourceTree = "<group>"; };
 		A4ADD6DF1F78AD390095C9BE /* TTInputPanenSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputPanenSource.h; sourceTree = "<group>"; };
@@ -56,6 +59,8 @@
 		A4C1C51A1F72650300F9DFD8 /* TTInputPanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputPanel.h; sourceTree = "<group>"; };
 		A4C1C51B1F72650300F9DFD8 /* TTInputPanel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTInputPanel.m; sourceTree = "<group>"; };
 		A4C1C5231F72654100F9DFD8 /* TTInputPanelPre.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputPanelPre.pch; sourceTree = "<group>"; };
+		C7171894847C4583F75C7197 /* libPods-TTInputPanel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TTInputPanel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA83083B85FF057D8596A536 /* Pods-TTInputPanel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTInputPanel.release.xcconfig"; path = "Pods/Target Support Files/Pods-TTInputPanel/Pods-TTInputPanel.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,12 +68,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97C78BE755603FE11567F4F8 /* libPods-TTInputPanel.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D575D4A01B43D5A1F85D26D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				200F2A223821B6DC08969C37 /* Pods-TTInputPanel.debug.xcconfig */,
+				DA83083B85FF057D8596A536 /* Pods-TTInputPanel.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A4ADD6D81F78AC990095C9BE /* bar */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +119,8 @@
 			children = (
 				A4C1C5191F72650300F9DFD8 /* TTInputPanel */,
 				A4C1C5181F72650300F9DFD8 /* Products */,
+				0D575D4A01B43D5A1F85D26D /* Pods */,
+				FDB9989E38E73A04869F894C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,8 +142,17 @@
 				A4ADD6E81F78ADDA0095C9BE /* TTInput.h */,
 				A4ADD6E91F78ADDA0095C9BE /* TTInput.m */,
 				A4C1C5231F72654100F9DFD8 /* TTInputPanelPre.pch */,
+				A41352F71F79128E006472BF /* TTInputPanelDefine.h */,
 			);
 			path = TTInputPanel;
+			sourceTree = "<group>";
+		};
+		FDB9989E38E73A04869F894C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C7171894847C4583F75C7197 /* libPods-TTInputPanel.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,9 +162,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A4C1C5201F72650300F9DFD8 /* Build configuration list for PBXNativeTarget "TTInputPanel" */;
 			buildPhases = (
+				386CBF8476545E3C6DB08898 /* [CP] Check Pods Manifest.lock */,
 				A4C1C5131F72650300F9DFD8 /* Sources */,
 				A4C1C5141F72650300F9DFD8 /* Frameworks */,
 				A4C1C5151F72650300F9DFD8 /* CopyFiles */,
+				93B9BA508A333A0F1D2084C0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -179,6 +207,42 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		386CBF8476545E3C6DB08898 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TTInputPanel-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		93B9BA508A333A0F1D2084C0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TTInputPanel/Pods-TTInputPanel-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A4C1C5131F72650300F9DFD8 /* Sources */ = {
@@ -303,6 +367,7 @@
 		};
 		A4C1C5211F72650300F9DFD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 200F2A223821B6DC08969C37 /* Pods-TTInputPanel.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 4SND9369ME;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -316,6 +381,7 @@
 		};
 		A4C1C5221F72650300F9DFD8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA83083B85FF057D8596A536 /* Pods-TTInputPanel.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 4SND9369ME;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

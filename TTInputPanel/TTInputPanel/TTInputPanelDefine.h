@@ -1,5 +1,5 @@
 //
-//  TTInputSource.h
+//  TTInputPanelDefine.h
 //  TTInputPanel
 //
 //  Created by simp on 2017/9/25.
@@ -7,10 +7,3 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@interface TTInputSource : NSObject
-
-@property (nonatomic, strong) TTInputBarItem * baritem;
-
-
-@end
