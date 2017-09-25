@@ -10,4 +10,6 @@
 
 @interface TTInputPanel : UIView
 
+- (instancetype)initWithInput:(TTInput *)input;
+
 @end

@@ -306,7 +306,7 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = 4SND9369ME;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "${SRCROOT}/TTInputPanelPre.pch";
+				GCC_PREFIX_HEADER = "${SRCROOT}/TTInputPanel/TTInputPanelPre.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -319,7 +319,7 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = 4SND9369ME;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "${SRCROOT}/TTInputPanelPre.pch";
+				GCC_PREFIX_HEADER = "${SRCROOT}/TTInputPanel/TTInputPanelPre.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

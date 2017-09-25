@@ -8,6 +8,31 @@
 
 #import "TTInputPanel.h"
 
+@interface TTInputPanel ()
+
+@property (nonatomic, strong) TTInput * input;
+
+@end
+
 @implementation TTInputPanel
+
+- (instancetype)initWithInput:(TTInput *)input {
+    if (self = [super init]) {
+        self.input = input;
+    }
+    return self;
+}
+
+- (void)initialUI {
+    
+}
+
+- (void)initialBar {
+    
+}
+
+- (void)initialContainerView {
+    
+}
 
 @end

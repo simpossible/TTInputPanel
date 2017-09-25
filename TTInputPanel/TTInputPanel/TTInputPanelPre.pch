@@ -9,6 +9,14 @@
 #ifndef TTInputPanel_pch
 #define TTInputPanel_pch
 
+#import <UIKit/UIKit.h>
+#import "TTInput.h"
+#import "TTInputPanel.h"
+#import "TTInputBar.h"
+#import "TTInputPanelBar.h"
+#import "TTInputSource.h"
+#import "TTInputPanenSource.h"
+
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
