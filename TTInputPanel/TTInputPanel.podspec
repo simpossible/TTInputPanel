@@ -126,6 +126,7 @@ Pod::Spec.new do |s|
 #define TTInputPanel_pch
 
 #import <UIKit/UIKit.h>
+#import <Masonry.h>
 
 #import "TTInputPanel.h"
 #import "TTInputBar.h"

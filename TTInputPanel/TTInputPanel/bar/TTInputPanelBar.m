@@ -7,7 +7,7 @@
 //
 
 #import "TTInputPanelBar.h"
-#import "TTInputPanelBarlItem.h"
+#import "TTInputPanelBarItem.h"
 
 @interface TTInputPanelBar()
 
@@ -20,7 +20,7 @@
 - (instancetype)initWithBar:(TTInputBar *)bar {
     if (self = [super init]) {
         self.bar = bar;
-        [self initialItems];
+        [self initialUI];
     }
     return self;
 }
@@ -28,19 +28,24 @@
 
 - (void)initialUI {
     [self initialItems];
+    self.backgroundColor = [UIColor grayColor];
 }
 
 - (void)initialItems {
-    TTInputPanelBarlItem *lastPanelItem = nil;
+    TTInputPanelBarItem *lastPanelItem = nil;
     TTInputBarItem *lastInputItem = nil;
     for (TTInputBarItem *item in self.bar.items) {
-        TTInputPanelBarlItem *panelItem = [[TTInputPanelBarlItem alloc] initWithInputItem:item];
+        TTInputPanelBarItem *panelItem = [[TTInputPanelBarItem alloc] initWithInputItem:item];
         [self addSubview:panelItem];
         [panelItem mas_makeConstraints:^(MASConstraintMaker *make) {
             lastInputItem == nil?make.left.equalTo(self.mas_left).offset(item.margin.left):make.left.equalTo(lastPanelItem.mas_right).offset(item.margin.left+lastInputItem.margin.right);
             make.top.equalTo(self.mas_top).offset(item.margin.top);
             make.height.mas_equalTo(item.height);
-            make.width.mas_equalTo(item.width);
+            if (item.flex == TTInputLayoutFlexFix) {
+                make.width.mas_equalTo(item.width);
+            }else {
+                make.width.mas_lessThanOrEqualTo(item.width).priority(item.flex);
+            }
         }];
         lastPanelItem = panelItem;
         lastInputItem = item;

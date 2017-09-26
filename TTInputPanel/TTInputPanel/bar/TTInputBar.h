@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TTInputBarItem.h"
 
 @interface TTInputBar : NSObject
 
@@ -15,5 +16,7 @@
 @property (nonatomic, assign) CGFloat barHeight;
 
 - (instancetype)initWithBarItems:(NSArray *)array;
+
+- (void)setParameterWithJson:(NSDictionary *)json;
 
 @end

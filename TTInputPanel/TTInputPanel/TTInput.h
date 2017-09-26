@@ -7,6 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TTInputBar.h"
+#import "TTInputSource.h"
+
+FOUNDATION_EXTERN NSString * const TTInputName;
+
+FOUNDATION_EXTERN NSString * const TTInputSources;
 
 @interface TTInput : NSObject
 
@@ -14,8 +20,7 @@
 
 @property (nonatomic, strong) NSMutableArray<TTInputSource *> * sources;
 
-
-- (void)intiialFromJsonData:(NSData *)data;
+- (instancetype)intiialFromJsonData:(NSData *)data;
 
 + (instancetype)inputFromJsonData:(NSData *)data;
 

@@ -7,10 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TTInputBarItem.h"
+
+@class TTInputBarItem;
 
 @interface TTInputSource : NSObject
 
 @property (nonatomic, strong) TTInputBarItem * baritem;
 
+
++ (TTInputSource *)sourcesFromDic:(NSDictionary *)sourceDic;
 
 @end

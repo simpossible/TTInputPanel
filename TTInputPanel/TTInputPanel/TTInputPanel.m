@@ -33,21 +33,23 @@
 - (void)initialUI {
     [self initialBar];
     [self initialContainerView];
+    self.backgroundColor = [UIColor yellowColor];
 }
 
 - (void)initialBar {
-    self.panelBar = [[TTInputPanelBar alloc] init];
+    self.panelBar = [[TTInputPanelBar alloc] initWithBar:self.input.inpurtBar];
     [self addSubview:self.panelBar];
     
     [self.panelBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top);
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
+        make.height.mas_equalTo(self.input.inpurtBar.barHeight);
     }];
 
-    [self mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.panelBar.mas_top);
-    }];
+//    [self mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.panelBar.mas_top);
+//    }];
 }
 
 - (void)initialContainerView {
@@ -60,7 +62,7 @@
         make.right.equalTo(self.mas_right);
     }];
     [self mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.panelBar.mas_bottom);
+        make.bottom.equalTo(self.sourceContainerView.mas_bottom);
     }];
 }
 

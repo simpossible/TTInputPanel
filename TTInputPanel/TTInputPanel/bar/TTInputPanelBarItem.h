@@ -6,9 +6,11 @@
 //  Copyright © 2017年 simp. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "TTInputBarItem.h"
 
-@interface TTInputPanelBarlItem : UIView
+@interface TTInputPanelBarItem : UIControl
+
+@property (nonatomic, strong) TTInputBarItem *barItem;
 
 - (instancetype)initWithInputItem:(TTInputBarItem *)item;
 

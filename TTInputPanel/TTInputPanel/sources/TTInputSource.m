@@ -8,6 +8,32 @@
 
 #import "TTInputSource.h"
 
+@interface TTInputSource()
+@property (nonatomic, copy) NSString * name;
+@end
+
 @implementation TTInputSource
 
++ (TTInputSource *)sourcesFromDic:(NSDictionary *)sourceDic {
+    return [[self alloc] initWithSource:sourceDic];
+}
+
+- (instancetype)initWithSource:(NSDictionary *)dic {
+    if (self = [super init]) {
+        [self dealSourceDic:dic];
+    }
+    return self;
+}
+
+- (void)dealSourceDic:(NSDictionary *)dic {
+    
+    self.name = [dic objectForKey:@"name"];
+    NSDictionary *barItemJson = [dic objectForKey:@"baritem"];
+    self.baritem = [TTInputBarItem barItemWithJson:barItemJson];
+    
+}
+
+- (void)margin {
+    
+}
 @end

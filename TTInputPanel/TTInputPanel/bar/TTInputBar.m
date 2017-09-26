@@ -21,6 +21,10 @@
     return self;
 }
 
+- (void)setParameterWithJson:(NSDictionary *)json {
+    CGFloat height = [[json objectForKey:@"barHeight"] floatValue];
+    self.barHeight = height;
+}
 
 
 @end

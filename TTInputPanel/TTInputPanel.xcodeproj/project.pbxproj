@@ -8,13 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		97C78BE755603FE11567F4F8 /* libPods-TTInputPanel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7171894847C4583F75C7197 /* libPods-TTInputPanel.a */; };
+		A4A3E5D41F79F57F00363D2B /* TTInputTextBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A3E5D31F79F57F00363D2B /* TTInputTextBarItem.m */; };
+		A4A3E5D71F79F5A100363D2B /* TTInputPanelTextBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A3E5D61F79F5A100363D2B /* TTInputPanelTextBarItem.m */; };
+		A4A3E5DA1F79F60000363D2B /* TTInputPanelNormalBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A3E5D91F79F60000363D2B /* TTInputPanelNormalBarItem.m */; };
+		A4A3E5DD1F79F61000363D2B /* TTInputNormalBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A3E5DC1F79F61000363D2B /* TTInputNormalBarItem.m */; };
 		A4ADD6DE1F78ACCF0095C9BE /* TTInputBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADD6DD1F78ACCF0095C9BE /* TTInputBar.m */; };
 		A4ADD6E11F78AD390095C9BE /* TTInputPanenSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADD6E01F78AD390095C9BE /* TTInputPanenSource.m */; };
 		A4ADD6E41F78AD7C0095C9BE /* TTInputSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADD6E31F78AD7C0095C9BE /* TTInputSource.m */; };
 		A4ADD6E71F78AD9F0095C9BE /* TTInputPanelBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADD6E61F78AD9F0095C9BE /* TTInputPanelBar.m */; };
 		A4ADD6EA1F78ADDA0095C9BE /* TTInput.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADD6E91F78ADDA0095C9BE /* TTInput.m */; };
 		A4ADD6ED1F78B09B0095C9BE /* TTInputBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADD6EC1F78B09B0095C9BE /* TTInputBarItem.m */; };
-		A4ADD6F31F78B0CC0095C9BE /* TTInputPanelBarlItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADD6F21F78B0CC0095C9BE /* TTInputPanelBarlItem.m */; };
+		A4ADD6F31F78B0CC0095C9BE /* TTInputPanelBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADD6F21F78B0CC0095C9BE /* TTInputPanelBarItem.m */; };
 		A4ADD6F61F78B1DB0095C9BE /* TTInputSrouceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADD6F51F78B1DB0095C9BE /* TTInputSrouceItem.m */; };
 		A4ADD6F91F78B1ED0095C9BE /* TTInputPanelSourceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADD6F81F78B1ED0095C9BE /* TTInputPanelSourceItem.m */; };
 		A4C1C51C1F72650300F9DFD8 /* TTInputPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1C51B1F72650300F9DFD8 /* TTInputPanel.m */; };
@@ -37,6 +41,14 @@
 /* Begin PBXFileReference section */
 		200F2A223821B6DC08969C37 /* Pods-TTInputPanel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTInputPanel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TTInputPanel/Pods-TTInputPanel.debug.xcconfig"; sourceTree = "<group>"; };
 		A41352F71F79128E006472BF /* TTInputPanelDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputPanelDefine.h; sourceTree = "<group>"; };
+		A4A3E5D21F79F57F00363D2B /* TTInputTextBarItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputTextBarItem.h; sourceTree = "<group>"; };
+		A4A3E5D31F79F57F00363D2B /* TTInputTextBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTInputTextBarItem.m; sourceTree = "<group>"; };
+		A4A3E5D51F79F5A100363D2B /* TTInputPanelTextBarItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputPanelTextBarItem.h; sourceTree = "<group>"; };
+		A4A3E5D61F79F5A100363D2B /* TTInputPanelTextBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTInputPanelTextBarItem.m; sourceTree = "<group>"; };
+		A4A3E5D81F79F60000363D2B /* TTInputPanelNormalBarItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputPanelNormalBarItem.h; sourceTree = "<group>"; };
+		A4A3E5D91F79F60000363D2B /* TTInputPanelNormalBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTInputPanelNormalBarItem.m; sourceTree = "<group>"; };
+		A4A3E5DB1F79F61000363D2B /* TTInputNormalBarItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputNormalBarItem.h; sourceTree = "<group>"; };
+		A4A3E5DC1F79F61000363D2B /* TTInputNormalBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTInputNormalBarItem.m; sourceTree = "<group>"; };
 		A4ADD6DC1F78ACCF0095C9BE /* TTInputBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputBar.h; sourceTree = "<group>"; };
 		A4ADD6DD1F78ACCF0095C9BE /* TTInputBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTInputBar.m; sourceTree = "<group>"; };
 		A4ADD6DF1F78AD390095C9BE /* TTInputPanenSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputPanenSource.h; sourceTree = "<group>"; };
@@ -49,8 +61,8 @@
 		A4ADD6E91F78ADDA0095C9BE /* TTInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTInput.m; sourceTree = "<group>"; };
 		A4ADD6EB1F78B09B0095C9BE /* TTInputBarItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputBarItem.h; sourceTree = "<group>"; };
 		A4ADD6EC1F78B09B0095C9BE /* TTInputBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTInputBarItem.m; sourceTree = "<group>"; };
-		A4ADD6F11F78B0CC0095C9BE /* TTInputPanelBarlItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputPanelBarlItem.h; sourceTree = "<group>"; };
-		A4ADD6F21F78B0CC0095C9BE /* TTInputPanelBarlItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTInputPanelBarlItem.m; sourceTree = "<group>"; };
+		A4ADD6F11F78B0CC0095C9BE /* TTInputPanelBarltem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputPanelBarltem.h; sourceTree = "<group>"; };
+		A4ADD6F21F78B0CC0095C9BE /* TTInputPanelBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTInputPanelBarItem.m; sourceTree = "<group>"; };
 		A4ADD6F41F78B1DB0095C9BE /* TTInputSrouceItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputSrouceItem.h; sourceTree = "<group>"; };
 		A4ADD6F51F78B1DB0095C9BE /* TTInputSrouceItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTInputSrouceItem.m; sourceTree = "<group>"; };
 		A4ADD6F71F78B1ED0095C9BE /* TTInputPanelSourceItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTInputPanelSourceItem.h; sourceTree = "<group>"; };
@@ -93,8 +105,16 @@
 				A4ADD6E61F78AD9F0095C9BE /* TTInputPanelBar.m */,
 				A4ADD6EB1F78B09B0095C9BE /* TTInputBarItem.h */,
 				A4ADD6EC1F78B09B0095C9BE /* TTInputBarItem.m */,
-				A4ADD6F11F78B0CC0095C9BE /* TTInputPanelBarlItem.h */,
-				A4ADD6F21F78B0CC0095C9BE /* TTInputPanelBarlItem.m */,
+				A4A3E5D21F79F57F00363D2B /* TTInputTextBarItem.h */,
+				A4A3E5D31F79F57F00363D2B /* TTInputTextBarItem.m */,
+				A4A3E5DB1F79F61000363D2B /* TTInputNormalBarItem.h */,
+				A4A3E5DC1F79F61000363D2B /* TTInputNormalBarItem.m */,
+				A4ADD6F11F78B0CC0095C9BE /* TTInputPanelBarltem.h */,
+				A4ADD6F21F78B0CC0095C9BE /* TTInputPanelBarItem.m */,
+				A4A3E5D51F79F5A100363D2B /* TTInputPanelTextBarItem.h */,
+				A4A3E5D61F79F5A100363D2B /* TTInputPanelTextBarItem.m */,
+				A4A3E5D81F79F60000363D2B /* TTInputPanelNormalBarItem.h */,
+				A4A3E5D91F79F60000363D2B /* TTInputPanelNormalBarItem.m */,
 			);
 			path = bar;
 			sourceTree = "<group>";
@@ -250,14 +270,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4ADD6DE1F78ACCF0095C9BE /* TTInputBar.m in Sources */,
+				A4A3E5D71F79F5A100363D2B /* TTInputPanelTextBarItem.m in Sources */,
 				A4ADD6F61F78B1DB0095C9BE /* TTInputSrouceItem.m in Sources */,
-				A4ADD6F31F78B0CC0095C9BE /* TTInputPanelBarlItem.m in Sources */,
+				A4ADD6F31F78B0CC0095C9BE /* TTInputPanelBarItem.m in Sources */,
 				A4ADD6E11F78AD390095C9BE /* TTInputPanenSource.m in Sources */,
 				A4C1C51C1F72650300F9DFD8 /* TTInputPanel.m in Sources */,
 				A4ADD6F91F78B1ED0095C9BE /* TTInputPanelSourceItem.m in Sources */,
 				A4ADD6E41F78AD7C0095C9BE /* TTInputSource.m in Sources */,
 				A4ADD6EA1F78ADDA0095C9BE /* TTInput.m in Sources */,
+				A4A3E5DA1F79F60000363D2B /* TTInputPanelNormalBarItem.m in Sources */,
+				A4A3E5D41F79F57F00363D2B /* TTInputTextBarItem.m in Sources */,
 				A4ADD6E71F78AD9F0095C9BE /* TTInputPanelBar.m in Sources */,
+				A4A3E5DD1F79F61000363D2B /* TTInputNormalBarItem.m in Sources */,
 				A4ADD6ED1F78B09B0095C9BE /* TTInputBarItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
