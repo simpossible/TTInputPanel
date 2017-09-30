@@ -66,4 +66,8 @@
     }];
 }
 
+- (void)addToView:(UIView *)view {
+    [self initialUI];
+}
+
 @end

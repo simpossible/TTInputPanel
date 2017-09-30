@@ -10,6 +10,12 @@
 
 @implementation TTInputNormalBarItem
 
-
+- (void)dealJson:(NSDictionary *)json {
+    [super dealJson:json];
+    
+    self.imgName = [json objectForKey:@"itemImg"];
+    self.imgUrl = [json objectForKey:@"itemUrl"];
+    
+}
 
 @end

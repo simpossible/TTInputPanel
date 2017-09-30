@@ -14,4 +14,6 @@
 
 - (instancetype)initWithInputItem:(TTInputBarItem *)item;
 
++ (instancetype)panelItemWithBarItem:(TTInputBarItem *)item;
+
 @end

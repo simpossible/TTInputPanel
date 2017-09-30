@@ -15,6 +15,8 @@
 
 @property (nonatomic, assign) CGFloat barHeight;
 
+@property (nonatomic, assign) TTInputBarLayoutType layoutType;
+
 - (instancetype)initWithBarItems:(NSArray *)array;
 
 - (void)setParameterWithJson:(NSDictionary *)json;

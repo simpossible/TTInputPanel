@@ -41,4 +41,10 @@ FOUNDATION_EXTERN NSString * const TTInputBarMarginBottom;
 
 + (instancetype)barItemWithJson:(NSDictionary *)json;
 
+/**根据sourceType 生成barItem*/
++ (instancetype)barItemWithJson:(NSDictionary *)json andSourceType:(NSString *)type;
+
+
+- (void)dealJson:(NSDictionary *)json;
+
 @end

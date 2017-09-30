@@ -13,4 +13,7 @@
 
 - (instancetype)initWithInput:(TTInput *)input;
 
+//这里需要父视图来进行布局
+//- (void)addToView:(UIView *)view;
+
 @end

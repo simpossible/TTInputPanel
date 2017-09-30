@@ -14,4 +14,9 @@
 
 @property (nonatomic, copy) NSString * imgUrl;
 
+
+@property (nonatomic, copy) NSString * selectImgName;
+
+@property (nonatomic, copy) NSString * selectImgUrl;
+
 @end

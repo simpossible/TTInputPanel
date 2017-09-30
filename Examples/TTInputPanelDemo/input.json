@@ -1,1 +1,55 @@
-
+{
+    "bar": {
+        "barHeight": 50,
+        "layout":"space",
+        
+    },
+    "sources": [
+                {
+                "type": "normal",
+                "baritem": {
+                "margin": {
+                "left": 10,
+                "right": 10,
+                "top": 10,
+                "bottom": 10,
+                },
+                "itemImg":"",
+                "itemSelectImg":"",
+                "itemUrl":"",
+                "itemSelectUrl":"",
+                "width": 32,
+                "height": 32
+                },
+                "content": {}
+                },
+                {
+                "type": "textinput",
+                "baritem": {
+                "margin": {
+                "left": 10,
+                "right": 10,
+                "top": 10,
+                "bottom": 10,
+                },
+                "width": 132,
+                "height": 32
+                },
+                "content": {}
+                },
+                {
+                "type": "normal",
+                "baritem": {
+                "margin": {
+                "left": 10,
+                "right": 10,
+                "top": 10,
+                "bottom": 10,
+                },
+                "width": 32,
+                "height": 32
+                },
+                "content": {}
+                }
+                ]
+}

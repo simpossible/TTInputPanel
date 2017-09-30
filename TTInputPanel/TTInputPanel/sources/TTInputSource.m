@@ -29,11 +29,10 @@
     
     self.name = [dic objectForKey:@"name"];
     NSDictionary *barItemJson = [dic objectForKey:@"baritem"];
-    self.baritem = [TTInputBarItem barItemWithJson:barItemJson];
+    
+    NSString *type = [dic objectForKey:TTINPUTSOURCETYPE];
+    self.baritem = [TTInputBarItem barItemWithJson:barItemJson andSourceType:type];
     
 }
 
-- (void)margin {
-    
-}
 @end

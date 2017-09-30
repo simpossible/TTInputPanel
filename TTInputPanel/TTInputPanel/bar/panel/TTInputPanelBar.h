@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TTInputPanelBarItem.h"
 
 @interface TTInputPanelBar : UIView
 
 - (instancetype)initWithBar:(TTInputBar *)bar;
+
 
 @end

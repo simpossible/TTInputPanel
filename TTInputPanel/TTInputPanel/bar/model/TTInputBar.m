@@ -24,6 +24,16 @@
 - (void)setParameterWithJson:(NSDictionary *)json {
     CGFloat height = [[json objectForKey:@"barHeight"] floatValue];
     self.barHeight = height;
+    
+    NSString *layout = [json objectForKey:TTINPUTBARITEMLAOUT];
+    [self dealLayoutType:layout];
+}
+
+- (void)dealLayoutType:(NSString *)layoutType {
+    //space布局
+    if ([layoutType isEqualToString:TTINPUTBARITEMLAOUTSPACE]) {
+        self.layoutType = TTInputBarLayoutTypeSpace;
+    }
 }
 
 
