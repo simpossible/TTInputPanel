@@ -21,4 +21,6 @@
 
 - (void)setParameterWithJson:(NSDictionary *)json;
 
+- (BOOL)haveFlexItem;
+
 @end

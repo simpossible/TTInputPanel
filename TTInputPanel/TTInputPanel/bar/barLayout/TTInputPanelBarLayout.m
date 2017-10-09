@@ -8,6 +8,7 @@
 
 #import "TTInputPanelBarLayout.h"
 #import "TTInputPanelBarSpaceLayout.h"
+#import "TTInputPanelBarNormalLayout.h"
 
 @implementation TTInputPanelBarLayout
 
@@ -19,9 +20,10 @@
 + (instancetype)layoutForType:(TTInputBarLayoutType)type {
     switch (type) {
         case TTInputBarLayoutTypeSpace:
-        return [[TTInputPanelBarSpaceLayout alloc] init];
+            return [[TTInputPanelBarSpaceLayout alloc] init];
         break;
-        
+        case TTInputBarLayoutTypeNormal:
+            return [[TTInputPanelBarNormalLayout alloc] init];
         default:
         break;
     }

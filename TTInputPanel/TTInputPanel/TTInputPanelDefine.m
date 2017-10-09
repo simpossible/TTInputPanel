@@ -21,6 +21,8 @@
 /**平均分布 支持Flex*/
  NSString * const TTINPUTBARITEMLAOUTSPACE = @"space";
 
+NSString * const TTINPUTBARITEMLAOUTNORMAL = @"normal";
+
 /**指定每个Item 的大小 一个个排列 超过后显示更多*/
  NSString * const TTINPUTBARITEMLAOUTFIX = @"fix";
 

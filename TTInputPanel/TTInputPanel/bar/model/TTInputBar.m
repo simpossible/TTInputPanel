@@ -33,8 +33,19 @@
     //space布局
     if ([layoutType isEqualToString:TTINPUTBARITEMLAOUTSPACE]) {
         self.layoutType = TTInputBarLayoutTypeSpace;
+    }else if ([layoutType isEqualToString:TTINPUTBARITEMLAOUTNORMAL]) {
+        self.layoutType = TTInputBarLayoutTypeNormal;
     }
 }
 
+
+- (BOOL)haveFlexItem {
+    for (TTInputBarItem *item in self.items) {
+        if (item.flex != TTInputLayoutFlexFix) {
+            return YES;
+        }
+    }
+    return NO;
+}
 
 @end

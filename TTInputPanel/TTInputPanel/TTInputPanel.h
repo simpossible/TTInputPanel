@@ -11,9 +11,16 @@
 
 @interface TTInputPanel : UIView
 
+
+/**
+ 当前是否升起
+ */
+@property (nonatomic, assign, readonly) TTInputPanelState state;
+
+
 - (instancetype)initWithInput:(TTInput *)input;
 
-//这里需要父视图来进行布局
-//- (void)addToView:(UIView *)view;
+/**收起panel*/
+- (void)landingPanel;
 
 @end

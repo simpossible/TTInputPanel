@@ -15,6 +15,7 @@
 @implementation TTInputPanelNormalBarItem
 
 - (void)initialUI {
+    
     self.icon = [[UIImageView alloc] init];
     [self.icon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(UIEdgeInsetsZero);

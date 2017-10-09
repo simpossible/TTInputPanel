@@ -8,7 +8,21 @@
 
 #import "TTInputBarItem.h"
 
+@protocol TTInputPanelBarItemProtocol <NSObject>
+
+- (void)toChangeBarHeigth:(CGFloat)height;
+
+- (void)toChangeSourceHeight:(CGFloat)height;
+
+- (void)toChangeSourceHeight:(CGFloat)height time:(CGFloat)time animateOption:(UIViewAnimationOptions)options;
+
+@end
+
+
 @interface TTInputPanelBarItem : UIControl
+
+/**界面高度的各种变化事件*/
+@property (nonatomic, weak) id<TTInputPanelBarItemProtocol> delegate;
 
 @property (nonatomic, strong) TTInputBarItem *barItem;
 

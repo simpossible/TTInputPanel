@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TTInputBar.h"
 #import "TTInputPanelBarItem.h"
 
 @interface TTInputPanelBar : UIView
 
-- (instancetype)initWithBar:(TTInputBar *)bar;
+@property (nonatomic, strong) NSMutableArray * panelItems;
 
+@property (nonatomic, weak) id<TTInputPanelBarItemProtocol> itemDelegate;
+
+- (instancetype)initWithBar:(TTInputBar *)bar;
 
 @end

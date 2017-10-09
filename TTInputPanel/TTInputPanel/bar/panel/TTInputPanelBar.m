@@ -24,6 +24,7 @@
 - (instancetype)initWithBar:(TTInputBar *)bar {
     if (self = [super init]) {
         self.bar = bar;
+        self.panelItems = [NSMutableArray array];
     }
     return self;
 }
@@ -32,7 +33,7 @@
 - (void)initialUI {
     [self generateLayout];
     [self initialItems];
-    self.backgroundColor = [UIColor grayColor];
+    self.backgroundColor = [UIColor yellowColor];
 }
 
 
@@ -51,6 +52,15 @@
         [self initialUI];
     });
 }
+
+- (void)addSubview:(UIView *)view {
+    [super addSubview:view];
+    if ([view isKindOfClass:[TTInputPanelBarItem class]]) {
+        TTInputPanelBarItem *item = (TTInputPanelBarItem*)view;
+        item.delegate = self.itemDelegate;
+    }
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

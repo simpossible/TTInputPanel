@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TTInputBarItem.h"
+
 #import "TTInputPanelBarLayout.h"
 
 /**

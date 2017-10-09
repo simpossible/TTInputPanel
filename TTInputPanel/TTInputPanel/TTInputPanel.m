@@ -7,9 +7,9 @@
 //
 
 #import "TTInputPanel.h"
+#import "TTInputPanelBarItem.h"
 
-
-@interface TTInputPanel ()
+@interface TTInputPanel ()<TTInputPanelBarItemProtocol>
 
 @property (nonatomic, strong) TTInput * input;
 
@@ -31,43 +31,65 @@
 
 
 - (void)initialUI {
+    
+    [self initialContainerViewWithHeight:0];
     [self initialBar];
-    [self initialContainerView];
-    self.backgroundColor = [UIColor yellowColor];
+    self.panelBar.backgroundColor = [UIColor yellowColor];
 }
 
 - (void)initialBar {
-    self.panelBar = [[TTInputPanelBar alloc] initWithBar:self.input.inpurtBar];
-    [self addSubview:self.panelBar];
+    if (!self.panelBar) {
+        self.panelBar = [[TTInputPanelBar alloc] initWithBar:self.input.inpurtBar];
+        [self addSubview:self.panelBar];
+        
+        [self mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.panelBar.mas_top);
+        }];
+    }
     
-    [self.panelBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top);
+    [self.panelBar mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
         make.height.mas_equalTo(self.input.inpurtBar.barHeight);
+        make.bottom.equalTo(self.sourceContainerView.mas_top);
     }];
-
-//    [self mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.panelBar.mas_top);
-//    }];
+    
+    self.panelBar.itemDelegate = self;
 }
 
-- (void)initialContainerView {
-    self.sourceContainerView = [[UIView alloc] init];
-    [self addSubview:self.sourceContainerView];
-    
-    [self.sourceContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.panelBar.mas_bottom);
+- (void)initialContainerViewWithHeight:(CGFloat)height {
+    if (!self.sourceContainerView) {
+        self.sourceContainerView = [[UIView alloc] init];
+        [self addSubview:self.sourceContainerView];
+        [self mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.sourceContainerView.mas_bottom);
+        }];
+    }
+    [self.sourceContainerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(height);
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
     }];
-    [self mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.sourceContainerView.mas_bottom);
-    }];
+ 
+    
+    self.sourceContainerView.backgroundColor = [UIColor blueColor];
 }
 
-- (void)addToView:(UIView *)view {
-    [self initialUI];
+
+- (void)toChangeSourceHeight:(CGFloat)height time:(CGFloat)time animateOption:(UIViewAnimationOptions)options {
+    
+        [UIView animateWithDuration:time delay:0.0 options:0 animations:^{
+            [self  initialContainerViewWithHeight:height];
+            [self layoutIfNeeded];
+        } completion:^(BOOL finished) {
+        }];
+    
+  
+}
+
+
+- (void)landingPanel {
+        
 }
 
 @end

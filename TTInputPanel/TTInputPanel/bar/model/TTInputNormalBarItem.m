@@ -16,6 +16,9 @@
     self.imgName = [json objectForKey:@"itemImg"];
     self.imgUrl = [json objectForKey:@"itemUrl"];
     
+    self.selectImgName = [json objectForKey:@"itemSelectImg"];
+    self.selectImgUrl = [json objectForKey:@"itemSelectUrl"];
+    
 }
 
 @end

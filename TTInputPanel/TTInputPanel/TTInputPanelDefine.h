@@ -41,6 +41,9 @@ FOUNDATION_EXTERN NSString * const TTINPUTBARITEMLAOUT;
 /**平均分布 支持Flex*/
 FOUNDATION_EXTERN NSString * const TTINPUTBARITEMLAOUTSPACE;
 
+/**平均分布 支持Flex*/
+FOUNDATION_EXTERN NSString * const TTINPUTBARITEMLAOUTNORMAL;
+
 /**指定每个Item 的大小 一个个排列 超过后显示更多*/
 FOUNDATION_EXTERN NSString * const TTINPUTBARITEMLAOUTFIX;
 
@@ -61,4 +64,10 @@ FOUNDATION_EXTERN NSString * const TTINPUTBARITEFlEXLESS;
 
 typedef NS_ENUM(NSUInteger,TTInputBarLayoutType) {
     TTInputBarLayoutTypeSpace = 0,
+    TTInputBarLayoutTypeNormal,
+};
+
+typedef NS_ENUM(NSUInteger,TTInputPanelState) {
+    TTInputPanelStateUp = 0,
+    TTInputPanelStateDown,
 };

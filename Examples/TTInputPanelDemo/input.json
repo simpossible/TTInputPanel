@@ -1,7 +1,7 @@
 {
     "bar": {
         "barHeight": 50,
-        "layout":"space",
+        "layout":"normal", 
         
     },
     "sources": [
