@@ -42,7 +42,7 @@
 }
 
 - (void)initialItems {
-    [self.layout layoutItems:self.bar.items inBar:self];
+    [self.layout layoutItemForSources:self.bar.sources inBar:self];
 }
 
 
@@ -55,10 +55,7 @@
 
 - (void)addSubview:(UIView *)view {
     [super addSubview:view];
-    if ([view isKindOfClass:[TTInputPanelBarItem class]]) {
-        TTInputPanelBarItem *item = (TTInputPanelBarItem*)view;
-        item.delegate = self.itemDelegate;
-    }
+
 }
 
 /*

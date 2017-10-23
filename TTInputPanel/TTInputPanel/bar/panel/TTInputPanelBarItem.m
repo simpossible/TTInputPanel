@@ -11,7 +11,7 @@
 #import "TTInputPanelNormalBarItem.h"
 #import "TTInputTextBarItem.h"
 
-@interface TTInputPanelBarItem ()
+@interface TTInputPanelBarItem ()<TTInputBarItemProtocol>
 
 @property (nonatomic, strong) UIImageView * icon;
 
@@ -23,33 +23,41 @@
 
 @implementation TTInputPanelBarItem
 
-- (instancetype)initWithInputItem:(TTInputBarItem *)item {
-    if (self = [super init]) {
-        self.barItem = item;
+
+
+- (instancetype)initWithSource:(TTInputSource *)source {
+    if (self= [super init]) {
+        self.source = source;
     }
-    self.backgroundColor = [UIColor orangeColor];
     return self;
 }
 
-
-+ (instancetype)panelItemWithBarItem:(TTInputBarItem *)item {
-
-    Class itemClass = [item class];
-    if (itemClass==[TTInputBarItem class]) {
-        
-        return [[TTInputPanelBarItem alloc] initWithInputItem:item];
-        
-    }else if(itemClass ==[TTInputNormalBarItem class]) {
-        
-        return [[TTInputPanelNormalBarItem alloc] initWithInputItem:item];
-
-    }else if(itemClass == [TTInputTextBarItem class]) {
-    
-        return [[TTInputPanelTextBarItem alloc] initWithInputItem:item];
++(instancetype)panelItemWithSource:(TTInputSource *)source {
+    if ([source.sourceType isEqualToString:TTINPUTSOURCETYPENORMAL]){
+        return [[TTInputPanelNormalBarItem alloc] initWithSource:source];
+    }else if ([source.sourceType isEqualToString:TTINPUTSOURCETYPETEXTINPUT]) {
+        return [[TTInputPanelTextBarItem alloc] initWithSource:source];
     }
-    return nil;
+    return [[TTInputPanelBarItem alloc] initWithSource:source];
+}
+
+
+#pragma mark operation -
+
+- (void)landing {
     
 }
+
+- (void)rise {
+    
+}
+
+#pragma mark baritemProtocol -
+
+- (void)itemFoucusChanged {
+        [self rise];
+}
+
 
 
 @end

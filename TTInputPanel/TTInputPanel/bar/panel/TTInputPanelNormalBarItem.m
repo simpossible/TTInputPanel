@@ -14,22 +14,24 @@
 
 @implementation TTInputPanelNormalBarItem
 
-- (void)initialUI {
-    
-    self.icon = [[UIImageView alloc] init];
-    [self.icon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(UIEdgeInsetsZero);
-    }];
-    
-    
-//    if (self.inputItem.imgName) {
-//        self.iconImage = [UIImage imageNamed:self.inputItem.imgName];
-//        [self.icon setImage:self.iconImage];
-//    }else {
-//        if (self.inputItem.imgUrl) {
-//        }
-//    }
-    
+
+
+- (instancetype)initWithSource:(TTInputSource *)source {
+    if (self = [super initWithSource:source]) {
+        [self initialUI];
+    }
+    return self;
 }
+
+- (void)initialUI {
+    self.backgroundColor = [UIColor blueColor];
+    [self addTarget:self action:@selector(itemCliecked:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)itemCliecked:(id)sender {
+    TTIInputSoureFocusState state = self.source.focusState == TTIInputSoureFocusStateFoucus?TTIInputSoureFocusStateNone:TTIInputSoureFocusStateFoucus;
+    [self.source setFocusState:state];
+}
+
 
 @end

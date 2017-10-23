@@ -1,12 +1,12 @@
 {
     "bar": {
         "barHeight": 50,
-        "layout":"normal", 
-        
+        "layout":"normal",
     },
     "sources": [
                 {
                 "type": "normal",
+                "focusheight":100,
                 "baritem": {
                 "margin": {
                 "left": 10,
@@ -21,7 +21,26 @@
                 "width": 32,
                 "height": 32
                 },
-                "content": {}
+                "haveMenu":true,
+                "pages":[
+                    {
+                         "height":10,
+                         "pagemenuicon":"aa",
+                         "items":[
+                                  {
+                                  "itemimg":"img",
+                                  "tag":1,
+                                  },
+                                  {
+                                  "itemimg":"img",
+                                  "tag":1,
+                                  },                         {
+                                  "itemimg":"img",
+                                  "tag":1,
+                                  }
+                         ]
+                }
+                ],
                 },
                 {
                 "type": "textinput",
@@ -39,6 +58,7 @@
                 },
                 {
                 "type": "normal",
+                "focusheight":200,
                 "baritem": {
                 "margin": {
                 "left": 10,

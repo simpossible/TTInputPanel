@@ -10,7 +10,7 @@
 
 @implementation TTInputPanelBarNormalLayout
 
-- (void)layoutItems:(NSArray<TTInputBarItem *> *)items inBar:(TTInputPanelBar *)bar {
+- (void)layoutItemForSources:(NSArray<TTInputSource *> *)sources inBar:(TTInputPanelBar *)bar {
     
     [bar.superview layoutIfNeeded];
     
@@ -21,9 +21,9 @@
     
     NSInteger itemIndex = 0;
     
-    for (int i = 0; i < items.count; i ++) {
-        
-        TTInputBarItem *item = items[i];
+    for (int i = 0; i < sources.count; i ++) {
+        TTInputSource *source = sources[i];
+        TTInputBarItem *item = source.baritem;
         totoalItemWidth += item.margin.left;
         totoalItemWidth += item.width;
         totoalItemWidth += item.margin.right;
@@ -41,20 +41,21 @@
         itemIndex = i;
     }
     
-    [self layoutItems:items inBar:bar itemIndex:itemIndex];
+    [self layoutItems:sources inBar:bar itemIndex:itemIndex];
     
     
 }
 
-- (void)layoutItems:(NSArray<TTInputBarItem *> *)items inBar:(TTInputPanelBar *)bar itemIndex:(NSInteger)itemIndex{
+- (void)layoutItems:(NSArray<TTInputSource *> *)sources inBar:(TTInputPanelBar *)bar itemIndex:(NSInteger)itemIndex{
     
     TTInputPanelBarItem *lastPanelItem = nil;
     TTInputBarItem *lastInputItem = nil;
     
     for (int i = 0; i <= itemIndex; i ++) {
         
-        TTInputBarItem *item = [items objectAtIndex:i];
-        TTInputPanelBarItem *panelItem = [TTInputPanelBarItem panelItemWithBarItem:item];
+        TTInputSource *source = [sources objectAtIndex:i];
+        TTInputBarItem *item = source.baritem;
+        TTInputPanelBarItem *panelItem = [TTInputPanelBarItem panelItemWithSource:source];
         [bar addSubview:panelItem];
         
         [panelItem mas_makeConstraints:^(MASConstraintMaker *make) {

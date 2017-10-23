@@ -7,16 +7,17 @@
 //
 
 #import "TTInputBar.h"
-
+#import "TTInputBarItem.h"
 @interface TTInputBar()
+
 
 @end
 
 @implementation TTInputBar
 
-- (instancetype)initWithBarItems:(NSArray *)array {
+- (instancetype)initWithSources:(NSArray<TTInputSource *> *)sources {
     if (self = [super init]) {
-        self.items = [NSMutableArray arrayWithArray:array];
+        self.sources = [NSMutableArray arrayWithArray:sources];
     }
     return self;
 }
@@ -40,8 +41,8 @@
 
 
 - (BOOL)haveFlexItem {
-    for (TTInputBarItem *item in self.items) {
-        if (item.flex != TTInputLayoutFlexFix) {
+    for (TTInputSource *source in self.sources) {
+        if (source.baritem.flex != TTInputLayoutFlexFix) {
             return YES;
         }
     }

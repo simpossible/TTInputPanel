@@ -10,11 +10,15 @@
 #import "TTInputBar.h"
 #import "TTInputPanelBarItem.h"
 
+@protocol TTinputPanelBarProtocol <NSObject>
+
+- (void)toChangeBarHeight:(CGFloat)height;
+
+@end
+
 @interface TTInputPanelBar : UIView
 
 @property (nonatomic, strong) NSMutableArray * panelItems;
-
-@property (nonatomic, weak) id<TTInputPanelBarItemProtocol> itemDelegate;
 
 - (instancetype)initWithBar:(TTInputBar *)bar;
 

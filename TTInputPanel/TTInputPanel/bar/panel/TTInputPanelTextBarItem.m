@@ -17,10 +17,9 @@
 @implementation TTInputPanelTextBarItem
 
 
-- (instancetype)initWithInputItem:(TTInputBarItem *)item {
-    if (self = [super initWithInputItem:item]) {
+- (instancetype)initWithSource:(TTInputSource *)source {
+    if (self = [super initWithSource:source]) {
         [self initialUI];
-        [self becomeListener];
     }
     return self;
 }
@@ -31,6 +30,7 @@
 
 - (void)initialTextView {
     self.textView = [[UITextView alloc] init];
+    self.textView.delegate = self;
     [self addSubview:self.textView];
     
     [self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -40,55 +40,34 @@
     self.textView.keyboardType = UIKeyboardTypeASCIICapable;
 }
 
-- (void)becomeListener {
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardShowing:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardHidding:) name:UIKeyboardWillHideNotification object:nil];
-}
-
-- (void)resignListenr {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)keyboardShowing:(NSNotification *)notifi {
-    CGRect endFrame = [[notifi.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue];
-    
-    UIViewAnimationCurve animationCurve = [notifi.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    NSInteger animationCurveOption = (animationCurve << 16);
-    
-    double animationDuration = [notifi.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    
-    CGFloat sHeight = [[UIScreen mainScreen] bounds].size.height;
-    
-    if ([self.delegate respondsToSelector:@selector(toChangeSourceHeight:time:animateOption:)]) {
-        [self.delegate toChangeSourceHeight:endFrame.size.height time:animationDuration animateOption:animationCurveOption];
-    }
-    
-}
-
-- (void)keyboardHidding:(NSNotification *)notifi {
-    
-    CGRect endFrame = [[notifi.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue];
-    
-    UIViewAnimationCurve animationCurve = [notifi.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    NSInteger animationCurveOption = (animationCurve << 16);
-    
-    double animationDuration = [notifi.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    
-    if ([self.delegate respondsToSelector:@selector(toChangeSourceHeight:time:animateOption:)]) {
-        [self.delegate toChangeSourceHeight:0 time:animationDuration animateOption:animationCurveOption];
-    }
-}
 
 
 - (void)dealloc {
-    [self resignListenr];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    [self.textView resignFirstResponder];
-    return NO;
+    return YES;
 }
+
+
+#pragma mark - operation
+
+- (void)landing {
+    [self.textView resignFirstResponder];
+}
+
+/**状态改变的情况下不用降落，收起键盘就行*/
+- (void)itemFoucusWillChange {
+        [self.textView resignFirstResponder];
+}
+
+
+
+#pragma mark textView-
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
+    return YES;
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

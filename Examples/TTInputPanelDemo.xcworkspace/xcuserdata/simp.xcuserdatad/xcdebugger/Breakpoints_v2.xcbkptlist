@@ -21,14 +21,30 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../TTInputPanel/TTInputPanel/bar/model/TTInputBarItem.m"
-            timestampString = "528459655.151843"
+            filePath = "../TTInputPanel/TTInputPanel/bar/barLayout/TTInputPanelBarSpaceLayout.m"
+            timestampString = "530006727.089374"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "TTInputBarItem"
-            landmarkType = "3">
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "-layoutItems:inBar:withSpace:itemIndex:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../TTInputPanel/TTInputPanel/bar/barLayout/TTInputPanelBarSpaceLayout.m"
+            timestampString = "530006727.096683"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "-layoutItems:inBar:withSpace:itemIndex:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

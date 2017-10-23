@@ -12,7 +12,7 @@
 
 @implementation TTInputPanelBarLayout
 
-- (void)layoutItems:(NSArray<TTInputBarItem *> *)items inBar:(TTInputPanelBar *)bar {
+- (void)layoutItemForSources:(NSArray<TTInputSource *> *)sources inBar:(TTInputPanelBar *)bar{
     
 }
 

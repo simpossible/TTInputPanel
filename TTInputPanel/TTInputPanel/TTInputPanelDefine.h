@@ -71,3 +71,6 @@ typedef NS_ENUM(NSUInteger,TTInputPanelState) {
     TTInputPanelStateUp = 0,
     TTInputPanelStateDown,
 };
+
+
+

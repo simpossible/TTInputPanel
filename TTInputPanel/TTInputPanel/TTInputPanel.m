@@ -8,8 +8,10 @@
 
 #import "TTInputPanel.h"
 #import "TTInputPanelBarItem.h"
+#import "TTInputBarItem.h"
+#import "TTInputTextSource.h"
 
-@interface TTInputPanel ()<TTInputPanelBarItemProtocol>
+@interface TTInputPanel ()<TTInputProtocol>
 
 @property (nonatomic, strong) TTInput * input;
 
@@ -24,8 +26,10 @@
 - (instancetype)initWithInput:(TTInput *)input {
     if (self = [super init]) {
         self.input = input;
+        self.input.delegate = self;
     }
     [self initialUI];
+    [self becomeListener];
     return self;
 }
 
@@ -54,10 +58,10 @@
         make.bottom.equalTo(self.sourceContainerView.mas_top);
     }];
     
-    self.panelBar.itemDelegate = self;
 }
 
 - (void)initialContainerViewWithHeight:(CGFloat)height {
+    
     if (!self.sourceContainerView) {
         self.sourceContainerView = [[UIView alloc] init];
         [self addSubview:self.sourceContainerView];
@@ -75,21 +79,48 @@
     self.sourceContainerView.backgroundColor = [UIColor blueColor];
 }
 
+#pragma mark - 设置代理
 
-- (void)toChangeSourceHeight:(CGFloat)height time:(CGFloat)time animateOption:(UIViewAnimationOptions)options {
-    
-        [UIView animateWithDuration:time delay:0.0 options:0 animations:^{
-            [self  initialContainerViewWithHeight:height];
-            [self layoutIfNeeded];
-        } completion:^(BOOL finished) {
-        }];
-    
+- (void)becomeListener {
   
 }
 
+#pragma mark - 高度变化
+- (void)toChangeSourceHeight:(CGFloat)height time:(CGFloat)time animateOption:(UIViewAnimationOptions)options {
+    
+    [UIView animateWithDuration:time animations:^{
+        [self  initialContainerViewWithHeight:height];
+        [self layoutIfNeeded];
+    }];
+//    [UIView animateWithDuration:time delay:0.0 options:options animations:^{
+//
+//    } completion:^(BOOL finished) {
+//
+//    }];
+    
+}
+
+- (void)toChangeBarHeigth:(CGFloat)height animateTime:(CGFloat)time {
+    [UIView animateWithDuration:time delay:time options:0 animations:^{
+        [self  initialContainerViewWithHeight:height];
+        [self layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+- (void)sourceToBecomeFocus:(id)source {
+    
+}
 
 - (void)landingPanel {
         
+}
+
+#pragma mark - panelbaritemProtocol
+
+- (void)itemFoucusChanged {
+    
 }
 
 @end

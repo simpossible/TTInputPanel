@@ -86,5 +86,16 @@ NSString * const TTInputBarMarginBottom = @"bottom";
     self.height = height;
 }
 
+- (void)setIsFoucus:(BOOL)isFoucus {
+    if ([self.delegate respondsToSelector:@selector(itemFoucusWillChange)]) {
+        [self.delegate itemFoucusWillChange];
+    }
+    _isFoucus = isFoucus;
+    if ([self.delegate respondsToSelector:@selector(itemFoucusChanged:)]) {
+        [self.delegate itemFoucusChanged:self];
+    }
+    
+}
+
 
 @end

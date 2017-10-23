@@ -24,6 +24,13 @@ FOUNDATION_EXTERN NSString * const TTInputBarMarginTop;
 FOUNDATION_EXTERN NSString * const TTInputBarMarginBottom;
 
 
+@protocol TTInputBarItemProtocol <NSObject>
+
+- (void)itemFoucusChanged:(TTInputBarItem *)item;
+- (void)itemFoucusWillChange;
+
+@end
+
 
 @interface TTInputBarItem : NSObject
 
@@ -35,9 +42,15 @@ FOUNDATION_EXTERN NSString * const TTInputBarMarginBottom;
 
 @property (nonatomic, copy) NSString * name;
 
+/**是否是当前显示的焦点*/
+@property (nonatomic, assign) BOOL isFoucus;
+
 /**布局优先级*/
 @property (nonatomic, assign) TTInputLayoutFlex flex;
 
+@property (nonatomic, weak) id<TTInputBarItemProtocol> delegate;
+
+- (instancetype)initWithJson:(NSDictionary *)json;
 
 + (instancetype)barItemWithJson:(NSDictionary *)json;
 
