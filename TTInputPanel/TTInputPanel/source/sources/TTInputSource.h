@@ -17,7 +17,6 @@
 - (void)toChangeBarHeigth:(CGFloat)height animateTime:(CGFloat)time;
 
 
-
 - (void)focusWillChangeForSource:(TTInputSource *)source;
 - (void)foucusChangedForSource:(TTInputSource *)soure;
 
@@ -43,6 +42,9 @@ typedef NS_ENUM(NSUInteger, TTIInputSoureFocusState) {
 @property (nonatomic, weak) id<TTInputSourceProtocol> delegate;
 
 @property (nonatomic, assign) TTIInputSoureFocusState focusState;
+
+/**sourceView*/
+@property (nonatomic, strong) UIView * sourceView;
 
 /**处于焦点的时候的高度*/
 @property (nonatomic, assign) CGFloat foucesHeight;

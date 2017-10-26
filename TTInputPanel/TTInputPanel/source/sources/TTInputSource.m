@@ -43,8 +43,11 @@
         [ttpages addObject:page];
     }
     self.pages = ttpages;
+    [self generateView];
 }
 
-
+- (void)generateView {
+    self.sourceView = [[UIView alloc] init];
+}
 
 @end

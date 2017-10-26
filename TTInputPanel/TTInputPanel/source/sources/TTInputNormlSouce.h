@@ -17,4 +17,6 @@
 
 @property (nonatomic, weak) id<TTInputNorlmalSourceProtocol> delegate;
 
+
+- (void)generateView;
 @end

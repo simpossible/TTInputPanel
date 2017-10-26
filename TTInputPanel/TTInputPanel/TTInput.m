@@ -72,6 +72,7 @@ NSString * const TTInputSources = @"sources";
     if (soure.focusState == TTIInputSoureFocusStateFoucus) {
         //这里需要先判断是否需要自动调整高度 text 的高度需要由text source 自己进行调整
         TTInputSource *currentFocus = self.focusSource;
+        [currentFocus.sourceView removeFromSuperview];
         self.focusSource = soure;
         currentFocus.focusState = TTIInputSoureFocusStateNone;
         if ([self.delegate respondsToSelector:@selector(toChangeSourceHeight:time:animateOption:)]) {

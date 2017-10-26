@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) NSArray<TTInputSourceItem *> *sourceItems;
 
+@property (nonatomic, strong) UIView * pageView;
+
 - (instancetype)initFromDic:(NSDictionary *)dic;
 
 @end

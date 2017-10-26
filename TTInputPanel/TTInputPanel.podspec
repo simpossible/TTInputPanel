@@ -65,7 +65,7 @@ Pod::Spec.new do |s|
   #
 
   # s.platform     = :ios
-  # s.platform     = :ios, "5.0"
+  s.platform     = :ios, "8.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
@@ -131,9 +131,7 @@ Pod::Spec.new do |s|
 #import "TTInputPanel.h"
 #import "TTInputBar.h"
 #import "TTInputPanelBar.h"
-#import "TTInputSource.h"
-#import "TTInputPanenSource.h"
-
+#import "TTInputSource.h" 
 #import "TTInput.h"
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.

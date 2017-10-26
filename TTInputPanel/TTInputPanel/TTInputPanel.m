@@ -78,7 +78,6 @@
     
     self.sourceContainerView.backgroundColor = [UIColor blueColor];
 }
-
 #pragma mark - 设置代理
 
 - (void)becomeListener {
@@ -88,9 +87,12 @@
 #pragma mark - 高度变化
 - (void)toChangeSourceHeight:(CGFloat)height time:(CGFloat)time animateOption:(UIViewAnimationOptions)options {
     
+    __weak typeof(self)wself = self;
     [UIView animateWithDuration:time animations:^{
         [self  initialContainerViewWithHeight:height];
         [self layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        [wself showSourceView];
     }];
 //    [UIView animateWithDuration:time delay:0.0 options:options animations:^{
 //
@@ -98,6 +100,31 @@
 //
 //    }];
     
+}
+
+#pragma mark - sourceview show
+
+- (void)showSourceView {
+    UIView *sourceView = self.input.focusSource.sourceView;
+    if (sourceView) {
+        [self.sourceContainerView addSubview:sourceView];
+        [sourceView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.sourceContainerView.mas_bottom);
+            make.left.equalTo(self.sourceContainerView.mas_left);
+            make.right.equalTo(self.sourceContainerView.mas_right);
+            make.height.equalTo(self.sourceContainerView.mas_height);
+        }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.5 animations:^{
+                [sourceView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.edges.mas_equalTo(UIEdgeInsetsZero);
+                }];
+                [sourceView layoutIfNeeded];
+            }];
+        });
+        
+    }
+
 }
 
 - (void)toChangeBarHeigth:(CGFloat)height animateTime:(CGFloat)time {
