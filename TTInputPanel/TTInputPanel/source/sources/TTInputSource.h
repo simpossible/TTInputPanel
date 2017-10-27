@@ -37,7 +37,7 @@ typedef NS_ENUM(NSUInteger, TTIInputSoureFocusState) {
 
 @property (nonatomic, strong) TTInputBarItem * baritem;
 
-@property (nonatomic, strong) NSArray<TTInputSource *> * pages;
+@property (nonatomic, strong) NSArray<TTInputSourcePage *> * pages;
 
 @property (nonatomic, weak) id<TTInputSourceProtocol> delegate;
 

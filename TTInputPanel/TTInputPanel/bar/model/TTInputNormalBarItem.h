@@ -15,8 +15,7 @@
 @property (nonatomic, copy) NSString * imgUrl;
 
 
-@property (nonatomic, copy) NSString * selectImgName;
+@property (nonatomic, strong) UIImage *icon;
 
-@property (nonatomic, copy) NSString * selectImgUrl;
 
 @end

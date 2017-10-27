@@ -13,15 +13,6 @@ FOUNDATION_EXTERN NSString * const TTInputBarFlex;
 
 FOUNDATION_EXTERN NSString * const TTInputBarName;
 
-FOUNDATION_EXTERN NSString * const TTInputBarMargin;
-
-FOUNDATION_EXTERN NSString * const TTInputBarMarginLeft;
-
-FOUNDATION_EXTERN NSString * const TTInputBarMarginRight;
-
-FOUNDATION_EXTERN NSString * const TTInputBarMarginTop;
-
-FOUNDATION_EXTERN NSString * const TTInputBarMarginBottom;
 
 
 @protocol TTInputBarItemProtocol <NSObject>

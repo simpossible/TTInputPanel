@@ -9,20 +9,12 @@
 #import "TTInputBarItem.h"
 #import "TTInputTextBarItem.h"
 #import "TTInputNormalBarItem.h"
+#import "TTInputUtil.h"
 
 NSString * const TTInputBarFlex = @"flex";
 
 NSString * const TTInputBarName = @"name";
 
-NSString * const TTInputBarMargin = @"margin";
-
-NSString * const TTInputBarMarginLeft = @"left";
-
-NSString * const TTInputBarMarginRight = @"right";
-
-NSString * const TTInputBarMarginTop = @"top";
-
-NSString * const TTInputBarMarginBottom = @"bottom";
 
 
 @interface TTInputBarItem ()
@@ -61,13 +53,7 @@ NSString * const TTInputBarMarginBottom = @"bottom";
 - (void)dealJson:(NSDictionary *)json {
     self.name = [json objectForKey:TTInputBarName];
     
-    NSDictionary *margin = [json objectForKey:TTInputBarMargin];
-    CGFloat left = [[margin objectForKey:TTInputBarMarginLeft] floatValue];
-    CGFloat right = [[margin objectForKey:TTInputBarMarginRight] floatValue];
-    CGFloat top = [[margin objectForKey:TTInputBarMarginTop] floatValue];;
-    CGFloat botttom = [[margin objectForKey:TTInputBarMarginBottom] floatValue];
-    
-    self.margin = UIEdgeInsetsMake(top, left, botttom, right);
+    self.margin = [TTInputUtil marginFromDic:[json objectForKey:TTInputMargin]];
     
     //解析浮动属性 这个解析应该默认就行了
 //    NSString *flex = [json objectForKey:TTINPUTBARITEFlEX];

@@ -41,3 +41,24 @@ NSString * const TTINPUTBARITEFlEXGREAT = @"greater";
 /**指定每个Item 的浮动属性 小于等于*/
 NSString * const TTINPUTBARITEFlEXLESS = @"lesser";
 
+
+
+
+
+NSString * const TTInputMargin = @"margin";
+
+NSString * const TTInputMarginLeft = @"left";
+
+NSString * const TTInputMarginRight = @"right";
+
+NSString * const TTInputMarginTop = @"top";
+
+NSString * const TTInputMarginBottom = @"bottom";
+
+
+NSString * const TTInputSizeWidth = @"width";
+
+NSString * const TTInputSizeHeight = @"height";
+
+
+NSString * const TTInputBundle = @"ttinput";

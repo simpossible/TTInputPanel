@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		41CC4ECD7127B7C013E6C834 /* libPods-TTInputPanelDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ACCB0720705D078D03D3C8E /* libPods-TTInputPanelDemo.a */; };
+		A49C142F1FA3268200071909 /* ttinput.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A49C142E1FA3268200071909 /* ttinput.bundle */; };
 		A4C1C5321F726CBF00F9DFD8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1C5311F726CBF00F9DFD8 /* AppDelegate.m */; };
 		A4C1C5351F726CBF00F9DFD8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1C5341F726CBF00F9DFD8 /* ViewController.m */; };
 		A4C1C5381F726CBF00F9DFD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4C1C5361F726CBF00F9DFD8 /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 		766491C0AE09E7EB4D65D5D3 /* Pods-TTInputPanelDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTInputPanelDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TTInputPanelDemoTests/Pods-TTInputPanelDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		94CC03993C8DFA19C4BCFEE5 /* Pods-TTInputPanelDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTInputPanelDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TTInputPanelDemoUITests/Pods-TTInputPanelDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9AE0690F5BDAE967DFC88178 /* Pods-TTInputPanelDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTInputPanelDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TTInputPanelDemo/Pods-TTInputPanelDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		A49C142E1FA3268200071909 /* ttinput.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ttinput.bundle; path = ../../TTInputPanel/TTInputPanel/src/ttinput.bundle; sourceTree = "<group>"; };
 		A4C1C52D1F726CBF00F9DFD8 /* TTInputPanelDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTInputPanelDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4C1C5301F726CBF00F9DFD8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A4C1C5311F726CBF00F9DFD8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 		A4C1C52F1F726CBF00F9DFD8 /* TTInputPanelDemo */ = {
 			isa = PBXGroup;
 			children = (
+				A49C142E1FA3268200071909 /* ttinput.bundle */,
 				A4C1C5301F726CBF00F9DFD8 /* AppDelegate.h */,
 				A4C1C5311F726CBF00F9DFD8 /* AppDelegate.m */,
 				A4C1C5331F726CBF00F9DFD8 /* ViewController.h */,
@@ -290,6 +293,7 @@
 				A4C1C53D1F726CBF00F9DFD8 /* LaunchScreen.storyboard in Resources */,
 				A4C1C53A1F726CBF00F9DFD8 /* Assets.xcassets in Resources */,
 				A4FDD4E51F7AC0630044CC42 /* input.json in Resources */,
+				A49C142F1FA3268200071909 /* ttinput.bundle in Resources */,
 				A4C1C5381F726CBF00F9DFD8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

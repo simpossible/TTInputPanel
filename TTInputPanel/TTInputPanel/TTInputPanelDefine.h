@@ -74,3 +74,19 @@ typedef NS_ENUM(NSUInteger,TTInputPanelState) {
 
 
 
+FOUNDATION_EXTERN NSString * const TTInputMargin;
+
+FOUNDATION_EXTERN NSString * const TTInputMarginLeft;
+
+FOUNDATION_EXTERN NSString * const TTInputMarginRight;
+
+FOUNDATION_EXTERN NSString * const TTInputMarginTop;
+
+FOUNDATION_EXTERN NSString * const TTInputMarginBottom;
+
+FOUNDATION_EXTERN NSString * const TTInputSizeWidth;
+
+FOUNDATION_EXTERN NSString * const TTInputSizeHeight;
+
+
+FOUNDATION_EXTERN NSString * const TTInputBundle;

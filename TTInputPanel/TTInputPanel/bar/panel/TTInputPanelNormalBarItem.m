@@ -24,8 +24,20 @@
 }
 
 - (void)initialUI {
-    self.backgroundColor = [UIColor blueColor];
+    [self initialIcon];
     [self addTarget:self action:@selector(itemCliecked:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)initialIcon {
+    self.icon = [[UIImageView alloc] init];
+    [self addSubview:self.icon];
+    
+    [self.icon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsZero);
+    }];
+    
+    TTInputNormalBarItem *item = self.source.baritem;
+    self.icon.image = item.icon;
 }
 
 - (void)itemCliecked:(id)sender {

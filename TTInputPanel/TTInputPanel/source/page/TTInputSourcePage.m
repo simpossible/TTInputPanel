@@ -7,6 +7,7 @@
 
 #import "TTInputSourcePage.h"
 #import "TTInputSourceItem.h"
+#import "TTInputUtil.h"
 
 @interface TTInputSourcePage()<UICollectionViewDelegate,UICollectionViewDataSource>
 
@@ -24,14 +25,24 @@
 }
 
 - (void)dealpageDic:(NSDictionary *)dic {
+  
+ 
+    self.lineSpace = [[dic objectForKey:@"linespace"] floatValue];
+    self.margin = [TTInputUtil marginFromDic:[dic objectForKey:TTInputMargin]];
+    self.itemMargin = [TTInputUtil marginFromDic:[dic objectForKey:@"defaultitemmargin"]];
+    self.itemSize = [TTInputUtil sizeFromDic:[dic objectForKey:@"defaultItemSize"]];
+    
     NSArray *items = [dic objectForKey:@"items"];
-
     NSMutableArray *ttItems = [NSMutableArray array];
+    
     for (NSDictionary *itemDic in items) {
         TTInputSourceItem *sItem = [[TTInputSourceItem alloc] initFromDic:itemDic];
+        sItem.itemSize = self.itemSize;
+        sItem.margin = self.itemMargin;
         [ttItems addObject:sItem];
     }
     self.sourceItems = ttItems;
+    
     [self generateView];
 }
 
@@ -56,6 +67,7 @@
     
     self.pageCollectionView.delegate = self;
     self.pageCollectionView.dataSource = self;
+
     [self.pageCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"aaa"];
 }
 

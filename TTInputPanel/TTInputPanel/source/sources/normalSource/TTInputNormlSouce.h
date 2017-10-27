@@ -13,10 +13,12 @@
 
 @end
 
+/**
+ normal item 默认 item 大小一致
+ */
 @interface TTInputNormlSouce : TTInputSource
 
 @property (nonatomic, weak) id<TTInputNorlmalSourceProtocol> delegate;
-
 
 - (void)generateView;
 @end

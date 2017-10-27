@@ -15,9 +15,11 @@
     
     self.imgName = [json objectForKey:@"itemImg"];
     self.imgUrl = [json objectForKey:@"itemUrl"];
-    
-    self.selectImgName = [json objectForKey:@"itemSelectImg"];
-    self.selectImgUrl = [json objectForKey:@"itemSelectUrl"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:TTInputBundle ofType:@"bundle"];
+    if(path){
+        NSString *imgpath = [NSString stringWithFormat:@"%@/%@",path,self.imgName];
+        self.icon = [UIImage imageNamed:imgpath];
+    }
     
 }
 

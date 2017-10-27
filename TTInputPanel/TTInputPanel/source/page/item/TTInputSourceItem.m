@@ -25,8 +25,22 @@
 }
 
 - (void)dealpageDic:(NSDictionary *)dic {
-    self.itemImg = [dic objectForKey:@"itemimg"];
+    self.itemImgName = [dic objectForKey:@"itemimg"];
     self.tag = [[dic objectForKey:@"tag"] integerValue];
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:TTInputBundle ofType:@"bundle"];
+    if(path){
+        NSString *imgpath = [NSString stringWithFormat:@"%@/%@",path,self.itemImgName];
+        self.itemImg = [UIImage imageNamed:imgpath];
+    }
 }
 
+
+- (CGFloat)boxWidth {
+    return _margin.left + _margin.right + _itemSize.width;
+}
+
+- (CGFloat)boxHeight {
+    return _margin.top + _margin.bottom + _itemSize.height;
+}
 @end
