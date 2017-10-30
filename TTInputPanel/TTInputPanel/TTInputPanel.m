@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) TTInput * input;
 
-@property (nonatomic, strong) TTInputPanelBar * panelBar;
+//@property (nonatomic, strong) TTInputPanelBar * panelBar;
 
 @property (nonatomic, strong) UIView * sourceContainerView;
 
@@ -43,20 +43,20 @@
 
 - (void)initialBar {
     if (!self.panelBar) {
-        self.panelBar = [[TTInputPanelBar alloc] initWithBar:self.input.inpurtBar];
-        [self addSubview:self.panelBar];
+//        self.panelBar = [[TTInputPanelBar alloc] initWithSources:self.input.sources];
+//        [self addSubview:self.panelBar];
         
-        [self mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.panelBar.mas_top);
-        }];
-    }
-    
-    [self.panelBar mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left);
-        make.right.equalTo(self.mas_right);
-        make.height.mas_equalTo(self.input.inpurtBar.barHeight);
-        make.bottom.equalTo(self.sourceContainerView.mas_top);
-    }];
+//        [self mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(self.panelBar.mas_top);
+//        }];
+//    }
+//
+//    [self.panelBar mas_remakeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.mas_left);
+//        make.right.equalTo(self.mas_right);
+//        make.height.mas_equalTo(self.input.inpurtBar.barHeight);
+//        make.bottom.equalTo(self.sourceContainerView.mas_top);
+//    }];
     
 }
 

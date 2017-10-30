@@ -46,6 +46,14 @@ typedef NS_ENUM(NSUInteger, TTIInputSoureFocusState) {
 /**sourceView*/
 @property (nonatomic, strong) UIView * sourceView;
 
+/**barItem-view*/
+@property (nonatomic, strong) UIView * barView;
+
+@property (nonatomic, assign) UIEdgeInsets barItemMargin;
+
+@property (nonatomic, assign) CGSize barItemSize;
+
+
 /**处于焦点的时候的高度*/
 @property (nonatomic, assign) CGFloat foucesHeight;
 

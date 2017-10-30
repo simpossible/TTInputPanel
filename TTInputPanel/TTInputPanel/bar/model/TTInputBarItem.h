@@ -33,6 +33,7 @@ FOUNDATION_EXTERN NSString * const TTInputBarName;
 
 @property (nonatomic, copy) NSString * name;
 
+
 /**是否是当前显示的焦点*/
 @property (nonatomic, assign) BOOL isFoucus;
 
