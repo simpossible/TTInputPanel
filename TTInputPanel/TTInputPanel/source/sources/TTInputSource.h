@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TTInputBarItem.h"
 #import "TTInputSourcePage.h"
+#import "TTInputPanelDefine.h"
 
 @class TTInputBarItem;
 @class TTInputSource;
@@ -35,8 +35,6 @@ typedef NS_ENUM(NSUInteger, TTIInputSoureFocusState) {
 
 @property (nonatomic, copy, readonly) NSString *sourceType;
 
-@property (nonatomic, strong) TTInputBarItem * baritem;
-
 @property (nonatomic, strong) NSArray<TTInputSourcePage *> * pages;
 
 @property (nonatomic, weak) id<TTInputSourceProtocol> delegate;
@@ -48,6 +46,9 @@ typedef NS_ENUM(NSUInteger, TTIInputSoureFocusState) {
 
 /**barItem-view*/
 @property (nonatomic, strong) UIView * barView;
+
+/**布局优先级*/
+@property (nonatomic, assign) TTInputLayoutFlex flex;
 
 @property (nonatomic, assign) UIEdgeInsets barItemMargin;
 

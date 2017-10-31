@@ -7,15 +7,11 @@
 //
 
 #import "TTInputPanel.h"
-#import "TTInputPanelBarItem.h"
-#import "TTInputBarItem.h"
 #import "TTInputTextSource.h"
 
 @interface TTInputPanel ()<TTInputProtocol>
 
 @property (nonatomic, strong) TTInput * input;
-
-//@property (nonatomic, strong) TTInputPanelBar * panelBar;
 
 @property (nonatomic, strong) UIView * sourceContainerView;
 
@@ -29,34 +25,30 @@
         self.input.delegate = self;
     }
     [self initialUI];
-    [self becomeListener];
+//    [self becomeListener];
     return self;
 }
-
 
 - (void)initialUI {
     
     [self initialContainerViewWithHeight:0];
     [self initialBar];
-    self.panelBar.backgroundColor = [UIColor yellowColor];
 }
 
 - (void)initialBar {
-    if (!self.panelBar) {
-//        self.panelBar = [[TTInputPanelBar alloc] initWithSources:self.input.sources];
-//        [self addSubview:self.panelBar];
-        
-//        [self mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.top.equalTo(self.panelBar.mas_top);
-//        }];
-//    }
-//
-//    [self.panelBar mas_remakeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.mas_left);
-//        make.right.equalTo(self.mas_right);
-//        make.height.mas_equalTo(self.input.inpurtBar.barHeight);
-//        make.bottom.equalTo(self.sourceContainerView.mas_top);
-//    }];
+    UIView *bar = self.input.inpurtBar;
+    bar.backgroundColor = [UIColor redColor];
+    [self addSubview:bar];
+    [self mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(bar.mas_top);
+    }];
+    
+    [bar mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.height.mas_equalTo(self.input.barHeight);
+        make.bottom.equalTo(self.sourceContainerView.mas_top);
+    }];
     
 }
 

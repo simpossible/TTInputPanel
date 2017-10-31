@@ -7,12 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TTInputBarItem.h"
-#import "TTInputPanelBar.h"
+#import "TTInputBar.h"
 
 @interface TTInputPanelBarLayout : NSObject
 
-- (void)layoutItemForSources:(NSArray<TTInputSource *> *)sources inBar:(TTInputPanelBar *)bar;
+- (void)layoutItemForSources:(NSArray<TTInputSource *> *)sources inBar:(TTInputBar *)bar;
 
 
 + (instancetype)layoutForType:(TTInputBarLayoutType)type;

@@ -32,6 +32,8 @@ FOUNDATION_EXTERN NSString * const TTInputSources;
 /**代理*/
 @property (nonatomic, weak) id<TTInputProtocol> delegate;
 
+@property (nonatomic, assign) CGFloat barHeight;
+
 - (instancetype)intiialFromJsonData:(NSData *)data;
 
 + (instancetype)inputFromJsonData:(NSData *)data;

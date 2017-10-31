@@ -9,6 +9,7 @@
 #import "TTInputSource.h"
 #import "TTInputTextSource.h"
 #import "TTInputNormlSouce.h"
+#import "TTInputUtil.h"
 
 @interface TTInputSource()
 @property (nonatomic, copy) NSString * name;
@@ -29,6 +30,8 @@
 - (instancetype)initWithSource:(NSDictionary *)dic {
     if (self = [super init]) {
         [self dealSourceDic:dic];
+        [self genrateBarView];
+        self.flex = TTInputLayoutFlexFix;
     }
     return self;
 }
@@ -44,10 +47,25 @@
     }
     self.pages = ttpages;
     [self generateView];
+    
+    //初始化baritem 的属性
+    NSDictionary *barItemJson = [dic objectForKey:@"baritem"];
+    self.barItemMargin = [TTInputUtil marginFromDic:[barItemJson objectForKey:TTInputMargin]];
+    CGFloat width = [[barItemJson objectForKey:@"width"] floatValue];
+    CGFloat height = [[barItemJson objectForKey:@"height"] floatValue];
+    self.barItemSize = CGSizeMake(width, height);
+}
+
+- (void)dealItemSource {
+    
 }
 
 - (void)generateView {
     self.sourceView = [[UIView alloc] init];
 }
 
+- (void)genrateBarView {
+    self.barView = [[UIControl alloc] init];
+    self.barView.backgroundColor = [UIColor blueColor];
+}
 @end

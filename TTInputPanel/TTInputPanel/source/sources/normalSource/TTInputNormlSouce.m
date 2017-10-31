@@ -6,7 +6,6 @@
 //
 
 #import "TTInputNormlSouce.h"
-#import "TTInputNormalBarItem.h"
 #import "TTPageNormalLayout.h"
 #import "TTInputNomalCell.h"
 
@@ -26,15 +25,11 @@
 
 
 - (void)dealSourceDic:(NSDictionary *)dic {
-    
     [super dealSourceDic:dic];
-    NSDictionary *barItemJson = [dic objectForKey:@"baritem"];
-    self.baritem = [[TTInputNormalBarItem alloc] initWithJson:barItemJson];
     self.foucesHeight = [[dic objectForKey:@"focusheight"] integerValue];
 }
 
 #pragma mark - 焦点事件
-
 - (void)setFocusState:(TTIInputSoureFocusState)focusState {
 
     if (focusState != _focusState) {
@@ -81,6 +76,12 @@
 //
 //    }
 }
+
+- (void)genrateBarView {
+    self.barView = [[UIControl alloc] init];
+    self.barView.backgroundColor = [UIColor yellowColor];
+}
+
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return self.pages.count;

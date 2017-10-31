@@ -51,6 +51,10 @@ NSString * const TTInputSources = @"sources";
     }
     
     NSDictionary *barSetting = [dic objectForKey:@"bar"];
+    
+    CGFloat height = [[barSetting objectForKey:@"barHeight"] floatValue];
+    self.barHeight = height;
+    
     [self.inpurtBar setParameterWithJson:barSetting];
 }
 

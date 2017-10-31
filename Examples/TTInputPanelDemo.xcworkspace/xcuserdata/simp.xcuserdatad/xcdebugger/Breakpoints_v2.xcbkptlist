@@ -21,30 +21,56 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../TTInputPanel/TTInputPanel/bar/barLayout/TTInputPanelBarSpaceLayout.m"
-            timestampString = "530006727.089374"
+            filePath = "../TTInputPanel/TTInputPanel/bar/model/TTInputBar.m"
+            timestampString = "531109872.278927"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "-layoutItems:inBar:withSpace:itemIndex:"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "-haveFlexItem"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[TTInputBar haveFlexItem]"
+                  moduleName = "TTInputPanelDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/simp/dev/panel/TTInputPanel/TTInputPanel/bar/model/TTInputBar.m"
+                  timestampString = "531109872.297896"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[TTInputBar haveFlexItem]"
+                  moduleName = "TTInputPanelDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/simp/dev/panel/TTInputPanel/TTInputPanel/bar/model/TTInputBar.m"
+                  timestampString = "531109872.299119"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "100">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../TTInputPanel/TTInputPanel/bar/barLayout/TTInputPanelBarSpaceLayout.m"
-            timestampString = "530006727.096683"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "-layoutItems:inBar:withSpace:itemIndex:"
-            landmarkType = "7">
+            scope = "0"
+            stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

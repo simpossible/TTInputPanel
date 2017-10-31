@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "TTInputSource.h"
-#import "TTInputBarItem.h"
 
 @class TTInputSource;
 @class TTInputBarItem;

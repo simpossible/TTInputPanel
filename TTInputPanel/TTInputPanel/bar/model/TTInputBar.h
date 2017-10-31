@@ -7,18 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TTInputBarItem.h"
+#import "TTInputSource.h"
 
 @protocol TTInputBarProtocol <NSObject>
 
 
 @end
 
-@interface TTInputBar : NSObject
+@interface TTInputBar : UIView
 
 @property (nonatomic, strong) NSMutableArray<TTInputSource *> * sources;
-
-@property (nonatomic, assign) CGFloat barHeight;
 
 @property (nonatomic, assign) TTInputBarLayoutType layoutType;
 

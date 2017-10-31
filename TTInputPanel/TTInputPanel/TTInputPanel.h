@@ -20,7 +20,7 @@
 
 - (instancetype)initWithInput:(TTInput *)input;
 
-/**收起panel*/
-- (void)landingPanel;
+///**收起panel*/
+//- (void)landingPanel;
 
 @end

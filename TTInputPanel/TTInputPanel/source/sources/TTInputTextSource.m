@@ -6,22 +6,30 @@
 //
 
 #import "TTInputTextSource.h"
-#import "TTInputTextBarItem.h"
+
+@interface TTInputTextSource()
+
+@end
 
 @implementation TTInputTextSource
 
 - (instancetype)initWithSource:(NSDictionary *)dic {
     if (self = [super initWithSource:dic]) {
         _sourceType = TTINPUTSOURCETYPETEXTINPUT;
+        self.flex = TTInputLayoutFlexGreater;
         [self becomeListener];
     }
     return self;
 }
 
 - (void)dealSourceDic:(NSDictionary *)dic {
-    
-    NSDictionary *barItemJson = [dic objectForKey:@"baritem"];
-    self.baritem = [[TTInputTextBarItem alloc] initWithJson:barItemJson];
+    [super dealSourceDic:dic];
+}
+
+- (void)genrateBarView {
+       
+    self.barView = [[UITextView alloc] init];
+    self.barView.backgroundColor = [UIColor whiteColor];
 }
 
 
