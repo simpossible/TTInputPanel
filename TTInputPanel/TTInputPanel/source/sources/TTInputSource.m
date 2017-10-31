@@ -68,4 +68,8 @@
     self.barView = [[UIControl alloc] init];
     self.barView.backgroundColor = [UIColor blueColor];
 }
+
+- (void)disappearSource {
+    
+}
 @end

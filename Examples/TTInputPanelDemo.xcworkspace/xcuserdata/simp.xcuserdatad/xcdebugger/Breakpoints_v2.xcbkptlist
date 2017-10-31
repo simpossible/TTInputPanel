@@ -22,7 +22,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../TTInputPanel/TTInputPanel/bar/model/TTInputBar.m"
-            timestampString = "531112261.794539"
+            timestampString = "531122388.748657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "53"
@@ -38,7 +38,7 @@
                   moduleName = "TTInputPanelDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/simp/dev/panel/TTInputPanel/TTInputPanel/bar/model/TTInputBar.m"
-                  timestampString = "531112261.855505"
+                  timestampString = "531122388.786464"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "53"
@@ -53,7 +53,7 @@
                   moduleName = "TTInputPanelDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/simp/dev/panel/TTInputPanel/TTInputPanel/bar/model/TTInputBar.m"
-                  timestampString = "531112261.85695"
+                  timestampString = "531122388.787558"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "53"
@@ -71,6 +71,22 @@
             continueAfterRunningActions = "No"
             scope = "0"
             stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../TTInputPanel/TTInputPanel/source/sources/TTInputTextSource.m"
+            timestampString = "531122388.748713"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "-dealloc"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

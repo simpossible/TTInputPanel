@@ -10,9 +10,11 @@
 #import <TTInput.h>
 #import <Masonry.h>
 
-@interface ViewController ()
+@interface ViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) UITableView * chatTableView;
+
+@property (nonatomic, strong) TTInput *input;
 
 @end
 
@@ -27,6 +29,7 @@
     
     if (data) {
         TTInput *input = [TTInput inputFromJsonData:data];
+        self.input = input;
 //        TTInputPanel *panel = [[TTInputPanel alloc] initWithInput:input];
         [self.view addSubview:input];
         
@@ -37,11 +40,22 @@
         }];
     }
     
+    [self initialUI];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)initialUI {
     self.chatTableView = [[UITableView alloc] init];
+    [self.view insertSubview:self.chatTableView atIndex:0];
+    [self.chatTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_top);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.input.mas_top);
+    }];
+    self.chatTableView.delegate = self;
+    
+    self.chatTableView.backgroundColor = [UIColor orangeColor];
 }
 
 - (void)initialData {
@@ -54,5 +68,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self.input landingPanel];
+}
 
 @end

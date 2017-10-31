@@ -37,14 +37,24 @@
 #pragma mark - 焦点事件
 - (void)setFocusState:(TTIInputSoureFocusState)focusState {
 
+    if ([self.delegate respondsToSelector:@selector(source:willChangeStateTo:)]) {
+        [self.delegate source:self willChangeStateTo:focusState];
+    }
     if (focusState != _focusState) {
         [super setFocusState:focusState];
-        if ([self.delegate respondsToSelector:@selector(foucusChangedForSource:)]) {
-            [self.delegate foucusChangedForSource:self];
+        if (focusState == TTIInputSoureFocusStateFoucus) {//这里是由不是焦点变为了焦点
+            if ([self.delegate respondsToSelector:@selector(toChangeSourceHeight:time:animateOption:)]) {//直接进行动画
+                [self.delegate toChangeSourceHeight:self.foucesHeight time:0.5 animateOption:0];
+            }
         }
-    }else {
     }
     
+}
+
+- (void)disappearSource {
+    if ([self.delegate respondsToSelector:@selector(toChangeSourceHeight:time:animateOption:)]) {//直接进行动画
+        [self.delegate toChangeSourceHeight:0 time:0.5 animateOption:0];
+    }
 }
 
 - (void)generateView {

@@ -82,8 +82,6 @@ NSString * const TTInputSources = @"sources";
         [currentFocus.sourceView removeFromSuperview];
         self.focusSource = soure;
         currentFocus.focusState = TTIInputSoureFocusStateNone;
-        [self toChangeSourceHeight:soure.foucesHeight time:0.5 animateOption:0];
-        
     }else {
         if (self.focusSource == soure) {//如果是当前的焦点变化 那么变为0
             self.focusSource = nil;
@@ -91,6 +89,20 @@ NSString * const TTInputSources = @"sources";
         }
     }
 }
+
+- (void)source:(TTInputSource *)source willChangeStateTo:(TTIInputSoureFocusState)state {
+    if (source == self.focusSource) {//如果是当前的surce
+        if (state == TTIInputSoureFocusStateNone){
+            [source disappearSource];
+            self.focusSource = nil;
+        }
+    }else {
+        if (state == TTIInputSoureFocusStateFoucus) {
+            self.focusSource = source;
+        }
+    }
+}
+
 
 #pragma mark - UI
 
@@ -169,7 +181,10 @@ NSString * const TTInputSources = @"sources";
         dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.5 animations:^{
                 [sourceView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                    make.edges.mas_equalTo(UIEdgeInsetsZero);
+                    make.top.equalTo(self.sourceContainerView.mas_top);
+                    make.left.equalTo(self.sourceContainerView.mas_left);
+                    make.right.equalTo(self.sourceContainerView.mas_right);
+                    make.height.equalTo(self.sourceContainerView.mas_height);
                 }];
                 [sourceView layoutIfNeeded];
             }];
@@ -193,7 +208,7 @@ NSString * const TTInputSources = @"sources";
 }
 
 - (void)landingPanel {
-    
+    self.focusSource.focusState = TTIInputSoureFocusStateNone;
 }
 
 #pragma mark - panelbaritemProtocol

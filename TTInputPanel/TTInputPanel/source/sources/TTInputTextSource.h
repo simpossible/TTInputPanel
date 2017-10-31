@@ -9,7 +9,7 @@
 
 @protocol TTInputTextSourceProtocol <TTInputSourceProtocol>
 
-- (void)toChangeSourceHeight:(CGFloat)height time:(CGFloat)time animateOption:(UIViewAnimationOptions)options;
+
 
 @end
 

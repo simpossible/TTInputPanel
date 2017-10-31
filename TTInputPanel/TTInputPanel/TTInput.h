@@ -38,4 +38,6 @@ FOUNDATION_EXTERN NSString * const TTInputSources;
 + (instancetype)inputFromJsonData:(NSData *)data;
 
 
+- (void)landingPanel;
+
 @end

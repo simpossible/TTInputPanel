@@ -10,22 +10,28 @@
 #import "TTInputSourcePage.h"
 #import "TTInputPanelDefine.h"
 
+typedef NS_ENUM(NSUInteger, TTIInputSoureFocusState) {
+    TTIInputSoureFocusStateNone,
+    TTIInputSoureFocusStateFoucus,
+};
+
 @class TTInputBarItem;
 @class TTInputSource;
 @protocol TTInputSourceProtocol  <NSObject>
 
 - (void)toChangeBarHeigth:(CGFloat)height animateTime:(CGFloat)time;
 
+- (void)toChangeSourceHeight:(CGFloat)height time:(CGFloat)time animateOption:(UIViewAnimationOptions)options;
+
 
 - (void)focusWillChangeForSource:(TTInputSource *)source;
 - (void)foucusChangedForSource:(TTInputSource *)soure;
 
+- (void)source:(TTInputSource *)source willChangeStateTo:(TTIInputSoureFocusState)state;
+
 @end
 
-typedef NS_ENUM(NSUInteger, TTIInputSoureFocusState) {
-    TTIInputSoureFocusStateNone,
-    TTIInputSoureFocusStateFoucus,
-};
+
 
 @interface TTInputSource : NSObject {
     @protected
@@ -64,5 +70,7 @@ typedef NS_ENUM(NSUInteger, TTIInputSoureFocusState) {
 - (void)dealSourceDic:(NSDictionary *)dic;
 
 + (TTInputSource *)sourcesFromDic:(NSDictionary *)sourceDic;
+
+- (void)disappearSource;
 
 @end
