@@ -122,6 +122,10 @@ typedef struct {
 
 - (void)itemSelected:(TTInputSourceItem *)item atIndex:(TTInputIndex)index forsource:(TTInputSource *)source;
 
+- (UIImage *)unFocusImageForSourceBarItem:(TTInputSource *)source;
+
+- (UIImage *)focusImageForSourcceBarItem:(TTInputSource *)source;
+
 @end
 
 

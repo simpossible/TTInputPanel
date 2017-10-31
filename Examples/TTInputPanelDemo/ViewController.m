@@ -145,15 +145,15 @@
 }
 
 - (UIEdgeInsets)marginForPageIndex:(NSInteger)index atSource:(TTInputSource *)source {
-    return UIEdgeInsetsMake(10, 20, 10, 20);
+    return UIEdgeInsetsMake(15, 25, 10, 20);
 }
 
 - (UIEdgeInsets)itemMarginForPageIndex:(NSInteger)index atSource:(TTInputSource *)source {
-    return UIEdgeInsetsMake(0, 10, 0, 10);
+    return UIEdgeInsetsMake(0, 5, 0, 5);
 }
 
 - (CGSize)itemSizeForPageAtIndex:(NSInteger)index atSource:(TTInputSource *)source {
-    return CGSizeMake(24, 24);
+    return CGSizeMake(30, 30);
 }
 
 - (TTInputSourceItem *)itemForPageAtIndex:(TTInputIndex)index atSource:(TTInputSource *)source {
@@ -167,6 +167,14 @@
 
 - (void)itemSelected:(TTInputSourceItem *)item atIndex:(TTInputIndex)index forsource:(TTInputSource *)source {
     
+}
+
+- (UIImage *)focusImageForSourcceBarItem:(TTInputSource *)source {
+    return [UIImage imageNamed:@"emoj"];
+}
+
+- (UIImage *)unFocusImageForSourceBarItem:(TTInputSource *)source {
+    return [UIImage imageNamed:@"emoj"];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -8,10 +8,11 @@
 #import "TTInputNormlSouce.h"
 #import "TTPageNormalLayout.h"
 #import "TTInputNomalCell.h"
+#import "TTInputNormalBarItem.h"
 
 @interface TTInputNormlSouce ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
-@property (nonatomic, strong) UIControl * barView;
+@property (nonatomic, strong) TTInputNormalBarItem * barView;
 
 @end
 
@@ -37,16 +38,21 @@
 #pragma mark - 焦点事件
 - (void)setFocusState:(TTIInputSoureFocusState)focusState {
 
-    if ([self.delegate respondsToSelector:@selector(source:willChangeStateTo:)]) {
-        [self.delegate source:self willChangeStateTo:focusState];
-    }
+ 
     if (focusState != _focusState) {
+        
+        if ([self.delegate respondsToSelector:@selector(source:willChangeStateTo:)]) {//判断消失逻辑
+            [self.delegate source:self willChangeStateTo:focusState];
+        }
+        
         [super setFocusState:focusState];
-        if (focusState == TTIInputSoureFocusStateFoucus) {//这里是由不是焦点变为了焦点
+        if (focusState == TTIInputSoureFocusStateFoucus) {//这里是由不是焦点变为了焦点 则到指定高度
             if ([self.delegate respondsToSelector:@selector(toChangeSourceHeight:time:animateOption:)]) {//直接进行动画
                 [self.delegate toChangeSourceHeight:self.foucesHeight time:0.5 animateOption:0];
             }
         }
+        
+        self.barView.state = focusState;//改变显示状态
     }
     
 }
@@ -69,9 +75,25 @@
 
 }
 
+#pragma mark - datasource
+
+- (void)setDatasouce:(id<TTInputProtocol>)datasouce {
+    [super setDatasouce:datasouce];
+    if([self.datasouce respondsToSelector:@selector(focusImageForSourcceBarItem:)]) {
+        UIImage *img = [self.datasouce focusImageForSourcceBarItem:self];
+        self.barView.focusImage = img;
+    }
+    
+    if([self.datasouce respondsToSelector:@selector(unFocusImageForSourceBarItem:)]) {
+        UIImage *unImage = [self.datasouce unFocusImageForSourceBarItem:self];
+        self.barView.unfocusImage = unImage;
+    }
+    self.barView.state = self.focusState;
+}
+
 #pragma mark - baritem
 - (void)genrateBarView {
-    self.barView = [[UIControl alloc] init];
+    self.barView = [[TTInputNormalBarItem alloc] init];
     self.barView.backgroundColor = [UIColor yellowColor];
     [self.barView addTarget:self action:@selector(barItemClicked:) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -83,6 +105,7 @@
         self.focusState = TTIInputSoureFocusStateNone;
     }
 }
+
 
 #pragma mark - sources
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {

@@ -80,12 +80,12 @@
                   moduleName = "TTInputPanelDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/simp/dev/panel/TTInputPanel/TTInputPanel/bar/model/TTInputBar.m"
-                  timestampString = "531139297.04205"
+                  timestampString = "531154925.430393"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "55"
                   endingLineNumber = "55"
-                  offsetFromSymbolStart = "76">
+                  offsetFromSymbolStart = "55">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -95,12 +95,12 @@
                   moduleName = "TTInputPanelDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/simp/dev/panel/TTInputPanel/TTInputPanel/bar/model/TTInputBar.m"
-                  timestampString = "531139297.043382"
+                  timestampString = "531154925.433153"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "55"
                   endingLineNumber = "55"
-                  offsetFromSymbolStart = "100">
+                  offsetFromSymbolStart = "65">
                </Location>
             </Locations>
          </BreakpointContent>
