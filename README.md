@@ -8,4 +8,4 @@ TTInputPanel 是 IM 聊天界面的 输入框,和 UITableView 一起完成输入
 
 ### 类图
 
-![desing](https://github.com/simpossible/TTInputPanel/raw/master/design/design.jpg)
+#![desing](https://github.com/simpossible/TTInputPanel/raw/master/design/design.jpg)
