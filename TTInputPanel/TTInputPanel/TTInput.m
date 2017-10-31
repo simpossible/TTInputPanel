@@ -17,6 +17,8 @@ NSString * const TTInputSources = @"sources";
 
 @property (nonatomic, copy) NSString * name;
 
+@property (nonatomic, strong) UIView * sourceContainerView;
+
 @end
 
 @implementation TTInput
@@ -38,6 +40,7 @@ NSString * const TTInputSources = @"sources";
     if (self = [super init]) {
         self.sources = [NSMutableArray array];
         [self dealJsonObject:dic];
+        [self initialUI];
     }
     return self;
 }
@@ -79,17 +82,124 @@ NSString * const TTInputSources = @"sources";
         [currentFocus.sourceView removeFromSuperview];
         self.focusSource = soure;
         currentFocus.focusState = TTIInputSoureFocusStateNone;
-        if ([self.delegate respondsToSelector:@selector(toChangeSourceHeight:time:animateOption:)]) {
-            [self.delegate toChangeSourceHeight:soure.foucesHeight time:0.5 animateOption:0];
-        }
+        [self toChangeSourceHeight:soure.foucesHeight time:0.5 animateOption:0];
+        
     }else {
         if (self.focusSource == soure) {//如果是当前的焦点变化 那么变为0
             self.focusSource = nil;
-            if ([self.delegate respondsToSelector:@selector(toChangeSourceHeight:time:animateOption:)]) {
-                [self.delegate toChangeSourceHeight:0 time:0.5 animateOption:0];
-            }
+            [self toChangeSourceHeight:0 time:0.5 animateOption:0];
         }
     }
+}
+
+#pragma mark - UI
+
+- (void)initialUI {
+    
+    [self initialContainerViewWithHeight:0];
+    [self initialBar];
+}
+
+- (void)initialBar {
+    UIView *bar = self.inpurtBar;
+    bar.backgroundColor = [UIColor redColor];
+    [self addSubview:bar];
+    [self mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(bar.mas_top);
+    }];
+    
+    [bar mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.height.mas_equalTo(self.barHeight);
+        make.bottom.equalTo(self.sourceContainerView.mas_top);
+    }];
+    
+}
+
+- (void)initialContainerViewWithHeight:(CGFloat)height {
+    
+    if (!self.sourceContainerView) {
+        self.sourceContainerView = [[UIView alloc] init];
+        [self addSubview:self.sourceContainerView];
+        [self mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.sourceContainerView.mas_bottom);
+        }];
+    }
+    [self.sourceContainerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(height);
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+    }];
+    
+    
+    self.sourceContainerView.backgroundColor = [UIColor blueColor];
+}
+#pragma mark - 设置代理
+
+- (void)becomeListener {
+    
+}
+
+#pragma mark - 高度变化
+- (void)toChangeSourceHeight:(CGFloat)height time:(CGFloat)time animateOption:(UIViewAnimationOptions)options {
+    
+    __weak typeof(self)wself = self;
+    [UIView animateWithDuration:time animations:^{
+        [self  initialContainerViewWithHeight:height];
+        [self layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        [wself showSourceView];
+    }];
+    
+}
+
+#pragma mark - sourceview show
+
+- (void)showSourceView {
+    UIView *sourceView = self.focusSource.sourceView;
+    if (sourceView) {
+        [self.sourceContainerView addSubview:sourceView];
+        [sourceView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.sourceContainerView.mas_bottom);
+            make.left.equalTo(self.sourceContainerView.mas_left);
+            make.right.equalTo(self.sourceContainerView.mas_right);
+            make.height.equalTo(self.sourceContainerView.mas_height);
+        }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.5 animations:^{
+                [sourceView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.edges.mas_equalTo(UIEdgeInsetsZero);
+                }];
+                [sourceView layoutIfNeeded];
+            }];
+        });
+        
+    }
+    
+}
+
+- (void)toChangeBarHeigth:(CGFloat)height animateTime:(CGFloat)time {
+    [UIView animateWithDuration:time delay:time options:0 animations:^{
+        [self  initialContainerViewWithHeight:height];
+        [self layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+- (void)sourceToBecomeFocus:(id)source {
+    
+}
+
+- (void)landingPanel {
+    
+}
+
+#pragma mark - panelbaritemProtocol
+
+- (void)itemFoucusChanged {
+    
 }
 
 @end

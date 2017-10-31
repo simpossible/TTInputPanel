@@ -5,7 +5,7 @@
 //  Created by simp on 2017/10/18.
 //
 
-#import <TTInputPanel/TTInputPanel.h>
+#import "TTInputNormlSouce.h"
 
 @protocol TTInputNorlmalSourceProtocol <TTInputSourceProtocol>
 

@@ -11,9 +11,14 @@
 
 @interface TTInputNormlSouce ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
+@property (nonatomic, strong) UIControl * barView;
+
 @end
 
+
 @implementation TTInputNormlSouce
+
+@synthesize barView = _barView;
 
 - (instancetype)initWithSource:(NSDictionary *)dic {
     if (self = [super initWithSource:dic]) {
@@ -44,7 +49,6 @@
 
 - (void)generateView {
     TTPageNormalLayout *flow = [[TTPageNormalLayout alloc] initWithSource:self];
-//    flow.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flow];
     collection.pagingEnabled = YES;
     self.sourceView = collection;
@@ -52,37 +56,25 @@
     collection.delegate = self;
     collection.dataSource = self;
     [collection registerClass:[TTInputNomalCell class] forCellWithReuseIdentifier:@"aaa"];
-//    UIView *preview = nil;
-//    for (TTInputSourcePage *page in self.pages) {
-//        UIView *pageview = page.pageView;
-//        if (pageview) {
-//            [self.sourceView addSubview:pageview];
-//            if (preview) {
-//                [pageview mas_makeConstraints:^(MASConstraintMaker *make) {
-//                    make.left.equalTo(preview.mas_right);
-//                    make.top.equalTo(self.sourceView.mas_top);
-//                    make.width.equalTo(self.sourceView.mas_width);
-//                    make.height.equalTo(self.sourceView.mas_height);
-//                }];
-//            }else {
-//                [pageview mas_makeConstraints:^(MASConstraintMaker *make) {
-//                    make.left.equalTo(self.sourceView.mas_left);
-//                    make.top.equalTo(self.sourceView.mas_top);
-//                    make.width.equalTo(self.sourceView.mas_width);
-//                    make.height.equalTo(self.sourceView.mas_height);
-//                }];
-//            }
-//        }
-//
-//    }
+
 }
 
+#pragma mark - baritem
 - (void)genrateBarView {
     self.barView = [[UIControl alloc] init];
     self.barView.backgroundColor = [UIColor yellowColor];
+    [self.barView addTarget:self action:@selector(barItemClicked:) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)barItemClicked:(UIControl *)sender {
+    if (self.focusState == TTIInputSoureFocusStateNone) {
+        self.focusState = TTIInputSoureFocusStateFoucus;
+    }else {
+        self.focusState = TTIInputSoureFocusStateNone;
+    }
+}
 
+#pragma mark - sources
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return self.pages.count;
 }

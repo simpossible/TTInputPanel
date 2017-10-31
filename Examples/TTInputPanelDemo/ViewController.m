@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import <TTInput.h>
-#import <TTInputPanel.h>
 #import <Masonry.h>
 
 @interface ViewController ()
@@ -28,10 +27,10 @@
     
     if (data) {
         TTInput *input = [TTInput inputFromJsonData:data];
-        TTInputPanel *panel = [[TTInputPanel alloc] initWithInput:input];
-        [self.view addSubview:panel];
+//        TTInputPanel *panel = [[TTInputPanel alloc] initWithInput:input];
+        [self.view addSubview:input];
         
-        [panel mas_makeConstraints:^(MASConstraintMaker *make) {
+        [input mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.view.mas_left);
             make.right.equalTo(self.view.mas_right);
             make.bottom.equalTo(self.view.mas_bottom);

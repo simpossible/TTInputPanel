@@ -16,11 +16,10 @@ FOUNDATION_EXTERN NSString * const TTInputSources;
 
 @protocol TTInputProtocol <NSObject>
 
-- (void)toChangeSourceHeight:(CGFloat)height time:(CGFloat)time animateOption:(UIViewAnimationOptions)options;
 
 @end
 
-@interface TTInput : NSObject
+@interface TTInput : UIView
 
 @property (nonatomic, strong) TTInputBar * inpurtBar;
 
