@@ -77,14 +77,14 @@
     CGFloat alreadyWidth = 0;
     CGFloat alreadyHeight = 0;
     NSInteger currentLine = 0;
-    for (int i = 0; i < page.sourceItems.count; i ++) {
-        TTInputSourceItem *item = [page.sourceItems objectAtIndex:i];
-        if(alreadyWidth + item.boxWidth > width) {
+    for (int i = 0; i < page.itemCount; i ++) {
+        if(alreadyWidth + page.itemBoxWidth > width) {
             //应该换行了
-            alreadyHeight += item.boxHeight;
+            alreadyHeight += page.itemBoxHeight;
             currentLine += 1;
             alreadyWidth = 0;
-            if (alreadyHeight + item.boxHeight + page.lineSpace > height) {//该换页了
+            if (alreadyHeight + page.itemBoxHeight + page.lineSpace > height) {//该换页了
+                _numberItemOneceShow = i;
                 currentPage += 1;
                 currentLine = 0;
                 alreadyHeight = 0;
@@ -97,14 +97,13 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:section];
 
         UICollectionViewLayoutAttributes *attr = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-        attr.size = item.itemSize;
-        attr.center = CGPointMake(lastWidth + alreadyWidth+item.itemSize.width/2 +item.margin.left + currentPage * collectWidth + page.margin.left, alreadyHeight+item.itemSize.height/2 + page.margin.top);
+        attr.size = page.itemSize;
+        attr.center = CGPointMake(lastWidth + alreadyWidth+page.itemSize.width/2 +page.itemMargin.left + currentPage * collectWidth + page.margin.left, alreadyHeight+page.itemSize.height/2 + page.margin.top);
        
         NSLog(@"attr:\n%@",attr.description);
         [self.cacheForItem setObject:attr forKey:@(i+1000*section)];
         
-        alreadyWidth += item.boxWidth;
-        
+        alreadyWidth += page.itemBoxWidth;        
     }
     
     return (currentPage + 1)*collectWidth;

@@ -12,8 +12,6 @@
 
 @property (nonatomic, strong) NSArray<TTInputSourceItem *> *sourceItems;
 
-@property (nonatomic, strong) UIView * pageView;
-
 /**每个pagecollectioncell 的margin*/
 @property (nonatomic, assign) UIEdgeInsets margin;
 
@@ -24,6 +22,16 @@
 @property (nonatomic, assign) CGSize itemSize;
 
 @property (nonatomic, assign) UIEdgeInsets itemMargin;
+
+/**
+ * item 的个数
+ * 这里如果是从delegate 拿到的数据。则没有items
+ */
+@property (nonatomic, assign) NSInteger itemCount;
+
+@property (nonatomic, assign) CGFloat itemBoxHeight;
+
+@property (nonatomic, assign) CGFloat itemBoxWidth;
 
 - (instancetype)initFromDic:(NSDictionary *)dic;
 

@@ -27,6 +27,24 @@
     return [[self alloc] initWithSource:sourceDic];
 }
 
++ (TTInputSource *)normalSource {
+   return [[TTInputNormlSouce alloc] init];
+}
+
++ (TTInputSource *)textInputSource {
+     return [[TTInputTextSource alloc] init];
+}
+
+- (instancetype)init {
+    if (self = [super init]) {
+        [self generateView];
+        [self genrateBarView];
+        self.flex = TTInputLayoutFlexFix;
+        self.pages = [NSMutableArray array];
+    }
+    return self;
+}
+
 - (instancetype)initWithSource:(NSDictionary *)dic {
     if (self = [super init]) {
         [self dealSourceDic:dic];
@@ -71,5 +89,10 @@
 
 - (void)disappearSource {
     
+}
+
+- (void)addPage:(TTInputSourcePage *)page {
+    NSMutableArray *pages = (NSMutableArray *)self.pages;
+    [pages addObject:page];
 }
 @end

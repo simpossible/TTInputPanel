@@ -19,7 +19,7 @@
 - (instancetype)initWithSources:(NSArray<TTInputSource *> *)sources {
     if (self = [super init]) {
         self.sources = [NSMutableArray arrayWithArray:sources];
-      
+        self.layout = [TTInputPanelBarLayout layoutForType:self.layoutType];
     }
     return self;
 }
@@ -38,9 +38,11 @@
         self.layoutType = TTInputBarLayoutTypeSpace;
     }else if ([layoutType isEqualToString:TTINPUTBARITEMLAOUTNORMAL]) {
         self.layoutType = TTInputBarLayoutTypeNormal;
+    }else {
+        self.layout = [TTInputPanelBarLayout layoutForType:self.layoutType];
     }
     
-    self.layout = [TTInputPanelBarLayout layoutForType:self.layoutType];
+    
     
 }
 
@@ -56,6 +58,11 @@
         }
     }
     return NO;
+}
+
+- (void)setLayoutType:(TTInputBarLayoutType)layoutType {
+    _layoutType = layoutType;
+    self.layout = [TTInputPanelBarLayout layoutForType:layoutType];
 }
 
 - (void)drawRect:(CGRect)rect {

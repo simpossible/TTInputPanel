@@ -9,27 +9,26 @@
 #import <Foundation/Foundation.h>
 #import "TTInputBar.h"
 #import "TTInputSource.h"
+#import "TTInputPanelDefine.h"
 
 FOUNDATION_EXTERN NSString * const TTInputName;
 
 FOUNDATION_EXTERN NSString * const TTInputSources;
 
-@protocol TTInputProtocol <NSObject>
 
 
-@end
 
 @interface TTInput : UIView
 
 @property (nonatomic, strong) TTInputBar * inpurtBar;
 
-@property (nonatomic, strong) NSMutableArray<TTInputSource *> * sources;
+@property (nonatomic, strong, readonly) NSMutableArray<TTInputSource *> * sources;
 
 /**当前的焦点*/
 @property (nonatomic, strong) TTInputSource * focusSource;
 
 /**代理*/
-@property (nonatomic, weak) id<TTInputProtocol> delegate;
+@property (nonatomic, weak) id<TTInputProtocol> dataSource;
 
 @property (nonatomic, assign) CGFloat barHeight;
 
@@ -37,6 +36,7 @@ FOUNDATION_EXTERN NSString * const TTInputSources;
 
 + (instancetype)inputFromJsonData:(NSData *)data;
 
+- (instancetype)initWithDataSource:(id<TTInputProtocol>)dataSource;
 
 - (void)landingPanel;
 

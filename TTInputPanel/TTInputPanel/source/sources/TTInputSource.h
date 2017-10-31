@@ -41,6 +41,9 @@ typedef NS_ENUM(NSUInteger, TTIInputSoureFocusState) {
 
 @property (nonatomic, copy, readonly) NSString *sourceType;
 
+/**对source 的tag*/
+@property (nonatomic, copy) NSString * tag;
+
 @property (nonatomic, strong) NSArray<TTInputSourcePage *> * pages;
 
 @property (nonatomic, weak) id<TTInputSourceProtocol> delegate;
@@ -60,6 +63,7 @@ typedef NS_ENUM(NSUInteger, TTIInputSoureFocusState) {
 
 @property (nonatomic, assign) CGSize barItemSize;
 
+@property (nonatomic, weak) id<TTInputProtocol> datasouce;
 
 /**处于焦点的时候的高度*/
 @property (nonatomic, assign) CGFloat foucesHeight;
@@ -71,6 +75,13 @@ typedef NS_ENUM(NSUInteger, TTIInputSoureFocusState) {
 
 + (TTInputSource *)sourcesFromDic:(NSDictionary *)sourceDic;
 
++ (TTInputSource *)normalSource;
+
++ (TTInputSource *)textInputSource;
+
 - (void)disappearSource;
+
+- (void)addPage:(TTInputSourcePage *)page;
+
 
 @end

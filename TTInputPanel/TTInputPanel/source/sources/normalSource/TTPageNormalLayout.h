@@ -12,4 +12,7 @@
 
 - (instancetype)initWithSource:(TTInputNormlSouce *)source;
 
+/**一次显示多少的item*/
+@property (nonatomic, assign) NSInteger numberItemOneceShow;
+
 @end

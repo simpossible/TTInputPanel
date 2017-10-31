@@ -19,8 +19,17 @@
 
 - (instancetype)initWithSource:(NSDictionary *)dic {
     if (self = [super initWithSource:dic]) {
+       
+        [self becomeListener];
+    }
+    return self;
+}
+
+- (instancetype)init {
+    if (self = [super init]) {
         _sourceType = TTINPUTSOURCETYPETEXTINPUT;
         self.flex = TTInputLayoutFlexGreater;
+        [self genrateBarView];
         [self becomeListener];
     }
     return self;

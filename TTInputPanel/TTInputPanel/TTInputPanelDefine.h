@@ -89,3 +89,40 @@ FOUNDATION_EXTERN NSString * const TTInputSizeHeight;
 
 
 FOUNDATION_EXTERN NSString * const TTInputBundle;
+
+
+typedef struct {
+    NSInteger page;
+    NSInteger row;
+} TTInputIndex;
+
+@class TTInputSource;
+@class TTInputSourceItem;
+@protocol TTInputProtocol <NSObject>
+
+@required
+
+- (NSInteger)numberOfSourceForInput;
+
+- (NSInteger)numberOfPageForSource:(TTInputSource *)source;
+
+- (NSInteger)itemNumerInPageIndex:(NSInteger)index atSource:(TTInputSource *)source;
+
+- (TTInputSource *)sourceAtIndex:(NSInteger)index;
+
+- (UIEdgeInsets)marginForPageIndex:(NSInteger)index atSource:(TTInputSource *)source;
+
+- (UIEdgeInsets)itemMarginForPageIndex:(NSInteger)index atSource:(TTInputSource *)source;
+
+- (CGSize)itemSizeForPageAtIndex:(NSInteger)index atSource:(TTInputSource *)source;
+
+- (TTInputSourceItem *)itemForPageAtIndex:(TTInputIndex)index atSource:(TTInputSource *)source;
+
+//- (void)sourceItemChooesed:(TTInputSourceItem *)item;
+
+- (void)itemSelected:(TTInputSourceItem *)item atIndex:(TTInputIndex)index forsource:(TTInputSource *)source;
+
+@end
+
+
+extern TTInputIndex indexForPage(NSInteger page,NSInteger row);

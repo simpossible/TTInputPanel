@@ -35,10 +35,20 @@ NSString * const TTInputSources = @"sources";
     }    
 }
 
+- (instancetype)initWithDataSource:(id<TTInputProtocol>)dataSource {
+    if (self = [super init]) {
+         _sources = [NSMutableArray array];
+        self.dataSource = dataSource;
+        [self initialFromDataSource];
+    }
+    return self;
+}
 
+
+#pragma mark - 通过dic 创建
 - (instancetype)initWithDicTionary:(NSDictionary *)dic {
     if (self = [super init]) {
-        self.sources = [NSMutableArray array];
+        _sources = [NSMutableArray array];
         [self dealJsonObject:dic];
         [self initialUI];
     }
@@ -61,6 +71,7 @@ NSString * const TTInputSources = @"sources";
     [self.inpurtBar setParameterWithJson:barSetting];
 }
 
+
 - (void)dealSourcesaArray:(NSArray *)array {
     
     for (NSDictionary *dic in array) {
@@ -71,6 +82,64 @@ NSString * const TTInputSources = @"sources";
     TTInputBar *bar = [[TTInputBar alloc] initWithSources:self.sources];
     self.inpurtBar = bar;
 }
+
+#pragma mark - 通过代理初始化
+
+- (void)initialFromDataSource {
+    NSInteger numberOfsource = 0;
+    
+   
+    if ([self.dataSource respondsToSelector:@selector(numberOfSourceForInput)]) {
+        numberOfsource = [self.dataSource numberOfSourceForInput];
+    }
+    for (int i = 0 ; i < numberOfsource; i ++) {
+        TTInputSource * source = nil;
+        if ([self.dataSource respondsToSelector:@selector(sourceAtIndex:)]) {
+            source = [self.dataSource sourceAtIndex:i];
+            [self initialPageFromdataSourceForSource:source];
+            source.datasouce = self.dataSource;
+            source.delegate = self;
+            [_sources addObject:source];
+        }
+    }
+    
+    self.barHeight = 40;
+    
+    TTInputBar *bar = [[TTInputBar alloc] initWithSources:self.sources];
+    bar.layoutType = TTInputBarLayoutTypeNormal;
+    self.inpurtBar = bar;
+    [self initialUI];
+}
+
+/**初始化page 的各种参数*/
+- (void)initialPageFromdataSourceForSource:(TTInputSource *)source {
+    NSInteger numberOfPage = 0;
+    if ([self.dataSource respondsToSelector:@selector(numberOfPageForSource:)]) {
+        numberOfPage = [self.dataSource numberOfPageForSource:source];
+        for (int i = 0 ; i < numberOfPage; i ++) {
+            TTInputSourcePage *page = [[TTInputSourcePage alloc] init];
+            
+            if ([self.dataSource respondsToSelector:@selector(marginForPageIndex:atSource:)]) {
+                page.margin = [self.dataSource marginForPageIndex:i atSource:source];
+            }
+            
+            if ([self.dataSource respondsToSelector:@selector(itemSizeForPageAtIndex:atSource:)]) {
+                page.itemSize = [self.dataSource itemSizeForPageAtIndex:i atSource:source];
+            }
+            
+            if ([self.dataSource respondsToSelector:@selector(itemMarginForPageIndex:atSource:)]) {
+                page.itemMargin = [self.dataSource itemMarginForPageIndex:i atSource:source];
+            }
+            
+            if ([self.dataSource respondsToSelector:@selector(itemNumerInPageIndex:atSource:)]) {
+                page.itemCount = [self.dataSource itemNumerInPageIndex:i atSource:source];
+            }
+            
+            [source addPage:page];
+        }
+    }
+}
+
 
 #pragma mark - source的代理
 

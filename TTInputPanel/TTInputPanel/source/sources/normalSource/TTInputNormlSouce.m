@@ -91,16 +91,25 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     TTInputSourcePage *page = [self.pages objectAtIndex:section];
-    return page.sourceItems.count;
+    return page.itemCount;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TTInputNomalCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"aaa" forIndexPath:indexPath];
-    TTInputSourcePage *page = [self.pages objectAtIndex:indexPath.section];
-    TTInputSourceItem *item = [page.sourceItems objectAtIndex:indexPath.row];
-    cell.item = item;
-    return cell;
+//    TTInputSourcePage *page = [self.pages objectAtIndex:indexPath.section];
+    if ([self.datasouce respondsToSelector:@selector(itemForPageAtIndex:atSource:)]) {
+        TTInputIndex index;
+        index.page = indexPath.section;
+        index.row = indexPath.row;
+        
+        TTInputSourceItem *item = [self.datasouce itemForPageAtIndex:index atSource:self];
+        cell.item = item;
+        return cell;
+    }else {
+        return nil;
+    }
+   
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -112,5 +121,12 @@
     return UIEdgeInsetsMake(10, 30, 10, 40);
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.datasouce respondsToSelector:@selector(itemSelected:atIndex:forsource:)]) {
+        TTInputIndex i = indexForPage(indexPath.section, indexPath.row);
+        TTInputNomalCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+        [self.datasouce itemSelected:cell.item atIndex:i forsource:self];
+    }
+}
 
 @end
