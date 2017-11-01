@@ -96,7 +96,7 @@
 }
 
 - (NSInteger)numberOfPageForSource:(TTInputSource *)source {
-    if ([source.tag isEqualToString:@"a"]) {
+    if ([source.tag isEqualToString:@"c"]) {
         return 1;
     }else {
         return 0;
@@ -104,7 +104,7 @@
 }
 
 - (NSInteger)itemNumerInPageIndex:(NSInteger)index atSource:(TTInputSource *)source {
-    if ([source.tag isEqualToString:@"a"]) {
+    if ([source.tag isEqualToString:@"c"]) {
         if (index == 0) {
             return self.emojs.count;
         }
@@ -117,7 +117,7 @@
         case 0:{
             TTInputSource *source = [TTInputSource normalSource];
             source.barItemSize = CGSizeMake(30, 30);
-            source.barItemMargin = UIEdgeInsetsMake(5, 10, 5, 10);
+            source.barItemMargin = UIEdgeInsetsMake(10, 5, 10, 5);
             source.tag = @"a";
             source.foucesHeight = 200;
             return source;
@@ -126,16 +126,17 @@
         {
             TTInputSource *source = [TTInputSource textInputSource];
             source.tag = @"b";
-            source.barItemSize = CGSizeMake(100, 30);
-            source.barItemMargin = UIEdgeInsetsMake(5, 10, 5, 10);
+            source.barItemSize = CGSizeMake(100, 36);
+            source.barItemMargin = UIEdgeInsetsMake(10, 5, 6, 5);
             return source;
         }
         case 2:
         {
             TTInputSource *source = [TTInputSource normalSource];
             source.barItemSize = CGSizeMake(30, 30);
-            source.barItemMargin = UIEdgeInsetsMake(5, 10, 5, 10);
+            source.barItemMargin = UIEdgeInsetsMake(10, 5, 10, 5);
             source.tag = @"c";
+             source.foucesHeight = 223;
             return source;
         }
         default:
@@ -145,19 +146,19 @@
 }
 
 - (UIEdgeInsets)marginForPageIndex:(NSInteger)index atSource:(TTInputSource *)source {
-    return UIEdgeInsetsMake(15, 25, 10, 20);
+    return UIEdgeInsetsMake(15, 17, 27, 17);
 }
 
 - (UIEdgeInsets)itemMarginForPageIndex:(NSInteger)index atSource:(TTInputSource *)source {
-    return UIEdgeInsetsMake(0, 5, 0, 5);
+    return UIEdgeInsetsMake(12, 9, 12, 9);
 }
 
 - (CGSize)itemSizeForPageAtIndex:(NSInteger)index atSource:(TTInputSource *)source {
-    return CGSizeMake(30, 30);
+    return CGSizeMake(24, 24);
 }
 
 - (TTInputSourceItem *)itemForPageAtIndex:(TTInputIndex)index atSource:(TTInputSource *)source {
-    if ([source.tag isEqualToString:@"a"]) {
+    if ([source.tag isEqualToString:@"c"]) {
         if (index.page == 0) {
             return [self.emojs objectAtIndex:index.row];
         }
@@ -170,11 +171,59 @@
 }
 
 - (UIImage *)focusImageForSourcceBarItem:(TTInputSource *)source {
+    if ([source.tag isEqualToString:@"a"]) {
+        return [UIImage imageNamed:@"ToolViewInputVoice"];
+    }else if ([source.tag isEqualToString:@"c"]) {
+         return [UIImage imageNamed:@"ToolViewKeyboard"];
+    }
     return [UIImage imageNamed:@"emoj"];
 }
 
 - (UIImage *)unFocusImageForSourceBarItem:(TTInputSource *)source {
-    return [UIImage imageNamed:@"emoj"];
+    if ([source.tag isEqualToString:@"a"]) {
+        return [UIImage imageNamed:@"ToolViewKeyboard"];
+    }else if ([source.tag isEqualToString:@"c"]) {
+         return [UIImage imageNamed:@"ToolViewEmotion"];
+    }
+    return nil;
+}
+
+
+- (NSArray<TTinputMenuItem *> *)itemsForMenuForSource:(TTInputSource *)source withExsitItems:(NSArray *)items {
+    UIButton * moreButton = [[UIButton alloc] init];
+    [moreButton setImage:[UIImage imageNamed:@"AddGroupMemberBtnHL"] forState:UIControlStateNormal];
+    
+    TTinputMenuItem *left = [[TTinputMenuItem alloc] initWithWidth:45 flex:TTInputLayoutFlexFix content:moreButton];
+    
+    UIButton *sendButton = [[UIButton alloc] init];
+//    [sendButton setBackgroundImage:[UIImage imageNamed:@"SendTextViewBkg"] forState:UIControlStateNormal];
+    sendButton.backgroundColor = [UIColor whiteColor];
+    [sendButton setTitle:@"发送" forState:UIControlStateNormal];
+    [sendButton setTitleColor:[UIColor colorWithRed:143.0f/255 green:143.0f/255 blue:143.0f/255 alpha:1] forState:UIControlStateNormal];
+    
+    TTinputMenuItem *right = [[TTinputMenuItem alloc] initWithWidth:50 flex:TTInputLayoutFlexFix content:sendButton];
+    NSMutableArray *array = [NSMutableArray arrayWithArray:items];
+    
+    [array insertObject:left atIndex:0];
+    [array addObject:right];
+    
+    return array;
+}
+
+- (BOOL)shouldShowMenuForSource:(TTInputSource *)source {
+    if ([source.tag isEqualToString:@"c"]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (UIImage *)pageIconForMenu:(TTInputSource *)source atIndex:(NSInteger)index {
+    if ([source.tag isEqualToString:@"c"]) {
+        if (index == 0) {
+            return [UIImage imageNamed:@"EmotionsEmojiHL"];
+        }
+    }
+    return nil;
 }
 
 - (void)didReceiveMemoryWarning {

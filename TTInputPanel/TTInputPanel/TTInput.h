@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "TTInputBar.h"
 #import "TTInputSource.h"
 #import "TTInputPanelDefine.h"
+#import "TTinputMenuItem.h"
+
 
 FOUNDATION_EXTERN NSString * const TTInputName;
 

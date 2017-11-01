@@ -55,6 +55,12 @@
 }
 
 
+- (void)setSelected:(BOOL)selected {
+    _selected = selected;
+    if ([self.delegate respondsToSelector:@selector(pageSelectedChanged)]) {
+        [self.delegate pageSelectedChanged];
+    }
+}
 
 
 @end

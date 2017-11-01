@@ -12,7 +12,9 @@
 #import "TTInputUtil.h"
 
 @interface TTInputSource()
+
 @property (nonatomic, copy) NSString * name;
+
 @end
 
 @implementation TTInputSource
@@ -40,7 +42,6 @@
         [self generateView];
         [self genrateBarView];
         self.flex = TTInputLayoutFlexFix;
-        self.pages = [NSMutableArray array];
     }
     return self;
 }
@@ -56,14 +57,8 @@
 
 - (void)dealSourceDic:(NSDictionary *)dic {
     self.name = [dic objectForKey:@"name"];
-    NSArray *pages = [dic objectForKey:@"pages"];
+  
     
-    NSMutableArray *ttpages = [NSMutableArray array];
-    for (NSDictionary *pagedic in pages) {
-        TTInputSourcePage *page = [[TTInputSourcePage alloc] initFromDic:pagedic];
-        [ttpages addObject:page];
-    }
-    self.pages = ttpages;
     [self generateView];
     
     //初始化baritem 的属性
@@ -91,8 +86,5 @@
     
 }
 
-- (void)addPage:(TTInputSourcePage *)page {
-    NSMutableArray *pages = (NSMutableArray *)self.pages;
-    [pages addObject:page];
-}
+
 @end

@@ -58,7 +58,8 @@
         
         [panelItem mas_makeConstraints:^(MASConstraintMaker *make) {
             
-            make.top.equalTo(bar.mas_top).offset(source.barItemMargin.top);
+//            make.top.equalTo(bar.mas_top).offset(source.barItemMargin.top);
+            make.bottom.equalTo(bar.mas_bottom).offset(-source.barItemMargin.bottom);
             make.height.mas_equalTo(source.barItemSize.height);
             
             if (lastPanelItem) {

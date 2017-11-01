@@ -98,6 +98,7 @@ typedef struct {
 
 @class TTInputSource;
 @class TTInputSourceItem;
+@class TTinputMenuItem;
 @protocol TTInputProtocol <NSObject>
 
 @required
@@ -126,7 +127,14 @@ typedef struct {
 
 - (UIImage *)focusImageForSourcceBarItem:(TTInputSource *)source;
 
+- (BOOL)shouldShowMenuForSource:(TTInputSource *)source;
+
+- (NSArray<TTinputMenuItem *> *)itemsForMenuForSource:(TTInputSource *)source withExsitItems:(NSArray *)items;
+
+- (UIImage *)pageIconForMenu:(TTInputSource *)source atIndex:(NSInteger)index;
+
 @end
+
 
 
 extern TTInputIndex indexForPage(NSInteger page,NSInteger row);

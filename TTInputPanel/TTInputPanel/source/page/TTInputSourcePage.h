@@ -8,6 +8,12 @@
 #import <Foundation/Foundation.h>
 #import "TTInputSourceItem.h"
 
+@protocol TTInputSourcePageProtocol <NSObject>
+
+- (void)pageSelectedChanged;
+
+@end
+
 @interface TTInputSourcePage : NSObject
 
 @property (nonatomic, strong) NSArray<TTInputSourceItem *> *sourceItems;
@@ -33,6 +39,14 @@
 
 @property (nonatomic, assign) CGFloat itemBoxWidth;
 
+/**当前页面的Icon 可以显示在menu 中的*/
+@property (nonatomic, strong) UIImage * pageIcon;
+
+@property (nonatomic, assign) BOOL selected;
+
 - (instancetype)initFromDic:(NSDictionary *)dic;
+
+
+@property (nonatomic, weak) id<TTInputSourcePageProtocol> delegate;
 
 @end

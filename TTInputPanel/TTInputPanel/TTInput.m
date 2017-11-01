@@ -96,14 +96,14 @@ NSString * const TTInputSources = @"sources";
         TTInputSource * source = nil;
         if ([self.dataSource respondsToSelector:@selector(sourceAtIndex:)]) {
             source = [self.dataSource sourceAtIndex:i];
-            [self initialPageFromdataSourceForSource:source];
+//            [self initialPageFromdataSourceForSource:source];
             source.datasouce = self.dataSource;
             source.delegate = self;
             [_sources addObject:source];
         }
     }
     
-    self.barHeight = 40;
+    self.barHeight = 50;
     
     TTInputBar *bar = [[TTInputBar alloc] initWithSources:self.sources];
     bar.layoutType = TTInputBarLayoutTypeNormal;
@@ -112,33 +112,7 @@ NSString * const TTInputSources = @"sources";
 }
 
 /**初始化page 的各种参数*/
-- (void)initialPageFromdataSourceForSource:(TTInputSource *)source {
-    NSInteger numberOfPage = 0;
-    if ([self.dataSource respondsToSelector:@selector(numberOfPageForSource:)]) {
-        numberOfPage = [self.dataSource numberOfPageForSource:source];
-        for (int i = 0 ; i < numberOfPage; i ++) {
-            TTInputSourcePage *page = [[TTInputSourcePage alloc] init];
-            
-            if ([self.dataSource respondsToSelector:@selector(marginForPageIndex:atSource:)]) {
-                page.margin = [self.dataSource marginForPageIndex:i atSource:source];
-            }
-            
-            if ([self.dataSource respondsToSelector:@selector(itemSizeForPageAtIndex:atSource:)]) {
-                page.itemSize = [self.dataSource itemSizeForPageAtIndex:i atSource:source];
-            }
-            
-            if ([self.dataSource respondsToSelector:@selector(itemMarginForPageIndex:atSource:)]) {
-                page.itemMargin = [self.dataSource itemMarginForPageIndex:i atSource:source];
-            }
-            
-            if ([self.dataSource respondsToSelector:@selector(itemNumerInPageIndex:atSource:)]) {
-                page.itemCount = [self.dataSource itemNumerInPageIndex:i atSource:source];
-            }
-            
-            [source addPage:page];
-        }
-    }
-}
+
 
 
 #pragma mark - source的代理
@@ -183,7 +157,7 @@ NSString * const TTInputSources = @"sources";
 
 - (void)initialBar {
     UIView *bar = self.inpurtBar;
-    bar.backgroundColor = [UIColor redColor];
+    bar.backgroundColor = [UIColor colorWithRed:245.0f/255 green:245.0f/255 blue:246.0f/255 alpha:1];
     [self addSubview:bar];
     [self mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(bar.mas_top);
@@ -211,10 +185,7 @@ NSString * const TTInputSources = @"sources";
         make.height.mas_equalTo(height);
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
-    }];
-    
-    
-    self.sourceContainerView.backgroundColor = [UIColor blueColor];
+    }];        
 }
 #pragma mark - 设置代理
 

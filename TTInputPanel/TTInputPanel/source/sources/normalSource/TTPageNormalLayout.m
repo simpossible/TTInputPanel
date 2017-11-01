@@ -98,9 +98,8 @@
 
         UICollectionViewLayoutAttributes *attr = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
         attr.size = page.itemSize;
-        attr.center = CGPointMake(lastWidth + alreadyWidth+page.itemSize.width/2 +page.itemMargin.left + currentPage * collectWidth + page.margin.left, alreadyHeight+page.itemSize.height/2 + page.margin.top);
+        attr.center = CGPointMake(lastWidth + alreadyWidth+page.itemSize.width/2 +page.itemMargin.left + currentPage * collectWidth + page.margin.left, alreadyHeight+page.itemSize.height/2 + page.margin.top + page.itemMargin.top);
        
-        NSLog(@"attr:\n%@",attr.description);
         [self.cacheForItem setObject:attr forKey:@(i+1000*section)];
         
         alreadyWidth += page.itemBoxWidth;        

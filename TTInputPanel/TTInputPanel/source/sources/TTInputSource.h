@@ -44,8 +44,6 @@ typedef NS_ENUM(NSUInteger, TTIInputSoureFocusState) {
 /**对source 的tag*/
 @property (nonatomic, copy) NSString * tag;
 
-@property (nonatomic, strong) NSArray<TTInputSourcePage *> * pages;
-
 @property (nonatomic, weak) id<TTInputSourceProtocol> delegate;
 
 @property (nonatomic, assign) TTIInputSoureFocusState focusState;
@@ -81,7 +79,7 @@ typedef NS_ENUM(NSUInteger, TTIInputSoureFocusState) {
 
 - (void)disappearSource;
 
-- (void)addPage:(TTInputSourcePage *)page;
+
 
 
 @end

@@ -9,10 +9,22 @@
 #import "TTPageNormalLayout.h"
 #import "TTInputNomalCell.h"
 #import "TTInputNormalBarItem.h"
+#import "TTInputMenu.h"
+#import "TTInputNormalMenuItem.h"
 
 @interface TTInputNormlSouce ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic, strong) TTInputNormalBarItem * barView;
+
+@property (nonatomic, strong) TTInputMenu * menu;
+
+/**自己的menuitem*/
+@property (nonatomic, strong) TTinputMenuItem * menuItem;
+
+@property (nonatomic, strong) UICollectionView * contentView;
+
+@property (nonatomic, weak) TTInputSourcePage * currentPage;
+
 
 @end
 
@@ -31,8 +43,18 @@
 
 
 - (void)dealSourceDic:(NSDictionary *)dic {
-    [super dealSourceDic:dic];
+    
+    NSArray *pages = [dic objectForKey:@"pages"];
+    NSMutableArray *ttpages = [NSMutableArray array];
+    for (NSDictionary *pagedic in pages) {
+        TTInputSourcePage *page = [[TTInputSourcePage alloc] initFromDic:pagedic];
+        [ttpages addObject:page];
+    }
+    self.pages = ttpages;
     self.foucesHeight = [[dic objectForKey:@"focusheight"] integerValue];
+    
+    [super dealSourceDic:dic];
+ 
 }
 
 #pragma mark - 焦点事件
@@ -64,14 +86,25 @@
 }
 
 - (void)generateView {
+    UIView *containView = [[UIView alloc] init];
+    self.sourceView = containView;
+    containView.backgroundColor = [UIColor colorWithRed:246/255.0f green:246/255.0f blue:246/255.0f alpha:1];
+    
+    
     TTPageNormalLayout *flow = [[TTPageNormalLayout alloc] initWithSource:self];
     UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flow];
     collection.pagingEnabled = YES;
-    self.sourceView = collection;
-    self.sourceView.backgroundColor = [UIColor colorWithRed:246/255.0f green:246/255.0f blue:246/255.0f alpha:1];
     collection.delegate = self;
     collection.dataSource = self;
     [collection registerClass:[TTInputNomalCell class] forCellWithReuseIdentifier:@"aaa"];
+    self.contentView = collection;
+    collection.backgroundColor = [UIColor colorWithRed:246/255.0f green:246/255.0f blue:246/255.0f alpha:1];
+    
+    [containView addSubview:collection];
+    
+    [collection mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsZero);
+    }];
 
 }
 
@@ -79,6 +112,9 @@
 
 - (void)setDatasouce:(id<TTInputProtocol>)datasouce {
     [super setDatasouce:datasouce];
+    
+    [self initialPageFromdataSourceForSource];
+    
     if([self.datasouce respondsToSelector:@selector(focusImageForSourcceBarItem:)]) {
         UIImage *img = [self.datasouce focusImageForSourcceBarItem:self];
         self.barView.focusImage = img;
@@ -89,12 +125,92 @@
         self.barView.unfocusImage = unImage;
     }
     self.barView.state = self.focusState;
+    
+    BOOL canShowMenu = NO;
+
+    if ([self.datasouce respondsToSelector:@selector(shouldShowMenuForSource:)]) {
+        canShowMenu = [self.datasouce shouldShowMenuForSource:self];
+    }
+    
+    if (canShowMenu) {//如果需要显示menu
+        [self generateMenu];
+    }
+    
+    [self.contentView reloadData];
 }
+
+/**初始化pages*/
+- (void)initialPageFromdataSourceForSource {
+    NSInteger numberOfPage = 0;
+    if ([self.datasouce respondsToSelector:@selector(numberOfPageForSource:)]) {
+        numberOfPage = [self.datasouce numberOfPageForSource:self];
+        for (int i = 0 ; i < numberOfPage; i ++) {
+            TTInputSourcePage *page = [[TTInputSourcePage alloc] init];
+            
+            if ([self.datasouce respondsToSelector:@selector(marginForPageIndex:atSource:)]) {
+                page.margin = [self.datasouce marginForPageIndex:i atSource:self];
+            }
+            
+            if ([self.datasouce respondsToSelector:@selector(itemSizeForPageAtIndex:atSource:)]) {
+                page.itemSize = [self.datasouce itemSizeForPageAtIndex:i atSource:self];
+            }
+            
+            if ([self.datasouce respondsToSelector:@selector(itemMarginForPageIndex:atSource:)]) {
+                page.itemMargin = [self.datasouce itemMarginForPageIndex:i atSource:self];
+            }
+            
+            if ([self.datasouce respondsToSelector:@selector(itemNumerInPageIndex:atSource:)]) {
+                page.itemCount = [self.datasouce itemNumerInPageIndex:i atSource:self];
+            }
+            
+            if ([self.datasouce respondsToSelector:@selector(pageIconForMenu:atIndex:)]) {
+                page.pageIcon = [self.datasouce pageIconForMenu:self atIndex:i];
+            }
+            
+            [self addPage:page];
+        }
+    }
+    
+    if (self.pages.count > 0) {
+        self.currentPage = [self.pages objectAtIndex:0];
+        self.currentPage.selected = YES;
+    }
+    
+}
+
+- (void)generateMenu {
+    
+    TTInputNormalMenuItem * item  = [[TTInputNormalMenuItem alloc] initWithWidth:100 flex:TTInputLayoutFlexGreater content:nil];
+    item.source = self;
+
+    
+    NSArray *currentItem = @[item];
+
+    if ([self.datasouce respondsToSelector:@selector(itemsForMenuForSource:withExsitItems:)]) {
+        NSArray *dataItems = [self.datasouce itemsForMenuForSource:self withExsitItems:currentItem];
+        currentItem = dataItems;
+    }
+    
+    self.menu = [[TTInputMenu alloc] initWithItems:currentItem];
+    self.menu.backgroundColor = [UIColor yellowColor];
+
+    [self.sourceView addSubview:self.menu];
+    
+    [self.menu mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.sourceView.mas_bottom);
+        make.left.equalTo(self.sourceView.mas_left);
+        make.right.equalTo(self.sourceView.mas_right);
+        make.height.mas_equalTo(37);
+    }];
+        
+}
+
+
 
 #pragma mark - baritem
 - (void)genrateBarView {
     self.barView = [[TTInputNormalBarItem alloc] init];
-    self.barView.backgroundColor = [UIColor yellowColor];
+
     [self.barView addTarget:self action:@selector(barItemClicked:) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -152,4 +268,21 @@
     }
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    TTInputSourcePage *page = [self.pages objectAtIndex:indexPath.section];
+    if (page != self.currentPage) {
+        page.selected = YES;
+        self.currentPage.selected = NO;
+        self.currentPage = page;
+    }
+}
+
+#pragma mark - util
+
+- (void)addPage:(TTInputSourcePage *)page {
+    if (!self.pages) {
+        self.pages = [NSMutableArray array];
+    }
+    [(NSMutableArray *)self.pages addObject:page];
+}
 @end

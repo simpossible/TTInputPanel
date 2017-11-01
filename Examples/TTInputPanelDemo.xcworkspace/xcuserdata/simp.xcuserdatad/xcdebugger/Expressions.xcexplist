@@ -3,6 +3,9 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[TTInputNormlSouce initialPageFromdataSourceForSource]:TTInputNormlSouce.m">
+      </ContextState>
+      <ContextState
          contextName = "-[TTInputNormlSouce setFocusState:]:TTInputNormlSouce.m">
          <PersistentStrings>
             <PersistentString
@@ -15,6 +18,14 @@
          <PersistentStrings>
             <PersistentString
                value = "[dic objectForKey:@&quot;focusheight&quot;]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[TTInputNormlSouce numberOfSectionsInCollectionView:]:TTInputNormlSouce.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.pages">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
