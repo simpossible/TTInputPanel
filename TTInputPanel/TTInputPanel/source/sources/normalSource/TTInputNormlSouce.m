@@ -63,9 +63,9 @@
  
     if (focusState != _focusState) {
         
-        if ([self.delegate respondsToSelector:@selector(source:willChangeStateTo:)]) {//判断消失逻辑
-            [self.delegate source:self willChangeStateTo:focusState];
-        }
+//        if ([self.delegate respondsToSelector:@selector(source:willChangeStateTo:)]) {//判断消失逻辑
+//            [self.delegate source:self willChangeStateTo:focusState];
+//        }
         
         [super setFocusState:focusState];
         if (focusState == TTIInputSoureFocusStateFoucus) {//这里是由不是焦点变为了焦点 则到指定高度
@@ -83,6 +83,7 @@
     if ([self.delegate respondsToSelector:@selector(toChangeSourceHeight:time:animateOption:)]) {//直接进行动画
         [self.delegate toChangeSourceHeight:0 time:0.5 animateOption:0];
     }
+    self.focusState = TTIInputSoureFocusStateNone;
 }
 
 - (void)generateView {
@@ -215,11 +216,22 @@
 }
 
 - (void)barItemClicked:(UIControl *)sender {
-    if (self.focusState == TTIInputSoureFocusStateNone) {
-        self.focusState = TTIInputSoureFocusStateFoucus;
-    }else {
-        self.focusState = TTIInputSoureFocusStateNone;
+    BOOL canBeFocus = NO;
+    if ([self.delegate respondsToSelector:@selector(source:canChangeStateTo:)]) {
+        canBeFocus = [self.delegate source:self canChangeStateTo:(self.focusState+1)%2];
+        if (canBeFocus) {
+            if (self.focusState == TTIInputSoureFocusStateNone) {
+                if (self.focusState != TTIInputSoureFocusStateFoucus) {
+                    
+                    self.focusState = TTIInputSoureFocusStateFoucus;
+                    
+                }
+            }else {
+                self.focusState = TTIInputSoureFocusStateNone;
+            }
+        }
     }
+ 
 }
 
 

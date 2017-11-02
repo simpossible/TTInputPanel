@@ -80,7 +80,7 @@
                   moduleName = "TTInputPanelDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/simp/dev/panel/TTInputPanel/TTInputPanel/bar/model/TTInputBar.m"
-                  timestampString = "531329782.129971"
+                  timestampString = "531332092.618379"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "56"
@@ -95,7 +95,7 @@
                   moduleName = "TTInputPanelDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/simp/dev/panel/TTInputPanel/TTInputPanel/bar/model/TTInputBar.m"
-                  timestampString = "531329782.131102"
+                  timestampString = "531332092.619411"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "56"
@@ -140,6 +140,38 @@
                   offsetFromSymbolStart = "0">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../TTInputPanel/TTInputPanel/TTInput.m"
+            timestampString = "531332092.535466"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "267"
+            endingLineNumber = "267"
+            landmarkName = "-landingPanel"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../TTInputPanel/TTInputPanel/source/sources/TTInputTextSource.m"
+            timestampString = "531332092.535516"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "-keyboardHidding:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

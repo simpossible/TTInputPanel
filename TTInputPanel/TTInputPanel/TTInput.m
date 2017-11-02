@@ -133,19 +133,34 @@ NSString * const TTInputSources = @"sources";
     }
 }
 
-- (void)source:(TTInputSource *)source willChangeStateTo:(TTIInputSoureFocusState)state {
-    if (source == self.focusSource) {//如果是当前的surce
-        if (state == TTIInputSoureFocusStateNone){
-            [source disappearSource];
-            self.focusSource = nil;
-        }
-    }else {
+//- (void)source:(TTInputSource *)source willChangeStateTo:(TTIInputSoureFocusState)state {
+//    if (source == self.focusSource) {//如果是当前的surce
+//        if (state == TTIInputSoureFocusStateNone){
+//            [source disappearSource];
+//            self.focusSource = nil;
+//        }
+//    }else {
+//        if (state == TTIInputSoureFocusStateFoucus) {
+//            self.focusSource = source;
+//        }
+//    }
+//}
+
+- (BOOL)source:(TTInputSource *)source canChangeStateTo:(TTIInputSoureFocusState)state {
+    if (self.focusSource != source) {
         if (state == TTIInputSoureFocusStateFoucus) {
+            self.focusSource.focusState = TTIInputSoureFocusStateNone;
             self.focusSource = source;
         }
+      
+    }else {
+        if (state == TTIInputSoureFocusStateNone) {
+            //回调给外部 看外部需要做什么操作了 暂时直接消失
+             [source disappearSource];
+        }
     }
+    return YES;
 }
-
 
 #pragma mark - UI
 
@@ -248,7 +263,8 @@ NSString * const TTInputSources = @"sources";
 }
 
 - (void)landingPanel {
-    self.focusSource.focusState = TTIInputSoureFocusStateNone;
+    [self.focusSource disappearSource];
+    self.focusSource = nil;
 }
 
 #pragma mark - panelbaritemProtocol

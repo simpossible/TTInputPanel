@@ -29,6 +29,8 @@ typedef NS_ENUM(NSUInteger, TTIInputSoureFocusState) {
 
 - (void)source:(TTInputSource *)source willChangeStateTo:(TTIInputSoureFocusState)state;
 
+- (BOOL)source:(TTInputSource *)source canChangeStateTo:(TTIInputSoureFocusState)state;
+
 @end
 
 

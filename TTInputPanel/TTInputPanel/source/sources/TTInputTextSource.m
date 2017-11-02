@@ -88,7 +88,7 @@
          if ([self.delegate respondsToSelector:@selector(toChangeSourceHeight:time:animateOption:)]) {
             [self.delegate toChangeSourceHeight:realHeight time:animationDuration animateOption:animationCurveOption];
         }
-        if (endFrame.size.height == 0) {
+        if (realHeight == 0) {
             _focusState = TTIInputSoureFocusStateNone;
         }
     }
@@ -97,18 +97,12 @@
 
 - (void)setFocusState:(TTIInputSoureFocusState)focusState {
 
-    if ([self.delegate respondsToSelector:@selector(source:willChangeStateTo:)]) {
-        [self.delegate source:self willChangeStateTo:focusState];
+      _focusState = focusState;
+    if (focusState == TTIInputSoureFocusStateNone) {
+        [self.barView resignFirstResponder];
+    }else {
     }
-    if (_focusState != focusState) {
-      
-        if (focusState == TTIInputSoureFocusStateNone) {
-           
-        }else if(focusState == TTIInputSoureFocusStateFoucus) {
-            [super setFocusState:focusState];
-            [self.barView becomeFirstResponder];
-        }        
-    }
+    
 }
 
 - (void)disappearSource {
@@ -123,7 +117,16 @@
 #pragma mark - item event
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
-    self.focusState = TTIInputSoureFocusStateFoucus;
+    if (self.focusState != TTIInputSoureFocusStateFoucus) {
+        BOOL canBeFocus = NO;
+        if ([self.delegate respondsToSelector:@selector(source:canChangeStateTo:)]) {
+            canBeFocus = [self.delegate source:self canChangeStateTo:(self.focusState + 1)%2];
+            if (canBeFocus) {
+                self.focusState = (self.focusState + 1)%2;
+            }
+        }
+    }
     return  YES;
 }
+
 @end
