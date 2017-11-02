@@ -267,8 +267,7 @@
         [self.datasouce itemSelected:cell.item atIndex:i forsource:self];
     }
 }
-
-- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(8_0) {
     TTInputSourcePage *page = [self.pages objectAtIndex:indexPath.section];
     if (page != self.currentPage) {
         page.selected = YES;

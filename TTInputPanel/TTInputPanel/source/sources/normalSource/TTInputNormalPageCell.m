@@ -11,6 +11,7 @@
 
 @property (nonatomic, strong) UIImageView * img;
 
+
 @end
 
 @implementation TTInputNormalPageCell
@@ -29,6 +30,35 @@
         make.centerX.equalTo(self.mas_centerX);
         make.centerY.equalTo(self.mas_centerY);
     }];
+    
+    [self initialLines];
+}
+
+- (void)initialLines {
+    UIImageView * leftLine = [[UIImageView alloc] init];
+    UIImageView * rightLine = [[UIImageView alloc] init];
+    
+    leftLine.image = [UIImage imageNamed:@"WeChatOutKeypadLineVertical_dark"];
+    rightLine.image = [UIImage imageNamed:@"WeChatOutKeypadLineVertical_dark"];
+    
+    [self addSubview: leftLine];
+    [self addSubview:rightLine];
+    
+    [leftLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.width.mas_equalTo(0.5);
+        make.height.equalTo(self.mas_height).multipliedBy(0.8);
+        make.centerY.equalTo(self.mas_centerY);
+    }];
+    
+    [rightLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.mas_right);
+        make.width.mas_equalTo(0.5);
+        make.height.equalTo(self.mas_height).multipliedBy(0.8);
+        make.centerY.equalTo(self.mas_centerY);
+    }];
+    
+    
 }
 
 

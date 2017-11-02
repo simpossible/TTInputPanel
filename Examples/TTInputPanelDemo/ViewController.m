@@ -19,6 +19,8 @@
 
 @property (nonatomic, strong) NSMutableArray * emojs;
 
+@property (nonatomic, strong) NSMutableArray * emojAs;
+
 @end
 
 @implementation ViewController
@@ -53,6 +55,18 @@
     
     [self initialUI];
     // Do any additional setup after loading the view, typically from a nib.
+    
+//    NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://itunes.apple.com/lookup?id=1116383008"]];
+//    NSURLResponse *rep = nil;
+//    NSError *error;
+//    NSData *dataa = [NSURLConnection sendSynchronousRequest:req returningResponse:&rep error:&error];
+//    if (!error) {
+//        //打印的服务端返回的信息以及错误信息
+//        NSLog(@"%@",[[NSString alloc]initWithData:dataa encoding:NSUTF8StringEncoding]);
+//        NSLog(@"%@",error);
+//    }
+
+    
 }
 
 - (void)initialUI {
@@ -88,6 +102,19 @@
             [self.emojs addObject:item];
         }
     }
+    
+    
+    self.emojAs = [NSMutableArray array];
+     NSString *ename = @"emojA";
+    for (int i = 0 ; i < 50; i ++) {
+        NSString *currentName = [NSString stringWithFormat:@"%@/%@%d.jpg",path,ename,i];
+        UIImage *imge = [UIImage imageNamed:currentName];
+        if (imge) {
+            TTInputSourceItem *item = [[TTInputSourceItem alloc] init];
+            item.itemImg = imge;
+            [self.emojAs addObject:item];
+        }
+    }
 }
 
 #pragma mark - input
@@ -97,7 +124,7 @@
 
 - (NSInteger)numberOfPageForSource:(TTInputSource *)source {
     if ([source.tag isEqualToString:@"c"]) {
-        return 1;
+        return 2;
     }else {
         return 0;
     }
@@ -107,6 +134,9 @@
     if ([source.tag isEqualToString:@"c"]) {
         if (index == 0) {
             return self.emojs.count;
+        }
+        if (index == 1) {
+            return self.emojAs.count;
         }
     }
     return 0;
@@ -146,6 +176,7 @@
 }
 
 - (UIEdgeInsets)marginForPageIndex:(NSInteger)index atSource:(TTInputSource *)source {
+
     return UIEdgeInsetsMake(15, 17, 27, 17);
 }
 
@@ -154,6 +185,15 @@
 }
 
 - (CGSize)itemSizeForPageAtIndex:(NSInteger)index atSource:(TTInputSource *)source {
+    if ([source.tag isEqualToString:@"c"]) {
+        if (index == 0) {
+             return CGSizeMake(24, 24);
+        }
+        
+        if (index == 1) {
+             return CGSizeMake(50, 50);
+        }
+    }
     return CGSizeMake(24, 24);
 }
 
@@ -161,6 +201,9 @@
     if ([source.tag isEqualToString:@"c"]) {
         if (index.page == 0) {
             return [self.emojs objectAtIndex:index.row];
+        }
+        if (index.page == 1) {
+            return [self.emojAs objectAtIndex:index.row];
         }
     }
     return 0;
@@ -221,6 +264,9 @@
     if ([source.tag isEqualToString:@"c"]) {
         if (index == 0) {
             return [UIImage imageNamed:@"EmotionsEmojiHL"];
+        }
+        if (index == 1) {
+            return [UIImage imageNamed:@"ToolViewEmotionHL"];
         }
     }
     return nil;

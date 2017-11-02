@@ -8,8 +8,7 @@
 #import <UIKit/UIKit.h>
 
 @interface TTinputMenuItem : UIView{
-    @protected
-    UIView * _contentView;
+
 }
 
 @property (nonatomic, assign) CGFloat width;
