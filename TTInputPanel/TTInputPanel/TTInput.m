@@ -97,9 +97,10 @@ NSString * const TTInputSources = @"sources";
         if ([self.dataSource respondsToSelector:@selector(sourceAtIndex:)]) {
             source = [self.dataSource sourceAtIndex:i];
 //            [self initialPageFromdataSourceForSource:source];
-            source.datasouce = self.dataSource;
+//            source.datasouce = self.dataSource;
             source.delegate = self;
             [_sources addObject:source];
+            [source initialData];
         }
     }
     

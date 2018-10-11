@@ -111,9 +111,8 @@
 
 #pragma mark - datasource
 
-- (void)setDatasouce:(id<TTInputProtocol>)datasouce {
-    [super setDatasouce:datasouce];
-    
+
+- (void)initialData {
     [self initialPageFromdataSourceForSource];
     
     if([self.datasouce respondsToSelector:@selector(focusImageForSourcceBarItem:)]) {
@@ -128,7 +127,7 @@
     self.barView.state = self.focusState;
     
     BOOL canShowMenu = NO;
-
+    
     if ([self.datasouce respondsToSelector:@selector(shouldShowMenuForSource:)]) {
         canShowMenu = [self.datasouce shouldShowMenuForSource:self];
     }

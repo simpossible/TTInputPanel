@@ -63,7 +63,7 @@ typedef NS_ENUM(NSUInteger, TTIInputSoureFocusState) {
 
 @property (nonatomic, assign) CGSize barItemSize;
 
-@property (nonatomic, weak) id<TTInputProtocol> datasouce;
+@property (nonatomic, weak) id<TTInputSourceProtocol> datasouce;
 
 /**处于焦点的时候的高度*/
 @property (nonatomic, assign) CGFloat foucesHeight;
@@ -79,9 +79,12 @@ typedef NS_ENUM(NSUInteger, TTIInputSoureFocusState) {
 
 + (TTInputSource *)textInputSource;
 
+- (void)initialData;
+
 - (void)disappearSource;
 
+- (void)becomeFoucus;
 
-
+- (void)resignFocus;
 
 @end

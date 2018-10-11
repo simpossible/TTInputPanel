@@ -11,7 +11,7 @@
 #import <Masonry.h>
 #import <TTInputSource.h>
 
-@interface ViewController ()<UIScrollViewDelegate,TTInputProtocol>
+@interface ViewController ()<UIScrollViewDelegate,TTInputProtocol,TTInputSourceProtocol,TTInputNormalSourceProtocol>
 
 @property (nonatomic, strong) UITableView * chatTableView;
 
@@ -149,6 +149,7 @@
             source.barItemSize = CGSizeMake(30, 30);
             source.barItemMargin = UIEdgeInsetsMake(10, 5, 10, 5);
             source.tag = @"a";
+             source.datasouce = self;
             source.foucesHeight = 200;
             return source;
         }
@@ -156,6 +157,7 @@
         {
             TTInputSource *source = [TTInputSource textInputSource];
             source.tag = @"b";
+             source.datasouce = self;
             source.barItemSize = CGSizeMake(100, 36);
             source.barItemMargin = UIEdgeInsetsMake(10, 5, 6, 5);
             return source;
@@ -163,6 +165,7 @@
         case 2:
         {
             TTInputSource *source = [TTInputSource normalSource];
+            source.datasouce = self;
             source.barItemSize = CGSizeMake(30, 30);
             source.barItemMargin = UIEdgeInsetsMake(10, 5, 10, 5);
             source.tag = @"c";
@@ -233,9 +236,9 @@
 
 
 - (NSArray<TTinputMenuItem *> *)itemsForMenuForSource:(TTInputSource *)source withExsitItems:(NSArray *)items {
+    
     UIButton * moreButton = [[UIButton alloc] init];
     [moreButton setImage:[UIImage imageNamed:@"AddGroupMemberBtnHL"] forState:UIControlStateNormal];
-    
     TTinputMenuItem *left = [[TTinputMenuItem alloc] initWithWidth:45 flex:TTInputLayoutFlexFix content:moreButton];
     
     UIButton *sendButton = [[UIButton alloc] init];

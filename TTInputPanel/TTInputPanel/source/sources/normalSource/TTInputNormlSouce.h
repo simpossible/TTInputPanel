@@ -7,11 +7,6 @@
 
 #import "TTInputNormlSouce.h"
 
-@protocol TTInputNorlmalSourceProtocol <TTInputSourceProtocol>
-
-
-@end
-
 /**
  normal item 默认 item 大小一致
  */
@@ -19,9 +14,11 @@
 
 @property (nonatomic, strong) NSArray<TTInputSourcePage *> * pages;
 
+@property (nonatomic, weak) id <TTInputNormalSourceProtocol> datasouce;
+
 - (void)addPage:(TTInputSourcePage *)page;
 
-@property (nonatomic, weak) id<TTInputNorlmalSourceProtocol> delegate;
+@property (nonatomic, weak) id<TTInputSourceProtocol> delegate;
 
 - (void)generateView;
 @end

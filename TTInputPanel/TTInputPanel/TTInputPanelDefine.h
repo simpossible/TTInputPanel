@@ -99,17 +99,32 @@ typedef struct {
 @class TTInputSource;
 @class TTInputSourceItem;
 @class TTinputMenuItem;
+
 @protocol TTInputProtocol <NSObject>
 
 @required
 
 - (NSInteger)numberOfSourceForInput;
 
+
+
+- (TTInputSource *)sourceAtIndex:(NSInteger)index;
+
+
+
+@end
+
+
+@protocol TTInputSourcesProtocol <NSObject>
+
+@end
+
+
+@protocol TTInputNormalSourceProtocol <TTInputSourcesProtocol>
+
 - (NSInteger)numberOfPageForSource:(TTInputSource *)source;
 
 - (NSInteger)itemNumerInPageIndex:(NSInteger)index atSource:(TTInputSource *)source;
-
-- (TTInputSource *)sourceAtIndex:(NSInteger)index;
 
 - (UIEdgeInsets)marginForPageIndex:(NSInteger)index atSource:(TTInputSource *)source;
 
@@ -132,7 +147,6 @@ typedef struct {
 - (NSArray<TTinputMenuItem *> *)itemsForMenuForSource:(TTInputSource *)source withExsitItems:(NSArray *)items;
 
 - (UIImage *)pageIconForMenu:(TTInputSource *)source atIndex:(NSInteger)index;
-
 @end
 
 

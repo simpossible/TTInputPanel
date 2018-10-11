@@ -69,6 +69,10 @@
     self.barItemSize = CGSizeMake(width, height);
 }
 
+
+- (void)initialData {
+    
+}
 - (void)dealItemSource {
     
 }
@@ -83,6 +87,13 @@
 }
 
 - (void)disappearSource {
+    
+}
+- (void)becomeFoucus{
+    
+}
+
+- (void)resignFocus {
     
 }
 
