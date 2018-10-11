@@ -6,7 +6,7 @@
 //  Copyright © 2018年 simp. All rights reserved.
 //
 
-#import <TTInputPanel/TTInputPanel.h>
+#import <TTInputNormlSouce.h>
 
 @interface TTEmojiSouce : TTInputNormlSouce
 
