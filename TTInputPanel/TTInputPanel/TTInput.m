@@ -105,6 +105,9 @@ NSString * const TTInputSources = @"sources";
     }
     
     self.barHeight = 50;
+    if ([self.dataSource respondsToSelector:@selector(TTInputBarHeight)]) {
+        self.barHeight = [self.dataSource TTInputBarHeight];
+    }
     
     TTInputBar *bar = [[TTInputBar alloc] initWithSources:self.sources];
     bar.layoutType = TTInputBarLayoutTypeNormal;

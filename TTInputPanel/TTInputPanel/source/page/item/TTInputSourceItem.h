@@ -5,7 +5,7 @@
 //  Created by simp on 2017/10/22.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface TTInputSourceItem : NSObject
 
@@ -21,5 +21,6 @@
 @property (nonatomic, assign) CGFloat boxHeight;
 
 @property (nonatomic, strong) UIImage * itemImg;
+
 
 @end

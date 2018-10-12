@@ -92,9 +92,9 @@ Pod::Spec.new do |s|
   #
 
   s.source_files  = "TTInputPanel", "TTInputPanel/**/*.{h,m}","TTInputPanel/*.{h,m}"  
-  s.exclude_files = "Classes/Exclude"
+  #s.exclude_files = "TTInputPanel/**/*.{h}"
 
-  # s.public_header_files = "Classes/**/*.h"
+  s.public_header_files = "TTInputPanel/**/*.h"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -128,9 +128,9 @@ Pod::Spec.new do |s|
 #import <UIKit/UIKit.h>
 #import <Masonry.h>
 
-#import "TTInputPanel.h"
+//#import "TTInputPanel.h"
 #import "TTInputBar.h"
-#import "TTInputPanelBar.h"
+//import "TTInputPanelBar.h"
 #import "TTInputSource.h" 
 #import "TTInput.h"
 // Include any system framework and library headers here that should be included in all compilation units.
@@ -147,6 +147,6 @@ Pod::Spec.new do |s|
   # s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency "JSONKit", "~> 1.4"
+  s.dependency "Masonry"
 
 end

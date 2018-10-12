@@ -6,7 +6,7 @@
 //  Copyright © 2017年 simp. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "TTInputSource.h"
 
 @class TTInputSource;
@@ -110,7 +110,7 @@ typedef struct {
 
 - (TTInputSource *)sourceAtIndex:(NSInteger)index;
 
-
+- (CGFloat)TTInputBarHeight;
 
 @end
 
@@ -121,6 +121,8 @@ typedef struct {
 
 
 @protocol TTInputNormalSourceProtocol <TTInputSourcesProtocol>
+
+- (CGFloat)ttinputNormalSourceMenuHeight;
 
 - (NSInteger)numberOfPageForSource:(TTInputSource *)source;
 

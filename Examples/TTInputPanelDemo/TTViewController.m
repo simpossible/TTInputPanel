@@ -11,6 +11,8 @@
 #import <Masonry.h>
 #import <TTInputSource.h>
 #import "EmojiService.h"
+#import "TTEmojiSourceItem.h"
+#import "EmojiUtil.h"
 
 @interface TTViewController ()<TTInputProtocol,TTInputSourceProtocol,TTInputNormalSourceProtocol>
 
@@ -25,6 +27,8 @@
 
 @property (nonatomic, strong) NSMutableArray * ttemojes;
 
+@property (nonatomic, strong) NSMutableArray * functionEmojs;
+
 @end
 
 @implementation TTViewController
@@ -33,10 +37,10 @@
     [super viewDidLoad];
     [self initialData];
     
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"input" ofType:@"json"];
-    NSData *data = [NSData dataWithContentsOfFile:filePath];
+//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"input" ofType:@"json"];
+//    NSData *data = [NSData dataWithContentsOfFile:filePath];
     
-    if (data) {
+//    if (data) {
         //        TTInput *input = [TTInput inputFromJsonData:data];
         TTInput *input = [[TTInput alloc] initWithDataSource:self];
         self.input = input;
@@ -48,7 +52,7 @@
             make.right.equalTo(self.view.mas_right);
             make.bottom.equalTo(self.view.mas_bottom);
         }];
-    }
+//    }
     
     [self initialUI];
     // Do any additional setup after loading the view, typically from a nib.
@@ -85,73 +89,55 @@
 
 - (void)initialEmoj {
     
-    self.emojs = [NSMutableArray array];
-    NSString *path = [[NSBundle mainBundle] pathForResource:TTInputBundle ofType:@"bundle"];
-    NSString *emojname = @"Expression";
-    for (int i = 0 ; i < 100; i ++) {
-        NSString *currentName = [NSString stringWithFormat:@"%@/%@_%d@2x.png",path,emojname,i];
-        UIImage *imge = [UIImage imageNamed:currentName];
-        if (imge) {
-            TTInputSourceItem *item = [[TTInputSourceItem alloc] init];
-            item.itemImg = imge;
-            [self.emojs addObject:item];
-        }
-    }
-    
-
     NSArray *array = [[EmojiService currentService] getEmojiListByCateloyName:@"base"];
-    self.ttemojes = [NSMutableArray arrayWithArray:array];
+    self.ttemojes = [NSMutableArray array];
     
-    self.emojAs = [NSMutableArray array];
-    NSString *ename = @"emojA";
-    for (int i = 0 ; i < 50; i ++) {
-        NSString *currentName = [NSString stringWithFormat:@"%@/%@%d.jpg",path,ename,i];
-        UIImage *imge = [UIImage imageNamed:currentName];
-        if (imge) {
-            TTInputSourceItem *item = [[TTInputSourceItem alloc] init];
-            item.itemImg = imge;
-            [self.emojAs addObject:item];
-        }
+    for (int i = 0 ; i < array.count; i ++) {
+        TTEmoji *tmoji = [array objectAtIndex:i];
+        TTEmojiSourceItem *item = [[TTEmojiSourceItem alloc] initWIthEmoji:tmoji];
+        item.itemImg = [EmojiUtil getFaceImage:tmoji.thumb];
+        [self.ttemojes addObject:item];
+
     }
+    
+    NSMutableArray * funcArray = [NSMutableArray array];
+//
+    TTInputSourceItem *item = [[TTInputSourceItem alloc] init];
+    item.itemImg = [UIImage imageNamed:@"ic_im_more_take_photo_default"];
+    [funcArray addObject:item];
+    
+    TTInputSourceItem *item1 = [[TTInputSourceItem alloc] init];
+    item.itemImg = [UIImage imageNamed:@"ic_im_more_photo_default"];
+    [funcArray addObject:item1];
+    
+    TTInputSourceItem *item2 = [[TTInputSourceItem alloc] init];
+    item.itemImg = [UIImage imageNamed:@"ic_im_more_my_room_default"];
+    [funcArray addObject:item2];
+    self.functionEmojs = funcArray;
+
 }
 
-#pragma mark - input
 
-#pragma mark - 普通source
+/**设置高度*/
+
+/**bar 按钮栏 的高度*/
+
+#pragma mark - 全局配置
+
 - (NSInteger)numberOfSourceForInput {
     return 4;
 }
 
-- (NSInteger)numberOfPageForSource:(TTInputSource *)source {
-    if ([source.tag isEqualToString:@"emoj"]) {
-        return 2;
-    }else {
-        return 0;
-    }
-}
-
-- (NSInteger)itemNumerInPageIndex:(NSInteger)index atSource:(TTInputSource *)source {
-    if ([source.tag isEqualToString:@"emoj"]) {
-        if (index == 0) {
-            return self.emojs.count;
-        }
-        if (index == 1) {
-            return self.emojAs.count;
-        }
-    }
-    return 0;
-}
 
 - (TTInputSource *)sourceAtIndex:(NSInteger)index {
     switch (index) {
-        case 0:{
-            
+        case 0: {
             TTInputSource *source = [TTInputSource normalSource];
             source.barItemSize = CGSizeMake(30, 30);
             source.barItemMargin = UIEdgeInsetsMake(10, 5, 10, 5);
-            source.tag = @"emoj";
+            source.tag = @"voice";
             source.datasouce = self;
-            source.foucesHeight = 200;
+            source.foucesHeight = 0;
             return source;
         }
         case 1:
@@ -163,7 +149,18 @@
             source.barItemMargin = UIEdgeInsetsMake(10, 5, 6, 5);
             return source;
         }
-        case 2:
+            
+        case 2:{
+            
+            TTInputSource *source = [TTInputSource normalSource];
+            source.barItemSize = CGSizeMake(30, 30);
+            source.barItemMargin = UIEdgeInsetsMake(10, 5, 10, 5);
+            source.tag = @"emoj";
+            source.datasouce = self;
+            source.foucesHeight = 200;
+            return source;
+        }
+        case 3:
         {
             TTInputSource *source = [TTInputSource normalSource];
             source.datasouce = self;
@@ -173,11 +170,73 @@
             source.foucesHeight = 223;
             return source;
         }
+        case 4:{
+            
+            TTInputSource *source = [TTInputSource normalSource];
+            source.barItemSize = CGSizeMake(30, 30);
+            source.barItemMargin = UIEdgeInsetsMake(10, 5, 10, 5);
+            source.tag = @"text";
+            source.datasouce = self;
+            source.foucesHeight = 200;
+            return source;
+        }
+            
+            
         default:
             return [TTInputSource normalSource];
             break;
     }
 }
+
+- (CGFloat)TTInputBarHeight {
+    return 48;
+}
+
+
+#pragma mark - input - 普通的source。就是 表情那种
+
+- (CGFloat)ttinputNormalSourceMenuHeight {
+    return 44;
+}
+
+
+- (NSInteger)numberOfPageForSource:(TTInputSource *)source {
+    if ([source.tag isEqualToString:@"voice"]) {
+        return 0;
+    }else if ([source.tag isEqualToString:@"func"]) {
+        return 1;
+    }else if ([source.tag isEqualToString:@"emoj"]) {
+        return 3;
+    }else  if ([source.tag isEqualToString:@"func"]) {
+        return 1;
+    }
+    return 0;
+}
+
+- (NSInteger)itemNumerInPageIndex:(NSInteger)index atSource:(TTInputSource *)source {
+    if ([source.tag isEqualToString:@"voice"]) {
+        return 0;
+    }else if ([source.tag isEqualToString:@"emoj"]) {
+        if (index == 0) {
+            return self.ttemojes.count;
+        }
+        if (index == 1) {
+            return self.emojAs.count;
+        }
+        if (index == 2) {
+            return self.emojAs.count;
+        }
+    }
+    
+    if ([source.tag isEqualToString:@"func"]) {
+        if (index == 0) {
+            return self.functionEmojs.count;
+        }
+    }
+    return 0;
+}
+
+
 
 - (UIEdgeInsets)marginForPageIndex:(NSInteger)index atSource:(TTInputSource *)source {
     
@@ -197,6 +256,14 @@
         if (index == 1) {
             return CGSizeMake(50, 50);
         }
+        if (index == 2) {
+            return CGSizeMake(50, 50);
+        }
+    }
+    if ([source.tag isEqualToString:@"func"]) {
+        if (index == 1) {
+            return CGSizeMake(80, 80);
+        }
     }
     return CGSizeMake(24, 24);
 }
@@ -209,6 +276,15 @@
         if (index.page == 1) {
             return [self.emojAs objectAtIndex:index.row];
         }
+        if (index.page == 2) {
+             return [self.emojAs objectAtIndex:index.row];
+        }
+    }
+    if ([source.tag isEqualToString:@"func"]) {
+        if (index.page == 0) {
+            return [self.functionEmojs objectAtIndex:index.row];
+        }
+        
     }
     return 0;
 }
@@ -219,7 +295,9 @@
 }
 
 - (UIImage *)focusImageForSourcceBarItem:(TTInputSource *)source {
-    if ([source.tag isEqualToString:@"emoj"]) {
+    if ([source.tag isEqualToString:@"voice"]) {
+        return [UIImage imageNamed:@"ic_im_voice_default"];
+    } else if ([source.tag isEqualToString:@"emoj"]) {
         return [UIImage imageNamed:@"ic_im_expression_default"];
     }else if ([source.tag isEqualToString:@"func"]) {
         return [UIImage imageNamed:@"ic_im_more_default"];
@@ -228,7 +306,9 @@
 }
 
 - (UIImage *)unFocusImageForSourceBarItem:(TTInputSource *)source {
-    if ([source.tag isEqualToString:@"emoj"]) {
+    if ([source.tag isEqualToString:@"voice"]) {
+        return [UIImage imageNamed:@"ic_im_voice_default"];
+    }else if ([source.tag isEqualToString:@"emoj"]) {
         return [UIImage imageNamed:@"ic_im_keyboard_default"];
     }else if ([source.tag isEqualToString:@"func"]) {
         return [UIImage imageNamed:@"ic_im_more_default"];
@@ -236,42 +316,45 @@
     return nil;
 }
 
-
 - (NSArray<TTinputMenuItem *> *)itemsForMenuForSource:(TTInputSource *)source withExsitItems:(NSArray *)items {
     
-    UIButton * moreButton = [[UIButton alloc] init];
-    [moreButton setImage:[UIImage imageNamed:@"AddGroupMemberBtnHL"] forState:UIControlStateNormal];
-    TTinputMenuItem *left = [[TTinputMenuItem alloc] initWithWidth:45 flex:TTInputLayoutFlexFix content:moreButton];
+//    UIButton * moreButton = [[UIButton alloc] init];
+//    [moreButton setImage:[UIImage imageNamed:@"AddGroupMemberBtnHL"] forState:UIControlStateNormal];
+//    TTinputMenuItem *left = [[TTinputMenuItem alloc] initWithWidth:45 flex:TTInputLayoutFlexFix content:moreButton];
+//    
+//    UIButton *sendButton = [[UIButton alloc] init];
+//    //    [sendButton setBackgroundImage:[UIImage imageNamed:@"SendTextViewBkg"] forState:UIControlStateNormal];
+//    sendButton.backgroundColor = [UIColor whiteColor];
+//    [sendButton setTitle:@"发送" forState:UIControlStateNormal];
+//    [sendButton setTitleColor:[UIColor colorWithRed:143.0f/255 green:143.0f/255 blue:143.0f/255 alpha:1] forState:UIControlStateNormal];
+//
+//    TTinputMenuItem *right = [[TTinputMenuItem alloc] initWithWidth:50 flex:TTInputLayoutFlexFix content:sendButton];
+//    NSMutableArray *array = [NSMutableArray arrayWithArray:items];
     
-    UIButton *sendButton = [[UIButton alloc] init];
-    //    [sendButton setBackgroundImage:[UIImage imageNamed:@"SendTextViewBkg"] forState:UIControlStateNormal];
-    sendButton.backgroundColor = [UIColor whiteColor];
-    [sendButton setTitle:@"发送" forState:UIControlStateNormal];
-    [sendButton setTitleColor:[UIColor colorWithRed:143.0f/255 green:143.0f/255 blue:143.0f/255 alpha:1] forState:UIControlStateNormal];
+//    [array insertObject:left atIndex:0];
+//    [array addObject:right];
+    return items;
     
-    TTinputMenuItem *right = [[TTinputMenuItem alloc] initWithWidth:50 flex:TTInputLayoutFlexFix content:sendButton];
-    NSMutableArray *array = [NSMutableArray arrayWithArray:items];
-    
-    [array insertObject:left atIndex:0];
-    [array addObject:right];
-    
-    return array;
+//    return array;
 }
 
 - (BOOL)shouldShowMenuForSource:(TTInputSource *)source {
-    if ([source.tag isEqualToString:@"c"]) {
+    if ([source.tag isEqualToString:@"emoj"]) {
         return YES;
     }
     return NO;
 }
 
 - (UIImage *)pageIconForMenu:(TTInputSource *)source atIndex:(NSInteger)index {
-    if ([source.tag isEqualToString:@"c"]) {
+    if ([source.tag isEqualToString:@"emoj"]) {
         if (index == 0) {
-            return [UIImage imageNamed:@"EmotionsEmojiHL"];
+            return [UIImage imageNamed:@"ic_im_emoji_tab_emoji"];
         }
         if (index == 1) {
-            return [UIImage imageNamed:@"ToolViewEmotionHL"];
+            return [UIImage imageNamed:@"ic_im_emoji_tab_official"];
+        }
+        if (index == 2) {
+            return [UIImage imageNamed:@"ic_im_emoji_tab_collection"];
         }
     }
     return nil;

@@ -29,11 +29,11 @@ static UInt32 const kTTFaceCols = 9;
     CustomImageMan* customImageMan = [CustomImageMan sharedInstance];
     if ('f' == [thumb characterAtIndex:0])
     {
-        return [customImageMan getSplitImageFilePath:@"emojiqq" splitSize:CGSizeMake(kQQFaceSize, kQQFaceSize) columnNum:kQQFaceCols index:index];
+        return [customImageMan getSplitImageFilePath:@"emojiqq.png" splitSize:CGSizeMake(kQQFaceSize, kQQFaceSize) columnNum:kQQFaceCols index:index];
     }
     else if ('t' == [thumb characterAtIndex:0])
     {
-        return [customImageMan getSplitImageFilePath:@"emojitt" splitSize:CGSizeMake(kTTFaceSize, kTTFaceSize) columnNum:kTTFaceCols index:index];
+        return [customImageMan getSplitImageFilePath:@"emojitt.png" splitSize:CGSizeMake(kTTFaceSize, kTTFaceSize) columnNum:kTTFaceCols index:index];
     }
     return nil;
 }

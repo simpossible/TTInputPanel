@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		41CC4ECD7127B7C013E6C834 /* libPods-TTInputPanelDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ACCB0720705D078D03D3C8E /* libPods-TTInputPanelDemo.a */; };
+		A494B906216F84DA00D02DD9 /* TTEmojiSourceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A494B905216F84DA00D02DD9 /* TTEmojiSourceItem.m */; };
 		A49C142F1FA3268200071909 /* ttinput.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A49C142E1FA3268200071909 /* ttinput.bundle */; };
 		A4C1C5321F726CBF00F9DFD8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1C5311F726CBF00F9DFD8 /* AppDelegate.m */; };
 		A4C1C5351F726CBF00F9DFD8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1C5341F726CBF00F9DFD8 /* ViewController.m */; };
@@ -21,8 +22,6 @@
 		A4D4ABEB216F338D00AB7680 /* TTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D4ABEA216F338D00AB7680 /* TTViewController.m */; };
 		A4D4ABF3216F464D00AB7680 /* CustomImageMan.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D4ABEF216F464D00AB7680 /* CustomImageMan.m */; };
 		A4D4ABF4216F464D00AB7680 /* EmojiUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D4ABF2216F464D00AB7680 /* EmojiUtil.m */; };
-		A4D4ABF9216F46A100AB7680 /* emojiqq.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D4ABF7216F46A100AB7680 /* emojiqq.png */; };
-		A4D4ABFA216F46A100AB7680 /* emojitt.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D4ABF8216F46A100AB7680 /* emojitt.png */; };
 		A4D4ABFC216F46B700AB7680 /* emojis.json in Resources */ = {isa = PBXBuildFile; fileRef = A4D4ABFB216F46B700AB7680 /* emojis.json */; };
 		A4D4AC03216F482300AB7680 /* TTEmojiCatelog.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D4ABFD216F482300AB7680 /* TTEmojiCatelog.m */; };
 		A4D4AC04216F482300AB7680 /* TTEmoji.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D4ABFF216F482300AB7680 /* TTEmoji.m */; };
@@ -56,6 +55,8 @@
 		766491C0AE09E7EB4D65D5D3 /* Pods-TTInputPanelDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTInputPanelDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TTInputPanelDemoTests/Pods-TTInputPanelDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		94CC03993C8DFA19C4BCFEE5 /* Pods-TTInputPanelDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTInputPanelDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TTInputPanelDemoUITests/Pods-TTInputPanelDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9AE0690F5BDAE967DFC88178 /* Pods-TTInputPanelDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTInputPanelDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TTInputPanelDemo/Pods-TTInputPanelDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		A494B904216F84DA00D02DD9 /* TTEmojiSourceItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTEmojiSourceItem.h; sourceTree = "<group>"; };
+		A494B905216F84DA00D02DD9 /* TTEmojiSourceItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTEmojiSourceItem.m; sourceTree = "<group>"; };
 		A49C142E1FA3268200071909 /* ttinput.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ttinput.bundle; path = ../../TTInputPanel/TTInputPanel/src/ttinput.bundle; sourceTree = "<group>"; };
 		A4C1C52D1F726CBF00F9DFD8 /* TTInputPanelDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTInputPanelDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4C1C5301F726CBF00F9DFD8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -81,8 +82,6 @@
 		A4D4ABEF216F464D00AB7680 /* CustomImageMan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomImageMan.m; sourceTree = "<group>"; };
 		A4D4ABF1216F464D00AB7680 /* EmojiUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiUtil.h; sourceTree = "<group>"; };
 		A4D4ABF2216F464D00AB7680 /* EmojiUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiUtil.m; sourceTree = "<group>"; };
-		A4D4ABF7216F46A100AB7680 /* emojiqq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emojiqq.png; sourceTree = "<group>"; };
-		A4D4ABF8216F46A100AB7680 /* emojitt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emojitt.png; sourceTree = "<group>"; };
 		A4D4ABFB216F46B700AB7680 /* emojis.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emojis.json; sourceTree = "<group>"; };
 		A4D4ABFD216F482300AB7680 /* TTEmojiCatelog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTEmojiCatelog.m; sourceTree = "<group>"; };
 		A4D4ABFE216F482300AB7680 /* TTEmojiCatelog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTEmojiCatelog.h; sourceTree = "<group>"; };
@@ -90,8 +89,6 @@
 		A4D4AC00216F482300AB7680 /* TTEmoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTEmoji.h; sourceTree = "<group>"; };
 		A4D4AC01216F482300AB7680 /* EmojiService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiService.h; sourceTree = "<group>"; };
 		A4D4AC02216F482300AB7680 /* EmojiService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiService.m; sourceTree = "<group>"; };
-		A4D4AC07216F52D500AB7680 /* TTEmojiSouce.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTEmojiSouce.h; sourceTree = "<group>"; };
-		A4D4AC08216F52D500AB7680 /* TTEmojiSouce.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTEmojiSouce.m; sourceTree = "<group>"; };
 		A4FDD4E41F7AC0630044CC42 /* input.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = input.json; sourceTree = "<group>"; };
 		C7ED3222DF9BFD09EC62C56A /* libPods-TTInputPanelDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TTInputPanelDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F694FADA1059A999E1C20DFD /* Pods-TTInputPanelDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTInputPanelDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TTInputPanelDemoTests/Pods-TTInputPanelDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -249,8 +246,6 @@
 			isa = PBXGroup;
 			children = (
 				A4D4ABFB216F46B700AB7680 /* emojis.json */,
-				A4D4ABF7216F46A100AB7680 /* emojiqq.png */,
-				A4D4ABF8216F46A100AB7680 /* emojitt.png */,
 			);
 			path = assset;
 			sourceTree = "<group>";
@@ -258,8 +253,8 @@
 		A4D4AC06216F529B00AB7680 /* ttemoji */ = {
 			isa = PBXGroup;
 			children = (
-				A4D4AC07216F52D500AB7680 /* TTEmojiSouce.h */,
-				A4D4AC08216F52D500AB7680 /* TTEmojiSouce.m */,
+				A494B904216F84DA00D02DD9 /* TTEmojiSourceItem.h */,
+				A494B905216F84DA00D02DD9 /* TTEmojiSourceItem.m */,
 			);
 			path = ttemoji;
 			sourceTree = "<group>";
@@ -385,14 +380,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4D4ABF9216F46A100AB7680 /* emojiqq.png in Resources */,
 				A4C1C53D1F726CBF00F9DFD8 /* LaunchScreen.storyboard in Resources */,
 				A4D4ABFC216F46B700AB7680 /* emojis.json in Resources */,
 				A4C1C53A1F726CBF00F9DFD8 /* Assets.xcassets in Resources */,
 				A4FDD4E51F7AC0630044CC42 /* input.json in Resources */,
 				A49C142F1FA3268200071909 /* ttinput.bundle in Resources */,
 				A4C1C5381F726CBF00F9DFD8 /* Main.storyboard in Resources */,
-				A4D4ABFA216F46A100AB7680 /* emojitt.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,6 +468,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4D4ABEB216F338D00AB7680 /* TTViewController.m in Sources */,
+				A494B906216F84DA00D02DD9 /* TTEmojiSourceItem.m in Sources */,
 				A4D4ABF4216F464D00AB7680 /* EmojiUtil.m in Sources */,
 				A4D4AC05216F482300AB7680 /* EmojiService.m in Sources */,
 				A4C1C5351F726CBF00F9DFD8 /* ViewController.m in Sources */,

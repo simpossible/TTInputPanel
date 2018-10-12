@@ -106,7 +106,6 @@
     [collection mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(UIEdgeInsetsZero);
     }];
-
 }
 
 #pragma mark - datasource
@@ -196,11 +195,16 @@
 
     [self.sourceView addSubview:self.menu];
     
+    CGFloat height = 37;
+    if ([self.delegate respondsToSelector:@selector(ttinputNormalSourceMenuHeight)]) {
+        height = [self.datasouce ttinputNormalSourceMenuHeight];
+    }
+    
     [self.menu mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.sourceView.mas_bottom);
         make.left.equalTo(self.sourceView.mas_left);
         make.right.equalTo(self.sourceView.mas_right);
-        make.height.mas_equalTo(37);
+        make.height.mas_equalTo(height);
     }];
         
 }

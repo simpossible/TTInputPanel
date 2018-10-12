@@ -43,7 +43,7 @@ static NSString* const kClarity3x = @"@3x";
     if (self)
     {
         NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
-        self.assetsPath = [bundlePath stringByAppendingPathComponent:kAssetsDir];
+        self.assetsPath = bundlePath;//[bundlePath stringByAppendingPathComponent:kAssetsDir];
         self.srcImagesMap = [[NSMapTable alloc] initWithKeyOptions:NSPointerFunctionsStrongMemory valueOptions:NSPointerFunctionsStrongMemory capacity:4];
         self.assetsImagesMap = [[NSMapTable alloc] initWithKeyOptions:NSPointerFunctionsStrongMemory valueOptions:NSPointerFunctionsStrongMemory capacity:32];
         [self getFilesRecursiveInDir:self.assetsPath];
@@ -134,7 +134,7 @@ static NSString* const kClarity3x = @"@3x";
     NSArray* images = [self.srcImagesMap objectForKey:srcImageName];
     if (!images)
     {
-        UIImage *srcImage = [self imageNamed:srcImageName];
+        UIImage *srcImage = [UIImage imageNamed:srcImageName];
         if (!srcImage)
         {
             return nil;

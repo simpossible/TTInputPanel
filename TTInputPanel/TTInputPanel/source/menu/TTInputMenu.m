@@ -50,30 +50,25 @@
             }
         }else {
             if(lastItem){//如果不是第一个
-                if (i == self.items.count-1) {//最后一个
                     [currentItem mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.left.equalTo(lastItem.mas_right);
-                        make.right.equalTo(self.mas_right);
+                        if (i == self.items.count-1) {//最后一个
+                            make.right.equalTo(self.mas_right);
+                        }
                         [wself layoutWidthForItem:currentItem atConstraint:make];
                         make.height.equalTo(self.mas_height);
                         make.top.equalTo(self.mas_top);
                     }];
 
-                }else {
-                    [currentItem mas_makeConstraints:^(MASConstraintMaker *make) {
-                        make.left.equalTo(lastItem.mas_right);
-                        [wself layoutWidthForItem:currentItem atConstraint:make];
-                        make.height.equalTo(self.mas_height);
-                        make.top.equalTo(self.mas_top);
-                    }];
-
-                }
             }else {//如果是第一个
                 [currentItem mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.left.equalTo(self.mas_left);
                     [wself layoutWidthForItem:currentItem atConstraint:make];
                     make.height.equalTo(self.mas_height);
                     make.top.equalTo(self.mas_top);
+                    if (i == self.items.count-1) {//最后一个
+                        make.right.equalTo(self.mas_right);
+                    }
                 }];
             }
         }
