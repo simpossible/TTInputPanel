@@ -211,6 +211,9 @@
     }
     return 0;
 }
+- (CGSize)pageIconSizeForMenu:(TTInputSource *)source atIndex:(NSInteger)index {
+    return CGSizeMake(50, 44);
+}
 
 - (void)itemSelected:(TTInputSourceItem *)item atIndex:(TTInputIndex)index forsource:(TTInputSource *)source {
     

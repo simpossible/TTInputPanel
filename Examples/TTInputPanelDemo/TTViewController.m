@@ -14,6 +14,9 @@
 #import "TTEmojiSourceItem.h"
 #import "EmojiUtil.h"
 
+NSString * const TTINPUTEmojiName = @"emoj";
+NSString * const TTINPUTFUNCName = @"func";
+
 @interface TTViewController ()<TTInputProtocol,TTInputSourceProtocol,TTInputNormalSourceProtocol>
 
 
@@ -114,7 +117,20 @@
     item.itemImg = [UIImage imageNamed:@"ic_im_more_my_room_default"];
     [funcArray addObject:item2];
     self.functionEmojs = funcArray;
-
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:TTInputBundle ofType:@"bundle"];
+    NSString *emojname = @"Expression";
+    self.emojAs = [NSMutableArray array];
+    NSString *ename = @"emojA";
+    for (int i = 0 ; i < 22; i ++) {
+        NSString *currentName = [NSString stringWithFormat:@"%@/%@%d.jpg",path,ename,i];
+        UIImage *imge = [UIImage imageNamed:currentName];
+        if (imge) {
+            TTInputSourceItem *item = [[TTInputSourceItem alloc] init];
+            item.itemImg = imge;
+            [self.emojAs addObject:item];
+        }
+    }
 }
 
 
@@ -123,6 +139,10 @@
 /**bar 按钮栏 的高度*/
 
 #pragma mark - 全局配置
+
+- (UIColor *)TTInputBarColor {
+    return [UIColor colorWithRed:248.0f/255 green:248.0f/255 blue:248.0f/255 alpha:1];
+}
 
 - (NSInteger)numberOfSourceForInput {
     return 4;
@@ -155,9 +175,9 @@
             TTInputSource *source = [TTInputSource normalSource];
             source.barItemSize = CGSizeMake(30, 30);
             source.barItemMargin = UIEdgeInsetsMake(10, 5, 10, 5);
-            source.tag = @"emoj";
+            source.tag = TTINPUTEmojiName;
             source.datasouce = self;
-            source.foucesHeight = 200;
+            source.foucesHeight = 214;
             return source;
         }
         case 3:
@@ -166,8 +186,8 @@
             source.datasouce = self;
             source.barItemSize = CGSizeMake(30, 30);
             source.barItemMargin = UIEdgeInsetsMake(10, 5, 10, 5);
-            source.tag = @"func";
-            source.foucesHeight = 223;
+            source.tag = TTINPUTFUNCName;
+            source.foucesHeight = 214;
             return source;
         }
         case 4:{
@@ -203,11 +223,11 @@
 - (NSInteger)numberOfPageForSource:(TTInputSource *)source {
     if ([source.tag isEqualToString:@"voice"]) {
         return 0;
-    }else if ([source.tag isEqualToString:@"func"]) {
+    }else if ([source.tag isEqualToString:TTINPUTFUNCName]) {
         return 1;
-    }else if ([source.tag isEqualToString:@"emoj"]) {
+    }else if ([source.tag isEqualToString:TTINPUTEmojiName]) {
         return 3;
-    }else  if ([source.tag isEqualToString:@"func"]) {
+    }else  if ([source.tag isEqualToString:TTINPUTFUNCName]) {
         return 1;
     }
     return 0;
@@ -216,7 +236,7 @@
 - (NSInteger)itemNumerInPageIndex:(NSInteger)index atSource:(TTInputSource *)source {
     if ([source.tag isEqualToString:@"voice"]) {
         return 0;
-    }else if ([source.tag isEqualToString:@"emoj"]) {
+    }else if ([source.tag isEqualToString:TTINPUTEmojiName]) {
         if (index == 0) {
             return self.ttemojes.count;
         }
@@ -228,7 +248,7 @@
         }
     }
     
-    if ([source.tag isEqualToString:@"func"]) {
+    if ([source.tag isEqualToString:TTINPUTFUNCName]) {
         if (index == 0) {
             return self.functionEmojs.count;
         }
@@ -239,28 +259,47 @@
 
 
 - (UIEdgeInsets)marginForPageIndex:(NSInteger)index atSource:(TTInputSource *)source {
-    
-    return UIEdgeInsetsMake(15, 17, 27, 17);
+    if ([source.tag isEqualToString:TTINPUTEmojiName]) {
+        return UIEdgeInsetsMake(2, 20, 60, 20);
+    }else if ([source.tag isEqualToString:TTINPUTFUNCName]) {
+        //功能
+        return UIEdgeInsetsMake(0, 0, 0, 0);
+    }
+    return UIEdgeInsetsMake(12, 17, 27, 17);
 }
 
 - (UIEdgeInsets)itemMarginForPageIndex:(NSInteger)index atSource:(TTInputSource *)source {
-    return UIEdgeInsetsMake(12, 9, 12, 9);
+    CGFloat width = [[UIScreen mainScreen] bounds].size.width;
+    if ([source.tag isEqualToString:TTINPUTEmojiName]) {
+        if (index == 0) {//小表情
+           return UIEdgeInsetsMake(10, 9, 10, 9);
+        }
+        //56 * 56 的大表情
+        CGFloat space =  (width - 40 - 56 * 4)/6;
+        return UIEdgeInsetsMake(10, space, 10, space);
+      
+    }else if ([source.tag isEqualToString:TTINPUTFUNCName]) {
+        //功能
+        return UIEdgeInsetsMake(0, 0, 0, 0);
+    }
+    
+    return UIEdgeInsetsMake(10, 9, 10, 9);
 }
 
 - (CGSize)itemSizeForPageAtIndex:(NSInteger)index atSource:(TTInputSource *)source {
-    if ([source.tag isEqualToString:@"emoj"]) {
+    if ([source.tag isEqualToString:TTINPUTEmojiName]) {
         if (index == 0) {
             return CGSizeMake(24, 24);
         }
         
         if (index == 1) {
-            return CGSizeMake(50, 50);
+            return CGSizeMake(56, 56);
         }
         if (index == 2) {
-            return CGSizeMake(50, 50);
+            return CGSizeMake(56, 56);
         }
     }
-    if ([source.tag isEqualToString:@"func"]) {
+    if ([source.tag isEqualToString:TTINPUTFUNCName]) {
         if (index == 1) {
             return CGSizeMake(80, 80);
         }
@@ -269,7 +308,7 @@
 }
 
 - (TTInputSourceItem *)itemForPageAtIndex:(TTInputIndex)index atSource:(TTInputSource *)source {
-    if ([source.tag isEqualToString:@"emoj"]) {
+    if ([source.tag isEqualToString:TTINPUTEmojiName]) {
         if (index.page == 0) {
             return [self.ttemojes objectAtIndex:index.row];
         }
@@ -280,7 +319,7 @@
              return [self.emojAs objectAtIndex:index.row];
         }
     }
-    if ([source.tag isEqualToString:@"func"]) {
+    if ([source.tag isEqualToString:TTINPUTFUNCName]) {
         if (index.page == 0) {
             return [self.functionEmojs objectAtIndex:index.row];
         }
@@ -297,20 +336,20 @@
 - (UIImage *)focusImageForSourcceBarItem:(TTInputSource *)source {
     if ([source.tag isEqualToString:@"voice"]) {
         return [UIImage imageNamed:@"ic_im_voice_default"];
-    } else if ([source.tag isEqualToString:@"emoj"]) {
-        return [UIImage imageNamed:@"ic_im_expression_default"];
-    }else if ([source.tag isEqualToString:@"func"]) {
+    } else if ([source.tag isEqualToString:TTINPUTEmojiName]) {
+        return [UIImage imageNamed:@"ic_im_keyboard_default"];
+    }else if ([source.tag isEqualToString:TTINPUTFUNCName]) {
         return [UIImage imageNamed:@"ic_im_more_default"];
     }
-    return [UIImage imageNamed:@"emoj"];
+    return [UIImage imageNamed:TTINPUTEmojiName];
 }
 
 - (UIImage *)unFocusImageForSourceBarItem:(TTInputSource *)source {
     if ([source.tag isEqualToString:@"voice"]) {
         return [UIImage imageNamed:@"ic_im_voice_default"];
-    }else if ([source.tag isEqualToString:@"emoj"]) {
-        return [UIImage imageNamed:@"ic_im_keyboard_default"];
-    }else if ([source.tag isEqualToString:@"func"]) {
+    }else if ([source.tag isEqualToString:TTINPUTEmojiName]) {
+        return [UIImage imageNamed:@"ic_im_expression_default"];
+    }else if ([source.tag isEqualToString:TTINPUTFUNCName]) {
         return [UIImage imageNamed:@"ic_im_more_default"];
     }
     return nil;
@@ -339,25 +378,29 @@
 }
 
 - (BOOL)shouldShowMenuForSource:(TTInputSource *)source {
-    if ([source.tag isEqualToString:@"emoj"]) {
+    if ([source.tag isEqualToString:TTINPUTEmojiName]) {
         return YES;
     }
     return NO;
 }
 
 - (UIImage *)pageIconForMenu:(TTInputSource *)source atIndex:(NSInteger)index {
-    if ([source.tag isEqualToString:@"emoj"]) {
+    if ([source.tag isEqualToString:TTINPUTEmojiName]) {
         if (index == 0) {
             return [UIImage imageNamed:@"ic_im_emoji_tab_emoji"];
         }
         if (index == 1) {
-            return [UIImage imageNamed:@"ic_im_emoji_tab_official"];
+            return [UIImage imageNamed:@"ic_im_emoji_tab_collection"];
         }
         if (index == 2) {
-            return [UIImage imageNamed:@"ic_im_emoji_tab_collection"];
+            return [UIImage imageNamed:@"ic_im_emoji_tab_official"];
         }
     }
     return nil;
+}
+
+- (CGSize)pageIconSizeForMenu:(TTInputSource *)source atIndex:(NSInteger)index {
+    return CGSizeMake(50, 44);
 }
 
 - (void)didReceiveMemoryWarning {

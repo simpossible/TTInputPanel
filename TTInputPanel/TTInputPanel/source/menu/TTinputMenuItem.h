@@ -6,6 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@class TTInputSourcePage;
+
+@protocol TTinputMenuItemProtocol <NSObject>
+
+- (void)menuItemPageIconClicked:(TTInputSourcePage *)page;
+
+@end
 
 @interface TTinputMenuItem : UIView{
 
@@ -14,6 +21,8 @@
 @property (nonatomic, assign) CGFloat width;
 
 @property (nonatomic, assign) TTInputLayoutFlex flex;
+
+@property (nonatomic, weak) id<TTinputMenuItemProtocol> delegate;
 
 - (instancetype)init __unavailable;
 

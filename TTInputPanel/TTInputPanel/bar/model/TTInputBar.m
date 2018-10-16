@@ -20,7 +20,6 @@
     if (self = [super init]) {
         self.sources = [NSMutableArray arrayWithArray:sources];
         self.layout = [TTInputPanelBarLayout layoutForType:self.layoutType];
-        self.layer.borderWidth = 1;
     }
     return self;
 }
@@ -42,7 +41,6 @@
     }else {
         self.layout = [TTInputPanelBarLayout layoutForType:self.layoutType];
     }
-    
     
     
 }
@@ -68,5 +66,9 @@
 
 - (void)drawRect:(CGRect)rect {
      [self initialUI];
+}
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+    [super setBackgroundColor:backgroundColor];
 }
 @end

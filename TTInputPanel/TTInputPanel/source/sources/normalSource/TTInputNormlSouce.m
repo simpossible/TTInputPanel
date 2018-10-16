@@ -12,7 +12,7 @@
 #import "TTInputMenu.h"
 #import "TTInputNormalMenuItem.h"
 
-@interface TTInputNormlSouce ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface TTInputNormlSouce ()<UICollectionViewDelegate,UICollectionViewDataSource,TTinputMenuItemProtocol>
 
 @property (nonatomic, strong) TTInputNormalBarItem * barView;
 
@@ -25,6 +25,9 @@
 
 @property (nonatomic, weak) TTInputSourcePage * currentPage;
 
+@property (nonatomic, strong) UIPageControl * pageControl;
+
+@property (nonatomic, assign) BOOL animateLock;
 
 @end
 
@@ -108,6 +111,28 @@
     }];
 }
 
+- (void)initialpageControl {
+    self.pageControl = [[UIPageControl alloc] init];
+    [self.sourceView addSubview:self.pageControl];
+    
+    /**先写死 下次再配置*/
+    [self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.sourceView.mas_centerX);
+        if (self.menu) {
+            make.bottom.equalTo(self.menu.mas_top);
+        }else {
+            make.bottom.equalTo(self.sourceView.mas_bottom);
+        }
+        make.height.mas_equalTo(20);
+        make.width.equalTo(self.sourceView.mas_width);
+    }];
+    
+    self.pageControl.tintColor = [UIColor colorWithRed:0.05 green:0.05 blue:0.05 alpha:0.1];
+    self.pageControl.pageIndicatorTintColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+    self.pageControl.numberOfPages = self.currentPage.totoalpage;
+    
+}
+
 #pragma mark - datasource
 
 
@@ -136,6 +161,8 @@
     }
     
     [self.contentView reloadData];
+    
+    [self initialpageControl];
 }
 
 /**初始化pages*/
@@ -166,6 +193,10 @@
                 page.pageIcon = [self.datasouce pageIconForMenu:self atIndex:i];
             }
             
+            if ([self.datasouce respondsToSelector:@selector(pageIconSizeForMenu:atIndex:)]) {
+                page.iconSize = [self.datasouce pageIconSizeForMenu:self atIndex:i];
+            }
+            
             [self addPage:page];
         }
     }
@@ -175,13 +206,15 @@
         self.currentPage.selected = YES;
     }
     
+
+    
 }
 
 - (void)generateMenu {
     
     TTInputNormalMenuItem * item  = [[TTInputNormalMenuItem alloc] initWithWidth:100 flex:TTInputLayoutFlexGreater content:nil];
     item.source = self;
-
+    item.delegate = self;
     
     NSArray *currentItem = @[item];
 
@@ -196,7 +229,7 @@
     [self.sourceView addSubview:self.menu];
     
     CGFloat height = 37;
-    if ([self.delegate respondsToSelector:@selector(ttinputNormalSourceMenuHeight)]) {
+    if ([self.datasouce respondsToSelector:@selector(ttinputNormalSourceMenuHeight)]) {
         height = [self.datasouce ttinputNormalSourceMenuHeight];
     }
     
@@ -225,9 +258,7 @@
         if (canBeFocus) {
             if (self.focusState == TTIInputSoureFocusStateNone) {
                 if (self.focusState != TTIInputSoureFocusStateFoucus) {
-                    
                     self.focusState = TTIInputSoureFocusStateFoucus;
-                    
                 }
             }else {
                 self.focusState = TTIInputSoureFocusStateNone;
@@ -283,12 +314,40 @@
     }
 }
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(8_0) {
-    TTInputSourcePage *page = [self.pages objectAtIndex:indexPath.section];
-    if (page != self.currentPage) {
-        page.selected = YES;
-        self.currentPage.selected = NO;
-        self.currentPage = page;
+    if (!self.animateLock) {
+        TTInputSourcePage *page = [self.pages objectAtIndex:indexPath.section];
+        if (page != self.currentPage) {
+            page.selected = YES;
+            self.currentPage.selected = NO;
+            self.currentPage = page;
+        }
     }
+}
+
+/**计算当前滚动到第几页了*/
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat width = CGRectGetWidth(scrollView.bounds);
+    CGFloat offset = scrollView.contentOffset.x + 2;//允许有2个像素的误差。这样更准确
+    NSInteger page = offset/width;
+    if (page > self.currentPage.startPage && page <= self.currentPage.startPage + self.currentPage.totoalpage) {
+        self.pageControl.currentPage = (page - self.currentPage.startPage);
+    }else {
+        self.pageControl.currentPage = 0;
+    }
+}
+
+- (void)setCurrentPage:(TTInputSourcePage *)currentPage {
+    _currentPage = currentPage;
+    self.pageControl.numberOfPages = currentPage.totoalpage;
+}
+
+- (void)pageCaculated {
+    NSArray *pages = self.pages;
+    self.pages = nil;
+    for (TTInputSourcePage *page in pages) {
+        [self addPage:page];
+    }
+    self.currentPage = self.currentPage;
 }
 
 #pragma mark - util
@@ -297,6 +356,29 @@
     if (!self.pages) {
         self.pages = [NSMutableArray array];
     }
+    TTInputSourcePage *lastpage = [self.pages lastObject];
+    page.startPage = lastpage.startPage + lastpage.totoalpage;
     [(NSMutableArray *)self.pages addObject:page];
+}
+
+#pragma mark - menu 菜单栏
+
+- (void)menuItemPageIconClicked:(TTInputSourcePage *)page {
+    if (self.currentPage != page) {
+        self.currentPage.selected = NO;
+        self.currentPage = page;
+        page.selected = YES;
+        
+        CGFloat width = CGRectGetWidth(self.contentView.bounds);
+        CGFloat off = width * page.startPage;
+        self.animateLock = YES;
+        [UIView animateWithDuration:0.3 animations:^{
+            self.contentView.contentOffset = CGPointMake(off, 0);
+//                   [self.contentView setContentOffset:CGPointMake(off, 0) animated:YES];
+        } completion:^(BOOL finished) {
+            self.animateLock = NO;
+        }];
+        self.pageControl.currentPage = 0;
+    }
 }
 @end

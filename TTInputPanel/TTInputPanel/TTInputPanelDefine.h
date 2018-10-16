@@ -112,6 +112,8 @@ typedef struct {
 
 - (CGFloat)TTInputBarHeight;
 
+- (UIColor *)TTInputBarColor;
+
 @end
 
 
@@ -149,6 +151,8 @@ typedef struct {
 - (NSArray<TTinputMenuItem *> *)itemsForMenuForSource:(TTInputSource *)source withExsitItems:(NSArray *)items;
 
 - (UIImage *)pageIconForMenu:(TTInputSource *)source atIndex:(NSInteger)index;
+
+- (CGSize)pageIconSizeForMenu:(TTInputSource *)source atIndex:(NSInteger)index;
 @end
 
 

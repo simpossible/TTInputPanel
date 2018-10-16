@@ -21,4 +21,6 @@
 @property (nonatomic, weak) id<TTInputSourceProtocol> delegate;
 
 - (void)generateView;
+
+- (void)pageCaculated;
 @end

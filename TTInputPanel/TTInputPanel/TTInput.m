@@ -111,6 +111,8 @@ NSString * const TTInputSources = @"sources";
     
     TTInputBar *bar = [[TTInputBar alloc] initWithSources:self.sources];
     bar.layoutType = TTInputBarLayoutTypeNormal;
+    
+    
     self.inpurtBar = bar;
     [self initialUI];
 }
@@ -176,8 +178,10 @@ NSString * const TTInputSources = @"sources";
 
 - (void)initialBar {
     UIView *bar = self.inpurtBar;
-    bar.backgroundColor = [UIColor colorWithRed:245.0f/255 green:245.0f/255 blue:246.0f/255 alpha:1];
     [self addSubview:bar];
+    if ([self.dataSource respondsToSelector:@selector(TTInputBarColor)]) {
+        bar.backgroundColor = [self.dataSource TTInputBarColor];
+    }
     [self mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(bar.mas_top);
     }];

@@ -42,7 +42,15 @@
 /**当前页面的Icon 可以显示在menu 中的*/
 @property (nonatomic, strong) UIImage * pageIcon;
 
+@property (nonatomic, assign) CGSize iconSize;
+
 @property (nonatomic, assign) BOOL selected;
+
+
+/**一个page 占据多少页*/
+@property (nonatomic, assign) NSInteger totoalpage;
+
+@property (nonatomic, assign) NSInteger startPage;
 
 - (instancetype)initFromDic:(NSDictionary *)dic;
 

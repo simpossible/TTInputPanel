@@ -35,6 +35,7 @@ FOUNDATION_EXTERN NSString * const TTInputSources;
 
 @property (nonatomic, assign) CGFloat barHeight;
 
+/**从json 初始化的功能 先放弃。可配置性太高*/
 - (instancetype)intiialFromJsonData:(NSData *)data;
 
 + (instancetype)inputFromJsonData:(NSData *)data;

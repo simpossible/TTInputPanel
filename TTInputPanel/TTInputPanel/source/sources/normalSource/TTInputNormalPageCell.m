@@ -11,6 +11,8 @@
 
 @property (nonatomic, strong) UIImageView * img;
 
+@property (nonatomic, strong) UIView * bgView;
+
 
 @end
 
@@ -24,14 +26,31 @@
 }
 
 - (void)initialUI {
+    [self initialBgView];
+    [self initialImageView];
+//    [self initialLines];
+    self.backgroundColor = [UIColor clearColor];
+}
+
+- (void)initialImageView {
     self.img = [[UIImageView alloc] init];
     [self addSubview:self.img];
     [self.img mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.mas_centerX);
         make.centerY.equalTo(self.mas_centerY);
     }];
+    self.img.contentMode = UIViewContentModeScaleAspectFit;
+}
+
+- (void)initialBgView {
+    self.bgView = [[UIView alloc] init];
+    [self.contentView addSubview:self.bgView];
     
-    [self initialLines];
+    [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsMake(4, 0, 4, 0));
+    }];
+    self.bgView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.05];
+    self.bgView.alpha = 0;
 }
 
 - (void)initialLines {
@@ -58,7 +77,6 @@
         make.centerY.equalTo(self.mas_centerY);
     }];
     
-    
 }
 
 
@@ -72,10 +90,16 @@
 
 - (void)pageSelectedChanged {
     if (self.page.selected) {
-        self.backgroundColor = [UIColor colorWithRed:246.0f/255 green:246.0f/255 blue:248.0f/255 alpha:1];
+//        self.backgroundColor = [UIColor colorWithRed:246.0f/255 green:246.0f/255 blue:248.0f/255 alpha:1];
+        self.bgView.alpha = 1;
     }else {
-        self.backgroundColor = [UIColor whiteColor];
+//        self.backgroundColor = [UIColor whiteColor];
+        self.bgView.alpha = 0;
     }
+}
+- (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
+    self.bgView.layer.cornerRadius = CGRectGetHeight(self.bgView.bounds)/2;
 }
 
 @end

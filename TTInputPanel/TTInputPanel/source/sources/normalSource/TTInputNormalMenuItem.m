@@ -59,8 +59,16 @@
     return cell;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    TTInputSourcePage *page = [self.source.pages objectAtIndex:indexPath.row];
+    return page.iconSize;
+}
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"asd");
+    TTInputSourcePage *page = [self.source.pages objectAtIndex:indexPath.row];
+    if ([self.delegate respondsToSelector:@selector(menuItemPageIconClicked:)]) {
+        [self.delegate menuItemPageIconClicked:page];
+    }
 }
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {

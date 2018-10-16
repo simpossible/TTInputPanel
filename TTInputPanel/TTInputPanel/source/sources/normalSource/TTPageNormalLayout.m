@@ -61,11 +61,14 @@
         CGFloat pageWidth = [self widthForPage:page section:i lastSectionWidth:allWidth];
         allWidth += pageWidth;
     }
+    [self.source pageCaculated];
     return CGSizeMake(allWidth, self.collectionView.bounds.size.height);
 }
 
 - (CGFloat)widthForPage:(TTInputSourcePage *)page section:(NSInteger)section lastSectionWidth:(CGFloat)lastWidth{
-    
+    if (page.itemCount == 0) {
+        return 0;
+    }
     
     CGFloat collectWidth = self.collectionView.bounds.size.width;
     CGFloat width = collectWidth - page.margin.left - page.margin.right;
@@ -76,9 +79,12 @@
     NSInteger currentPage = 0;
     CGFloat alreadyWidth = 0;
     CGFloat alreadyHeight = 0;
-    NSInteger currentLine = 0;
+    NSInteger currentLine = 0;//行
+    
+    CGFloat caculateWidth = [self roundFloat:(page.itemSize.width + page.itemMargin.left)];
     for (int i = 0; i < page.itemCount; i ++) {
-        if(alreadyWidth + page.itemBoxWidth > width) {
+        CGFloat nextWdith = alreadyWidth + caculateWidth;
+        if(nextWdith > width + 0.05) {//最后一个可以贴着section 右 这里的0.05为 float 误差
             //应该换行了
             alreadyHeight += page.itemBoxHeight;
             currentLine += 1;
@@ -98,14 +104,33 @@
 
         UICollectionViewLayoutAttributes *attr = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
         attr.size = page.itemSize;
-        attr.center = CGPointMake(lastWidth + alreadyWidth+page.itemSize.width/2 +page.itemMargin.left + currentPage * collectWidth + page.margin.left, alreadyHeight+page.itemSize.height/2 + page.margin.top + page.itemMargin.top);
+        
+        CGFloat centerX = 0;
+        if (alreadyWidth == 0) {//第一个不要考虑左边距
+            centerX =  lastWidth + alreadyWidth+page.itemSize.width/2 + currentPage * collectWidth + page.margin.left;
+        }else {
+            centerX =  lastWidth + alreadyWidth+page.itemSize.width/2 +page.itemMargin.left + currentPage * collectWidth + page.margin.left;
+        }
+        CGFloat centerY = alreadyHeight+page.itemSize.height/2 + page.margin.top + page.itemMargin.top;
+        attr.center = CGPointMake(centerX, centerY);
        
         [self.cacheForItem setObject:attr forKey:@(i+1000*section)];
         
-        alreadyWidth += page.itemBoxWidth;        
+        if (alreadyWidth == 0) {
+            alreadyWidth +=  page.itemMargin.right + page.itemSize.width;
+        }else {
+            alreadyWidth += page.itemBoxWidth;
+        }
     }
     
+    page.totoalpage = currentPage + 1;
     return (currentPage + 1)*collectWidth;
+    
+}
+
+- (CGFloat)roundFloat:(CGFloat)sp {
+    sp=( (float)( (int)( (sp+0.005)*100 ) ) )/100;
+    return sp;
 }
 
 
