@@ -40,6 +40,7 @@ NSString * const TTInputSources = @"sources";
          _sources = [NSMutableArray array];
         self.dataSource = dataSource;
         [self initialFromDataSource];
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
@@ -101,6 +102,7 @@ NSString * const TTInputSources = @"sources";
             source.delegate = self;
             [_sources addObject:source];
             [source initialData];
+            [source initialUI];
         }
     }
     
@@ -118,7 +120,6 @@ NSString * const TTInputSources = @"sources";
 }
 
 /**初始化page 的各种参数*/
-
 
 
 #pragma mark - source的代理
@@ -162,7 +163,13 @@ NSString * const TTInputSources = @"sources";
     }else {
         if (state == TTIInputSoureFocusStateNone) {
             //回调给外部 看外部需要做什么操作了 暂时直接消失
-             [source disappearSource];
+            BOOL shouldDiss = YES;
+            if ([self.dataSource respondsToSelector:@selector(sourceShouldDeFocus:)]) {
+                shouldDiss = [self.dataSource sourceShouldDeFocus:source];
+            }            
+            if (shouldDiss) {
+                [source disappearSource];
+            }
         }
     }
     return YES;
@@ -203,6 +210,7 @@ NSString * const TTInputSources = @"sources";
         [self mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.sourceContainerView.mas_bottom);
         }];
+        self.sourceContainerView.backgroundColor = [UIColor clearColor];
     }
     [self.sourceContainerView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(height);
@@ -233,28 +241,39 @@ NSString * const TTInputSources = @"sources";
 
 - (void)showSourceView {
     UIView *sourceView = self.focusSource.sourceView;
-    if (sourceView) {
-        [self.sourceContainerView addSubview:sourceView];
-        [sourceView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.sourceContainerView.mas_bottom);
-            make.left.equalTo(self.sourceContainerView.mas_left);
-            make.right.equalTo(self.sourceContainerView.mas_right);
-            make.height.equalTo(self.sourceContainerView.mas_height);
-        }];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [UIView animateWithDuration:0.5 animations:^{
-                [sourceView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(self.sourceContainerView.mas_top);
-                    make.left.equalTo(self.sourceContainerView.mas_left);
-                    make.right.equalTo(self.sourceContainerView.mas_right);
-                    make.height.equalTo(self.sourceContainerView.mas_height);
-                }];
-                [sourceView layoutIfNeeded];
-            }];
-        });
-        
-    }
     
+    if (sourceView.superview == self.sourceContainerView) {
+        [self.sourceContainerView bringSubviewToFront:sourceView];
+//        [sourceView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(self.sourceContainerView.mas_bottom);
+//            make.left.equalTo(self.sourceContainerView.mas_left);
+//            make.right.equalTo(self.sourceContainerView.mas_right);
+////            make.height.equalTo(self.sourceContainerView.mas_height);
+//            [sourceView layoutIfNeeded];
+//        }];
+    }else {
+        if (sourceView) {
+            [self.sourceContainerView addSubview:sourceView];
+            [sourceView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.sourceContainerView.mas_top);
+                make.left.equalTo(self.sourceContainerView.mas_left);
+                make.right.equalTo(self.sourceContainerView.mas_right);
+//                make.height.equalTo(self.sourceContainerView.mas_height);
+            }];
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [UIView animateWithDuration:0.5 animations:^{
+//                    [sourceView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//                        make.top.equalTo(self.sourceContainerView.mas_top);
+//                        make.left.equalTo(self.sourceContainerView.mas_left);
+//                        make.right.equalTo(self.sourceContainerView.mas_right);
+////                        make.height.equalTo(self.sourceContainerView.mas_height);
+//                    }];
+//                    [self.sourceContainerView layoutIfNeeded];
+//                }];
+//            });
+            
+        }
+    }
 }
 
 - (void)toChangeBarHeigth:(CGFloat)height animateTime:(CGFloat)time {

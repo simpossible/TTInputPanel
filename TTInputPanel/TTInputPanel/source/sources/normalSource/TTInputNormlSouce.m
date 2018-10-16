@@ -11,6 +11,7 @@
 #import "TTInputNormalBarItem.h"
 #import "TTInputMenu.h"
 #import "TTInputNormalMenuItem.h"
+#import "TTInputNormalView.h"
 
 @interface TTInputNormlSouce ()<UICollectionViewDelegate,UICollectionViewDataSource,TTinputMenuItemProtocol>
 
@@ -68,8 +69,7 @@
         
 //        if ([self.delegate respondsToSelector:@selector(source:willChangeStateTo:)]) {//判断消失逻辑
 //            [self.delegate source:self willChangeStateTo:focusState];
-//        }
-        
+//        }        
         [super setFocusState:focusState];
         if (focusState == TTIInputSoureFocusStateFoucus) {//这里是由不是焦点变为了焦点 则到指定高度
             if ([self.delegate respondsToSelector:@selector(toChangeSourceHeight:time:animateOption:)]) {//直接进行动画
@@ -80,6 +80,7 @@
         self.barView.state = focusState;//改变显示状态
     }
     
+    self.pageControl.hidden = (focusState == TTIInputSoureFocusStateNone);
 }
 
 - (void)disappearSource {
@@ -90,11 +91,22 @@
 }
 
 - (void)generateView {
-    UIView *containView = [[UIView alloc] init];
+    TTInputNormalView *containView = [[TTInputNormalView alloc] init];
     self.sourceView = containView;
+    [containView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(self.foucesHeight);
+    }];
+    
     containView.backgroundColor = [UIColor colorWithRed:246/255.0f green:246/255.0f blue:246/255.0f alpha:1];
     
+    [containView setDrawCallBack:^{
+        [self initialCollctionView];
+    }];
     
+
+}
+
+- (void)initialCollctionView {
     TTPageNormalLayout *flow = [[TTPageNormalLayout alloc] initWithSource:self];
     UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flow];
     collection.pagingEnabled = YES;
@@ -104,7 +116,7 @@
     self.contentView = collection;
     collection.backgroundColor = [UIColor colorWithRed:246/255.0f green:246/255.0f blue:246/255.0f alpha:1];
     
-    [containView addSubview:collection];
+    [self.sourceView insertSubview:collection atIndex:0];
     
     [collection mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(UIEdgeInsetsZero);
@@ -138,7 +150,10 @@
 
 - (void)initialData {
     [self initialPageFromdataSourceForSource];
-    
+}
+
+- (void)initialUI {
+    [super initialUI];
     if([self.datasouce respondsToSelector:@selector(focusImageForSourcceBarItem:)]) {
         UIImage *img = [self.datasouce focusImageForSourcceBarItem:self];
         self.barView.focusImage = img;
@@ -253,8 +268,9 @@
 
 - (void)barItemClicked:(UIControl *)sender {
     BOOL canBeFocus = NO;
+    TTIInputSoureFocusState state = (self.focusState + 1)%2;
     if ([self.delegate respondsToSelector:@selector(source:canChangeStateTo:)]) {
-        canBeFocus = [self.delegate source:self canChangeStateTo:(self.focusState+1)%2];
+        canBeFocus = [self.delegate source:self canChangeStateTo:state];
         if (canBeFocus) {
             if (self.focusState == TTIInputSoureFocusStateNone) {
                 if (self.focusState != TTIInputSoureFocusStateFoucus) {
@@ -326,13 +342,15 @@
 
 /**计算当前滚动到第几页了*/
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat width = CGRectGetWidth(scrollView.bounds);
-    CGFloat offset = scrollView.contentOffset.x + 2;//允许有2个像素的误差。这样更准确
-    NSInteger page = offset/width;
-    if (page > self.currentPage.startPage && page <= self.currentPage.startPage + self.currentPage.totoalpage) {
-        self.pageControl.currentPage = (page - self.currentPage.startPage);
-    }else {
-        self.pageControl.currentPage = 0;
+    if (!self.animateLock) {
+        CGFloat width = CGRectGetWidth(scrollView.bounds);
+        CGFloat offset = scrollView.contentOffset.x + 2;//允许有2个像素的误差。这样更准确
+        NSInteger page = offset/width;
+        if (page > self.currentPage.startPage && page <= self.currentPage.startPage + self.currentPage.totoalpage) {
+            self.pageControl.currentPage = (page - self.currentPage.startPage);
+        }else {
+            self.pageControl.currentPage = 0;
+        }
     }
 }
 

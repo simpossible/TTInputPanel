@@ -39,8 +39,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        [self generateView];
-        [self genrateBarView];
+    
         self.flex = TTInputLayoutFlexFix;
     }
     return self;
@@ -69,6 +68,10 @@
     self.barItemSize = CGSizeMake(width, height);
 }
 
+- (void)initialUI {
+    [self generateView];
+    [self genrateBarView];
+}
 
 - (void)initialData {
     
@@ -95,6 +98,13 @@
 
 - (void)resignFocus {
     
+}
+
+- (void)setFoucesHeight:(CGFloat)foucesHeight {
+    _foucesHeight = foucesHeight;
+    [self.sourceView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(foucesHeight);
+    }];
 }
 
 

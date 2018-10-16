@@ -87,4 +87,6 @@ typedef NS_ENUM(NSUInteger, TTIInputSoureFocusState) {
 
 - (void)resignFocus;
 
+- (void)initialUI;
+
 @end

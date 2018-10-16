@@ -58,6 +58,8 @@ NSString * const TTINPUTFUNCName = @"func";
 //    }
     
     [self initialUI];
+    
+    self.view.backgroundColor = [UIColor greenColor];
     // Do any additional setup after loading the view, typically from a nib.
     
     //    NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://itunes.apple.com/lookup?id=1116383008"]];

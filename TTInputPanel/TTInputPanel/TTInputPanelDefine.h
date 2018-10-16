@@ -114,6 +114,8 @@ typedef struct {
 
 - (UIColor *)TTInputBarColor;
 
+- (BOOL)sourceShouldDeFocus:(TTInputSource *)souce;
+
 @end
 
 

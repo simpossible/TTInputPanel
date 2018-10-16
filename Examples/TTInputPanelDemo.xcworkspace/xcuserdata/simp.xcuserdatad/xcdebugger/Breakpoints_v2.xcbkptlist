@@ -53,7 +53,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TTInputPanelDemo/ViewController.m"
-            timestampString = "561379517.062548"
+            timestampString = "561386872.975669"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "219"
@@ -68,13 +68,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../TTInputPanel/TTInputPanel/source/sources/normalSource/TTInputNormlSouce.m"
-            timestampString = "561379517.062619"
+            filePath = "../TTInputPanel/TTInputPanel/TTInput.m"
+            timestampString = "561387537.292264"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "340"
-            endingLineNumber = "340"
-            landmarkName = "-setCurrentPage:"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "-foucusChangedForSource:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
