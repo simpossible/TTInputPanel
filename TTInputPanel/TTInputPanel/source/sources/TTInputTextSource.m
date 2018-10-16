@@ -9,7 +9,11 @@
 
 @interface TTInputTextSource()<UITextViewDelegate>
 
-@property (nonatomic, strong) UITextView * barView;
+@property (nonatomic, strong) UIView * barView;
+
+@property (nonatomic, strong) UIButton * placeHolderButton;
+
+@property (nonatomic, strong) UITextView * textView;
 
 @end
 
@@ -29,8 +33,7 @@
     if (self = [super init]) {
         _sourceType = TTINPUTSOURCETYPETEXTINPUT;
         self.flex = TTInputLayoutFlexGreater;
-        [self genrateBarView];
-        [self becomeListener];
+       
     }
     return self;
 }
@@ -39,12 +42,53 @@
     [super dealSourceDic:dic];
 }
 
+- (void)initialUI {
+    [super initialUI];
+    [self becomeListener];
+}
+
 - (void)genrateBarView {
-       
-    self.barView = [[UITextView alloc] init];
-    self.barView.backgroundColor = [UIColor whiteColor];
     
-    self.barView.delegate = self;
+    UIView * barView = [[UIView alloc] init];
+    
+    self.barView = barView;
+    UITextView *textView = [[UITextView alloc] init];
+    textView.backgroundColor = [UIColor whiteColor];
+    textView.delegate = self;
+    self.textView = textView;
+    
+    [barView addSubview:textView];
+    
+    [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsZero);
+    }];
+    
+    self.placeHolderButton = [[UIButton alloc] init];
+    [self.barView addSubview:self.placeHolderButton];
+    
+    self.placeHolderButton.backgroundColor = [UIColor colorWithRed:0.65 green:0.65 blue:0.65 alpha:1];
+
+    [self.placeHolderButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsZero);
+    }];
+    [self.placeHolderButton setContentHuggingPriority:249 forAxis:UILayoutConstraintAxisHorizontal];
+    [self.placeHolderButton setContentHuggingPriority:249 forAxis:UILayoutConstraintAxisVertical];
+    
+    [self.placeHolderButton setTitle:@"请输入消息…" forState:UIControlStateNormal];
+    self.placeHolderButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    
+    self.barView.layer.cornerRadius = 4;
+    [self.placeHolderButton addTarget:self action:@selector(placeHolderButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    self.barView.layer.masksToBounds = YES;
+}
+
+- (void)placeHolderButtonClicked:(id)sender {
+    BOOL shouldBegin =  [self textViewShouldBeginEditing:self.textView];
+    if (shouldBegin) {
+        [self.textView becomeFirstResponder];
+    }
+    [self.textView becomeFirstResponder];
+//    self.placeHolderButton.hidden = YES;
 }
 
 
@@ -97,16 +141,22 @@
 
 - (void)setFocusState:(TTIInputSoureFocusState)focusState {
 
-      _focusState = focusState;
+   
     if (focusState == TTIInputSoureFocusStateNone) {
-        [self.barView resignFirstResponder];
+        [self.textView resignFirstResponder];
     }else {
     }
+    if (self.textView.text.length == 0) {
+        self.placeHolderButton.hidden = (focusState == TTIInputSoureFocusStateFoucus);
+    }else {
+        self.placeHolderButton.hidden = YES;
+    }
+       _focusState = focusState;
     
 }
 
 - (void)disappearSource {
-   [self.barView resignFirstResponder];
+    self.focusState = TTIInputSoureFocusStateNone;
 }
 
 - (void)dealloc {
