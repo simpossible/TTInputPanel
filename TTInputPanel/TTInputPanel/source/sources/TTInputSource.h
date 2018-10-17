@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TTInputSourcePage.h"
 #import "TTInputPanelDefine.h"
+@class TTInputSourcePage;
 
 typedef NS_ENUM(NSUInteger, TTIInputSoureFocusState) {
     TTIInputSoureFocusStateNone,

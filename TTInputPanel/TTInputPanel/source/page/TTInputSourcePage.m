@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) UICollectionView * pageCollectionView;
 
+@property (nonatomic, strong) NSArray<TTInputSourceItem *> *sourceItems;	
+
 @end
 
 @implementation TTInputSourcePage
@@ -62,5 +64,22 @@
     }
 }
 
+
+- (void)loadItems {
+    if (!self.sourceItems) {
+        NSMutableArray *arary = [NSMutableArray array];
+        
+        for (int i = 0; i < self.itemCount; i ++ ) {
+            TTInputIndex index;
+            index.page = self.index;
+            index.row = i;
+            TTInputSourceItem *item = [self.datasource itemForPageAtIndex:index atSource:self.source];
+            [arary addObject:item];
+        }
+        
+        self.sourceItems = arary;
+        
+    }
+}
 
 @end

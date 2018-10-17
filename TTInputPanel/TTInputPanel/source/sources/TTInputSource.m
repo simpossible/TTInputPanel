@@ -10,6 +10,7 @@
 #import "TTInputTextSource.h"
 #import "TTInputNormlSouce.h"
 #import "TTInputUtil.h"
+#import "TTInputSourcePage.h"
 
 @interface TTInputSource()
 

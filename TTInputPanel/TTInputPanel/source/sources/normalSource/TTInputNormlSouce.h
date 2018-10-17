@@ -5,8 +5,8 @@
 //  Created by simp on 2017/10/18.
 //
 
-#import "TTInputNormlSouce.h"
-
+#import "TTInputSource.h"
+@class TTInputSourcePage;
 /**
  normal item 默认 item 大小一致
  */

@@ -22,5 +22,7 @@
 
 @property (nonatomic, strong) UIImage * itemImg;
 
+- (CGFloat)boxHeight;
+
 
 @end

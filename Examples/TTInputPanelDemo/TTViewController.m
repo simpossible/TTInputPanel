@@ -13,6 +13,7 @@
 #import "EmojiService.h"
 #import "TTEmojiSourceItem.h"
 #import "EmojiUtil.h"
+#import "TTEmojiNormalLayout.h"
 
 NSString * const TTINPUTEmojiName = @"emoj";
 NSString * const TTINPUTFUNCName = @"func";
@@ -101,22 +102,34 @@ NSString * const TTINPUTFUNCName = @"func";
         TTEmoji *tmoji = [array objectAtIndex:i];
         TTEmojiSourceItem *item = [[TTEmojiSourceItem alloc] initWIthEmoji:tmoji];
         item.itemImg = [EmojiUtil getFaceImage:tmoji.thumb];
+        item.itemSize = CGSizeMake(24, 24);
+        item.margin = UIEdgeInsetsMake(10, 9, 10, 19);
         [self.ttemojes addObject:item];
 
     }
     
+    CGFloat width = [[UIScreen mainScreen] bounds].size.width;
+    //56 * 56 的大表情
+    CGFloat space =  (width - 40 - 56 * 4)/6;
+    UIEdgeInsets inset = UIEdgeInsetsMake(10, space, 10, space);
     NSMutableArray * funcArray = [NSMutableArray array];
 //
     TTInputSourceItem *item = [[TTInputSourceItem alloc] init];
     item.itemImg = [UIImage imageNamed:@"ic_im_more_take_photo_default"];
+    item.itemSize = CGSizeMake(56, 56);
+    item.margin = inset;
     [funcArray addObject:item];
     
     TTInputSourceItem *item1 = [[TTInputSourceItem alloc] init];
-    item.itemImg = [UIImage imageNamed:@"ic_im_more_photo_default"];
+    item1.itemImg = [UIImage imageNamed:@"ic_im_more_photo_default"];
+    item1.itemSize = CGSizeMake(56, 56);
+    item1.margin = inset;
     [funcArray addObject:item1];
     
     TTInputSourceItem *item2 = [[TTInputSourceItem alloc] init];
-    item.itemImg = [UIImage imageNamed:@"ic_im_more_my_room_default"];
+    item2.itemImg = [UIImage imageNamed:@"ic_im_more_my_room_default"];
+    item2.itemSize = CGSizeMake(56, 56);
+    item2.margin = inset;
     [funcArray addObject:item2];
     self.functionEmojs = funcArray;
     
@@ -124,12 +137,15 @@ NSString * const TTINPUTFUNCName = @"func";
     NSString *emojname = @"Expression";
     self.emojAs = [NSMutableArray array];
     NSString *ename = @"emojA";
+    
     for (int i = 0 ; i < 22; i ++) {
         NSString *currentName = [NSString stringWithFormat:@"%@/%@%d.jpg",path,ename,i];
         UIImage *imge = [UIImage imageNamed:currentName];
         if (imge) {
             TTInputSourceItem *item = [[TTInputSourceItem alloc] init];
             item.itemImg = imge;
+            item.itemSize = CGSizeMake(56, 56);
+            item.margin = inset;
             [self.emojAs addObject:item];
         }
     }
@@ -262,7 +278,11 @@ NSString * const TTINPUTFUNCName = @"func";
 
 - (UIEdgeInsets)marginForPageIndex:(NSInteger)index atSource:(TTInputSource *)source {
     if ([source.tag isEqualToString:TTINPUTEmojiName]) {
-        return UIEdgeInsetsMake(2, 20, 60, 20);
+        if (index == 0) {
+            return UIEdgeInsetsMake(12, 17, 27, 17);
+        }else {
+            return UIEdgeInsetsMake(2, 20, 60, 20);
+        }
     }else if ([source.tag isEqualToString:TTINPUTFUNCName]) {
         //功能
         return UIEdgeInsetsMake(0, 0, 0, 0);
@@ -270,44 +290,44 @@ NSString * const TTINPUTFUNCName = @"func";
     return UIEdgeInsetsMake(12, 17, 27, 17);
 }
 
-- (UIEdgeInsets)itemMarginForPageIndex:(NSInteger)index atSource:(TTInputSource *)source {
-    CGFloat width = [[UIScreen mainScreen] bounds].size.width;
-    if ([source.tag isEqualToString:TTINPUTEmojiName]) {
-        if (index == 0) {//小表情
-           return UIEdgeInsetsMake(10, 9, 10, 9);
-        }
-        //56 * 56 的大表情
-        CGFloat space =  (width - 40 - 56 * 4)/6;
-        return UIEdgeInsetsMake(10, space, 10, space);
-      
-    }else if ([source.tag isEqualToString:TTINPUTFUNCName]) {
-        //功能
-        return UIEdgeInsetsMake(0, 0, 0, 0);
-    }
-    
-    return UIEdgeInsetsMake(10, 9, 10, 9);
-}
+//- (UIEdgeInsets)itemMarginForPageIndex:(NSInteger)index atSource:(TTInputSource *)source {
+//    CGFloat width = [[UIScreen mainScreen] bounds].size.width;
+//    if ([source.tag isEqualToString:TTINPUTEmojiName]) {
+//        if (index == 0) {//小表情
+//           return UIEdgeInsetsMake(10, 9, 10, 9);
+//        }
+//        //56 * 56 的大表情
+//        CGFloat space =  (width - 40 - 56 * 4)/6;
+//        return UIEdgeInsetsMake(10, space, 10, space);
+//
+//    }else if ([source.tag isEqualToString:TTINPUTFUNCName]) {
+//        //功能
+//        return UIEdgeInsetsMake(0, 0, 0, 0);
+//    }
+//
+//    return UIEdgeInsetsMake(10, 9, 10, 9);
+//}
 
-- (CGSize)itemSizeForPageAtIndex:(NSInteger)index atSource:(TTInputSource *)source {
-    if ([source.tag isEqualToString:TTINPUTEmojiName]) {
-        if (index == 0) {
-            return CGSizeMake(24, 24);
-        }
-        
-        if (index == 1) {
-            return CGSizeMake(56, 56);
-        }
-        if (index == 2) {
-            return CGSizeMake(56, 56);
-        }
-    }
-    if ([source.tag isEqualToString:TTINPUTFUNCName]) {
-        if (index == 1) {
-            return CGSizeMake(80, 80);
-        }
-    }
-    return CGSizeMake(24, 24);
-}
+//- (CGSize)itemSizeForPageAtIndex:(NSInteger)index atSource:(TTInputSource *)source {
+//    if ([source.tag isEqualToString:TTINPUTEmojiName]) {
+//        if (index == 0) {
+//            return CGSizeMake(24, 24);
+//        }
+//
+//        if (index == 1) {
+//            return CGSizeMake(56, 56);
+//        }
+//        if (index == 2) {
+//            return CGSizeMake(56, 56);
+//        }
+//    }
+//    if ([source.tag isEqualToString:TTINPUTFUNCName]) {
+//        if (index == 1) {
+//            return CGSizeMake(80, 80);
+//        }
+//    }
+//    return CGSizeMake(24, 24);
+//}
 
 - (TTInputSourceItem *)itemForPageAtIndex:(TTInputIndex)index atSource:(TTInputSource *)source {
     if ([source.tag isEqualToString:TTINPUTEmojiName]) {
@@ -330,6 +350,10 @@ NSString * const TTINPUTFUNCName = @"func";
     return 0;
 }
 
+
+//- (TTPageNormalLayout *)normalLayouForSource:(TTInputSource *)source {
+//    return [[TTEmojiNormalLayout alloc] initWithSource:source];
+//}
 
 - (void)itemSelected:(TTInputSourceItem *)item atIndex:(TTInputIndex)index forsource:(TTInputSource *)source {
     

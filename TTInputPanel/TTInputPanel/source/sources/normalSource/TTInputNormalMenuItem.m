@@ -7,6 +7,7 @@
 
 #import "TTInputNormalMenuItem.h"
 #import "TTInputNormalPageCell.h"
+#import "TTInputSourcePage.h"
 
 
 @interface TTInputNormalMenuItem()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>

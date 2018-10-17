@@ -99,6 +99,7 @@ typedef struct {
 @class TTInputSource;
 @class TTInputSourceItem;
 @class TTinputMenuItem;
+@class TTPageNormalLayout;
 
 @protocol TTInputProtocol <NSObject>
 
@@ -155,6 +156,8 @@ typedef struct {
 - (UIImage *)pageIconForMenu:(TTInputSource *)source atIndex:(NSInteger)index;
 
 - (CGSize)pageIconSizeForMenu:(TTInputSource *)source atIndex:(NSInteger)index;
+
+- (TTPageNormalLayout *)normalLayouForSource:(TTInputSource *)source;
 @end
 
 

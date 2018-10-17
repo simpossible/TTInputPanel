@@ -6,6 +6,7 @@
 //
 
 #import "TTInputNormalPageCell.h"
+#import "TTInputSourcePage.h"
 
 @interface TTInputNormalPageCell ()<TTInputSourcePageProtocol>
 

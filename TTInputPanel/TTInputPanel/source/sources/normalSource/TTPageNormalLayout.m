@@ -6,6 +6,9 @@
 //
 
 #import "TTPageNormalLayout.h"
+#import "TTInputNormlSouce.h"
+#import "TTInputSourcePage.h"
+#import "TTInputSourceItem.h"
 
 @interface TTPageNormalLayout ()
 
@@ -14,6 +17,7 @@
 @property (nonatomic, strong) NSMutableDictionary * cacheForItem;
 
 @property (nonatomic, assign) CGSize contensize;
+
 @end
 
 @implementation TTPageNormalLayout
@@ -81,16 +85,28 @@
     CGFloat alreadyHeight = 0;
     NSInteger currentLine = 0;//行
     
-    CGFloat caculateWidth = [self roundFloat:(page.itemSize.width + page.itemMargin.left)];
+    NSInteger alreadyNumber = 0;//已经显示了的item 个数 用来限制每一页显示的最大个数
+    
+
     for (int i = 0; i < page.itemCount; i ++) {
+        TTInputSourceItem * item = [page.sourceItems objectAtIndex:i];
+        CGFloat caculateWidth = item.itemSize.width + item.margin.left;
+
+        alreadyNumber ++;
         CGFloat nextWdith = alreadyWidth + caculateWidth;
         if(nextWdith > width + 0.05) {//最后一个可以贴着section 右 这里的0.05为 float 误差
             //应该换行了
-            alreadyHeight += page.itemBoxHeight;
+            alreadyHeight += item.boxHeight;;
             currentLine += 1;
             alreadyWidth = 0;
-            if (alreadyHeight + page.itemBoxHeight + page.lineSpace > height) {//该换页了
-                _numberItemOneceShow = i;
+            
+            BOOL shouldToNextPage = NO;
+            if (alreadyNumber > self.numberItemOneceShow && self.numberItemOneceShow != 0) {
+                alreadyNumber = 1;
+                shouldToNextPage = YES;
+            }
+            
+            if (alreadyHeight + item.boxHeight + page.lineSpace > height || shouldToNextPage) {//该换页了
                 currentPage += 1;
                 currentLine = 0;
                 alreadyHeight = 0;
@@ -103,23 +119,23 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:section];
 
         UICollectionViewLayoutAttributes *attr = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-        attr.size = page.itemSize;
+        attr.size = item.itemSize;
         
         CGFloat centerX = 0;
         if (alreadyWidth == 0) {//第一个不要考虑左边距
-            centerX =  lastWidth + alreadyWidth+page.itemSize.width/2 + currentPage * collectWidth + page.margin.left;
+            centerX =  lastWidth + alreadyWidth+item.itemSize.width/2 + currentPage * collectWidth + page.margin.left;
         }else {
-            centerX =  lastWidth + alreadyWidth+page.itemSize.width/2 +page.itemMargin.left + currentPage * collectWidth + page.margin.left;
+            centerX =  lastWidth + alreadyWidth+item.itemSize.width/2 +item.margin.left + currentPage * collectWidth + page.margin.left;
         }
-        CGFloat centerY = alreadyHeight+page.itemSize.height/2 + page.margin.top + page.itemMargin.top;
+        CGFloat centerY = alreadyHeight+item.itemSize.height/2 + page.margin.top + item.margin.top;
         attr.center = CGPointMake(centerX, centerY);
        
         [self.cacheForItem setObject:attr forKey:@(i+1000*section)];
         
         if (alreadyWidth == 0) {
-            alreadyWidth +=  page.itemMargin.right + page.itemSize.width;
+            alreadyWidth +=  item.margin.right + item.itemSize.width;
         }else {
-            alreadyWidth += page.itemBoxWidth;
+            alreadyWidth += item.boxWidth;
         }
     }
     

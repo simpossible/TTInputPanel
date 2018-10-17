@@ -6,7 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TTInputSourceItem.h"
+
+@class TTInputSourceItem;
 
 @protocol TTInputSourcePageProtocol <NSObject>
 
@@ -16,7 +17,7 @@
 
 @interface TTInputSourcePage : NSObject
 
-@property (nonatomic, strong) NSArray<TTInputSourceItem *> *sourceItems;
+@property (nonatomic, strong, readonly) NSArray<TTInputSourceItem *> *sourceItems;
 
 /**每个pagecollectioncell 的margin*/
 @property (nonatomic, assign) UIEdgeInsets margin;
@@ -52,9 +53,19 @@
 
 @property (nonatomic, assign) NSInteger startPage;
 
+/**在所有page中的顺序 - 主要是布局的时候可能用到*/
+@property (nonatomic, assign) NSUInteger index;
+
 - (instancetype)initFromDic:(NSDictionary *)dic;
 
 
 @property (nonatomic, weak) id<TTInputSourcePageProtocol> delegate;
+
+@property (nonatomic, weak) id<TTInputNormalSourceProtocol> datasource;
+
+
+@property (nonatomic, weak) TTInputSource * source;
+
+- (void)loadItems;
 
 @end

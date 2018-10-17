@@ -12,6 +12,7 @@
 #import "TTInputMenu.h"
 #import "TTInputNormalMenuItem.h"
 #import "TTInputNormalView.h"
+#import "TTInputSourcePage.h"
 
 @interface TTInputNormlSouce ()<UICollectionViewDelegate,UICollectionViewDataSource,TTinputMenuItemProtocol>
 
@@ -108,6 +109,9 @@
 
 - (void)initialCollctionView {
     TTPageNormalLayout *flow = [[TTPageNormalLayout alloc] initWithSource:self];
+    if ([self.datasouce respondsToSelector:@selector(normalLayouForSource:)]) {
+        flow = [self.datasouce normalLayouForSource:self];
+    }
     UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flow];
     collection.pagingEnabled = YES;
     collection.delegate = self;
@@ -192,13 +196,13 @@
                 page.margin = [self.datasouce marginForPageIndex:i atSource:self];
             }
             
-            if ([self.datasouce respondsToSelector:@selector(itemSizeForPageAtIndex:atSource:)]) {
-                page.itemSize = [self.datasouce itemSizeForPageAtIndex:i atSource:self];
-            }
+//            if ([self.datasouce respondsToSelector:@selector(itemSizeForPageAtIndex:atSource:)]) {
+//                page.itemSize = [self.datasouce itemSizeForPageAtIndex:i atSource:self];
+//            }
             
-            if ([self.datasouce respondsToSelector:@selector(itemMarginForPageIndex:atSource:)]) {
-                page.itemMargin = [self.datasouce itemMarginForPageIndex:i atSource:self];
-            }
+//            if ([self.datasouce respondsToSelector:@selector(itemMarginForPageIndex:atSource:)]) {
+//                page.itemMargin = [self.datasouce itemMarginForPageIndex:i atSource:self];
+//            }
             
             if ([self.datasouce respondsToSelector:@selector(itemNumerInPageIndex:atSource:)]) {
                 page.itemCount = [self.datasouce itemNumerInPageIndex:i atSource:self];
@@ -212,6 +216,10 @@
                 page.iconSize = [self.datasouce pageIconSizeForMenu:self atIndex:i];
             }
             
+            page.source = self;
+            page.datasource = self.datasouce;
+            page.index = i;
+            [page loadItems];
             [self addPage:page];
         }
     }
@@ -220,7 +228,6 @@
         self.currentPage = [self.pages objectAtIndex:0];
         self.currentPage.selected = YES;
     }
-    
 
     
 }
@@ -280,8 +287,7 @@
                 self.focusState = TTIInputSoureFocusStateNone;
             }
         }
-    }
- 
+    } 
 }
 
 
@@ -298,28 +304,19 @@
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TTInputNomalCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"aaa" forIndexPath:indexPath];
-//    TTInputSourcePage *page = [self.pages objectAtIndex:indexPath.section];
-    if ([self.datasouce respondsToSelector:@selector(itemForPageAtIndex:atSource:)]) {
-        TTInputIndex index;
-        index.page = indexPath.section;
-        index.row = indexPath.row;
-        
-        TTInputSourceItem *item = [self.datasouce itemForPageAtIndex:index atSource:self];
-        cell.item = item;
-        return cell;
-    }else {
-        return nil;
-    }
-   
+    TTInputSourcePage *page = [self.pages objectAtIndex:indexPath.section];
+//    TTInputIndex index;
+//    index.page = indexPath.section;
+//    index.row = indexPath.row;
+    TTInputSourceItem *item = [page.sourceItems objectAtIndex:indexPath.row];
+    cell.item = item;
+    return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     TTInputSourcePage *page = [self.pages objectAtIndex:indexPath.section];
     TTInputSourceItem *item = [page.sourceItems objectAtIndex:indexPath.row];
     return item.itemSize;
-}
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(10, 30, 10, 40);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -373,7 +370,8 @@
 - (void)addPage:(TTInputSourcePage *)page {
     if (!self.pages) {
         self.pages = [NSMutableArray array];
-    }
+    }      
+    page.datasource = self.datasouce;
     TTInputSourcePage *lastpage = [self.pages lastObject];
     page.startPage = lastpage.startPage + lastpage.totoalpage;
     [(NSMutableArray *)self.pages addObject:page];
