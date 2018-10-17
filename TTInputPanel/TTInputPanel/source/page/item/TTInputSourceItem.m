@@ -24,6 +24,13 @@
     return self;
 }
 
+- (instancetype)init {
+    if (self = [super init]) {
+        _identifier = @"TTInputNomalCell";
+    }
+    return self;
+}
+
 - (void)dealpageDic:(NSDictionary *)dic {
     self.itemImgName = [dic objectForKey:@"itemimg"];
     self.tag = [[dic objectForKey:@"tag"] integerValue];
@@ -42,5 +49,9 @@
 
 - (CGFloat)boxHeight {
     return _margin.top + _margin.bottom + _itemSize.height;
+}
+
+- (NSString *)description {
+    return self.identifier;
 }
 @end

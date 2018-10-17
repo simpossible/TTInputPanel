@@ -14,6 +14,7 @@
 #import "TTEmojiSourceItem.h"
 #import "EmojiUtil.h"
 #import "TTEmojiNormalLayout.h"
+#import "TTEmojiDeleteNomalCell.h"
 
 NSString * const TTINPUTEmojiName = @"emoj";
 NSString * const TTINPUTFUNCName = @"func";
@@ -103,7 +104,7 @@ NSString * const TTINPUTFUNCName = @"func";
         TTEmojiSourceItem *item = [[TTEmojiSourceItem alloc] initWIthEmoji:tmoji];
         item.itemImg = [EmojiUtil getFaceImage:tmoji.thumb];
         item.itemSize = CGSizeMake(24, 24);
-        item.margin = UIEdgeInsetsMake(10, 9, 10, 19);
+        item.margin = UIEdgeInsetsMake(10, 9, 10, 9);
         [self.ttemojes addObject:item];
 
     }
@@ -150,6 +151,8 @@ NSString * const TTINPUTFUNCName = @"func";
         }
     }
 }
+
+
 
 
 /**设置高度*/
@@ -232,6 +235,11 @@ NSString * const TTINPUTFUNCName = @"func";
 
 
 #pragma mark - input - 普通的source。就是 表情那种
+
+/***/
+- (NSArray<NSString *> *)normalCellIdentifiersForSource:(TTInputSource *)source {
+    return @[@"TTEmojiDeleteNomalCell"];
+}
 
 - (CGFloat)ttinputNormalSourceMenuHeight {
     return 44;
@@ -351,9 +359,9 @@ NSString * const TTINPUTFUNCName = @"func";
 }
 
 
-//- (TTPageNormalLayout *)normalLayouForSource:(TTInputSource *)source {
-//    return [[TTEmojiNormalLayout alloc] initWithSource:source];
-//}
+- (TTPageNormalLayout *)normalLayouForSource:(TTInputSource *)source {
+    return [[TTEmojiNormalLayout alloc] initWithSource:source];
+}
 
 - (void)itemSelected:(TTInputSourceItem *)item atIndex:(TTInputIndex)index forsource:(TTInputSource *)source {
     

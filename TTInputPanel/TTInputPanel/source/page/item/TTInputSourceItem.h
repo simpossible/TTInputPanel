@@ -22,6 +22,9 @@
 
 @property (nonatomic, strong) UIImage * itemImg;
 
+/**默认 TTInputNomalCell*/
+@property (nonatomic, copy) NSString * identifier;
+
 - (CGFloat)boxHeight;
 
 

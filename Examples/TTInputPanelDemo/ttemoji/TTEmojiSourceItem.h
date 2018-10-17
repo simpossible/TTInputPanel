@@ -9,8 +9,21 @@
 #import "TTInputSourceItem.h"
 #import "TTEmoji.h"
 
+typedef NS_ENUM(UInt8,TTEmojiItemType) {
+    TTEmojiItemTypeTT,
+    TTEmojiItemTypeQQ,
+    TTEmojiItemTypeDelete,
+    TTEmojiItemTypeSend,
+};
+
 @interface TTEmojiSourceItem : TTInputSourceItem
 
+@property (nonatomic, assign) TTEmojiItemType type;
+
 - (instancetype)initWIthEmoji:(TTEmoji *)tmoji;
+
++ (instancetype)sendItem;
+
++ (instancetype)deleteItem;
 
 @end

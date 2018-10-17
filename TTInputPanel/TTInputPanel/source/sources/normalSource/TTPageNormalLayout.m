@@ -62,8 +62,11 @@
     CGFloat allWidth = 0;
     for (int i = 0 ; i < self.source.pages.count; i ++) {
         TTInputSourcePage *page = [self.source.pages objectAtIndex:i];
-        CGFloat pageWidth = [self widthForPage:page section:i lastSectionWidth:allWidth];
-        allWidth += pageWidth;
+        if (!page.isSizeCaculated) {
+            CGFloat pageWidth = [self widthForPage:page section:i lastSectionWidth:allWidth];
+            page.totoalWidth = pageWidth;
+        }
+        allWidth += page.totoalWidth;
     }
     [self.source pageCaculated];
     return CGSizeMake(allWidth, self.collectionView.bounds.size.height);

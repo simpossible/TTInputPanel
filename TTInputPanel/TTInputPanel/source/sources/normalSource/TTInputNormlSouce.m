@@ -114,17 +114,29 @@
     }
     UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flow];
     collection.pagingEnabled = YES;
-    collection.delegate = self;
-    collection.dataSource = self;
-    [collection registerClass:[TTInputNomalCell class] forCellWithReuseIdentifier:@"aaa"];
+    
+    [collection registerClass:[TTInputNomalCell class] forCellWithReuseIdentifier:@"TTInputNomalCell"];
     self.contentView = collection;
     collection.backgroundColor = [UIColor colorWithRed:246/255.0f green:246/255.0f blue:246/255.0f alpha:1];
+    
+    if ([self.datasouce respondsToSelector:@selector(normalCellIdentifiersForSource:)]) {
+        NSArray *otherCells = [self.datasouce normalCellIdentifiersForSource:self];
+        for (NSString *classStr in otherCells) {
+            Class cls = NSClassFromString(classStr);
+            [collection registerClass:cls forCellWithReuseIdentifier:classStr];
+        }
+    }        
     
     [self.sourceView insertSubview:collection atIndex:0];
     
     [collection mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(UIEdgeInsetsZero);
     }];
+    
+    [collection layoutIfNeeded];
+    [flow caculateContentSizeForSource];
+    collection.delegate = self;
+    collection.dataSource = self;
 }
 
 - (void)initialpageControl {
@@ -179,7 +191,6 @@
         [self generateMenu];
     }
     
-    [self.contentView reloadData];
     
     [self initialpageControl];
 }
@@ -298,17 +309,18 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     TTInputSourcePage *page = [self.pages objectAtIndex:section];
-    return page.itemCount;
+    return page.sourceItems.count;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    TTInputNomalCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"aaa" forIndexPath:indexPath];
+   
     TTInputSourcePage *page = [self.pages objectAtIndex:indexPath.section];
 //    TTInputIndex index;
 //    index.page = indexPath.section;
 //    index.row = indexPath.row;
     TTInputSourceItem *item = [page.sourceItems objectAtIndex:indexPath.row];
+     TTInputNomalCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:item.identifier forIndexPath:indexPath];
     cell.item = item;
     return cell;
 }

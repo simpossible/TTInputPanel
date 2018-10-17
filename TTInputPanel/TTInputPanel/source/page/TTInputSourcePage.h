@@ -66,6 +66,15 @@
 
 @property (nonatomic, weak) TTInputSource * source;
 
+@property (nonatomic, assign) BOOL isSizeCaculated;
+
+@property (nonatomic, assign) CGFloat totoalWidth;
+
+/**插入一个新的item*/
+- (void)insertItem:(TTInputSourceItem *)item atIndex:(NSInteger)index;
+
+- (void)appendItem:(TTInputSourceItem *)item;
+
 - (void)loadItems;
 
 @end

@@ -158,6 +158,9 @@ typedef struct {
 - (CGSize)pageIconSizeForMenu:(TTInputSource *)source atIndex:(NSInteger)index;
 
 - (TTPageNormalLayout *)normalLayouForSource:(TTInputSource *)source;
+
+/**支持自定义cell 的注册到 collectionview 数组里面是 cell 类字串*/
+- (NSArray<NSString *> *)normalCellIdentifiersForSource:(TTInputSource *)source;
 @end
 
 

@@ -11,6 +11,7 @@
 		A4606F432176E40700EB5F9D /* TTEmojiNormalLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A4606F412176DB5700EB5F9D /* TTEmojiNormalLayout.m */; };
 		A494B906216F84DA00D02DD9 /* TTEmojiSourceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A494B905216F84DA00D02DD9 /* TTEmojiSourceItem.m */; };
 		A49C142F1FA3268200071909 /* ttinput.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A49C142E1FA3268200071909 /* ttinput.bundle */; };
+		A4AEF278217718CB008ED196 /* TTEmojiDeleteNomalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AEF277217718CB008ED196 /* TTEmojiDeleteNomalCell.m */; };
 		A4C1C5321F726CBF00F9DFD8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1C5311F726CBF00F9DFD8 /* AppDelegate.m */; };
 		A4C1C5351F726CBF00F9DFD8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1C5341F726CBF00F9DFD8 /* ViewController.m */; };
 		A4C1C5381F726CBF00F9DFD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4C1C5361F726CBF00F9DFD8 /* Main.storyboard */; };
@@ -61,6 +62,8 @@
 		A494B904216F84DA00D02DD9 /* TTEmojiSourceItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTEmojiSourceItem.h; sourceTree = "<group>"; };
 		A494B905216F84DA00D02DD9 /* TTEmojiSourceItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTEmojiSourceItem.m; sourceTree = "<group>"; };
 		A49C142E1FA3268200071909 /* ttinput.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ttinput.bundle; path = ../../TTInputPanel/TTInputPanel/src/ttinput.bundle; sourceTree = "<group>"; };
+		A4AEF276217718CB008ED196 /* TTEmojiDeleteNomalCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTEmojiDeleteNomalCell.h; sourceTree = "<group>"; };
+		A4AEF277217718CB008ED196 /* TTEmojiDeleteNomalCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTEmojiDeleteNomalCell.m; sourceTree = "<group>"; };
 		A4C1C52D1F726CBF00F9DFD8 /* TTInputPanelDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTInputPanelDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4C1C5301F726CBF00F9DFD8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A4C1C5311F726CBF00F9DFD8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -260,6 +263,8 @@
 				A494B905216F84DA00D02DD9 /* TTEmojiSourceItem.m */,
 				A4606F402176DB5700EB5F9D /* TTEmojiNormalLayout.h */,
 				A4606F412176DB5700EB5F9D /* TTEmojiNormalLayout.m */,
+				A4AEF276217718CB008ED196 /* TTEmojiDeleteNomalCell.h */,
+				A4AEF277217718CB008ED196 /* TTEmojiDeleteNomalCell.m */,
 			);
 			path = ttemoji;
 			sourceTree = "<group>";
@@ -474,6 +479,7 @@
 			files = (
 				A4D4ABEB216F338D00AB7680 /* TTViewController.m in Sources */,
 				A494B906216F84DA00D02DD9 /* TTEmojiSourceItem.m in Sources */,
+				A4AEF278217718CB008ED196 /* TTEmojiDeleteNomalCell.m in Sources */,
 				A4D4ABF4216F464D00AB7680 /* EmojiUtil.m in Sources */,
 				A4D4AC05216F482300AB7680 /* EmojiService.m in Sources */,
 				A4C1C5351F726CBF00F9DFD8 /* ViewController.m in Sources */,

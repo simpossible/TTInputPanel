@@ -23,4 +23,6 @@
 /**一次显示多少的item 用于 空出一两个 展示 发送按钮什么的*/
 @property (nonatomic, assign) NSInteger numberItemOneceShow;
 
+- (CGSize)caculateContentSizeForSource;
+
 @end

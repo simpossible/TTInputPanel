@@ -82,4 +82,13 @@
     }
 }
 
+- (void)insertItem:(TTInputSourceItem *)item atIndex:(NSInteger)index {
+    NSMutableArray *arary = (NSMutableArray *)self.sourceItems;
+    [arary insertObject:item atIndex:index];
+}
+
+- (void)appendItem:(TTInputSourceItem *)item {
+    NSMutableArray *arary = (NSMutableArray *)self.sourceItems;
+    [arary addObject:item];
+}
 @end
