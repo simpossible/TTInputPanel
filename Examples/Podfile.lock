@@ -1,0 +1,35 @@
+PODS:
+  - Masonry (1.1.0)
+  - SDWebImage (4.4.2):
+    - SDWebImage/Core (= 4.4.2)
+  - SDWebImage/Core (4.4.2)
+  - TTInputPanel (0.0.1)
+  - YYKit (1.0.9):
+    - YYKit/no-arc (= 1.0.9)
+  - YYKit/no-arc (1.0.9)
+
+DEPENDENCIES:
+  - Masonry
+  - SDWebImage
+  - TTInputPanel (from `../TTInputPanel`)
+  - YYKit
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Masonry
+    - SDWebImage
+    - YYKit
+
+EXTERNAL SOURCES:
+  TTInputPanel:
+    :path: "../TTInputPanel"
+
+SPEC CHECKSUMS:
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  TTInputPanel: ed59f9daf96770b3fb7ef32303917648aa97d03b
+  YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
+
+PODFILE CHECKSUM: bde460c31b6a1452ace75dca200c1d32ecad1d67
+
+COCOAPODS: 1.5.3

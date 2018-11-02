@@ -6,6 +6,7 @@
 //
 
 #import "TTInputUtil.h"
+#import "TTInputPanelDefine.h"
 
 @implementation TTInputUtil
 

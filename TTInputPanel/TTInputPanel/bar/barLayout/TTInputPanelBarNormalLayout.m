@@ -6,11 +6,12 @@
 //
 
 #import "TTInputPanelBarNormalLayout.h"
-#import <Masonry.h>
+#import <Masonry/Masonry.h>
+#import "TTInputSource.h"
 
 @implementation TTInputPanelBarNormalLayout
 
-- (void)layoutItemForSources:(NSArray<TTInputSource *> *)sources inBar:(TTInputPanelBar *)bar {
+- (void)layoutItemForSources:(NSArray<TTInputSource *> *)sources inBar:(TTInputBar *)bar {
     
     [bar.superview layoutIfNeeded];
     
@@ -23,10 +24,9 @@
     
     for (int i = 0; i < sources.count; i ++) {
         TTInputSource *source = sources[i];
-        TTInputBarItem *item = source.baritem;
-        totoalItemWidth += item.margin.left;
-        totoalItemWidth += item.width;
-        totoalItemWidth += item.margin.right;
+        totoalItemWidth += source.barItemMargin.left;
+        totoalItemWidth += source.barItemSize.width;
+        totoalItemWidth += source.barItemMargin.right;
         //已经超过达到能布局的最大个数了
         if (totoalItemWidth > width) {
             if (i == 1) {
@@ -46,48 +46,54 @@
     
 }
 
-- (void)layoutItems:(NSArray<TTInputSource *> *)sources inBar:(TTInputPanelBar *)bar itemIndex:(NSInteger)itemIndex{
+- (void)layoutItems:(NSArray<TTInputSource *> *)sources inBar:(TTInputBar *)bar itemIndex:(NSInteger)itemIndex{
     
-    TTInputPanelBarItem *lastPanelItem = nil;
-    TTInputBarItem *lastInputItem = nil;
-    
+    UIView *lastPanelItem = nil;
+    TTInputSource *lastSoure = nil;
     for (int i = 0; i <= itemIndex; i ++) {
         
         TTInputSource *source = [sources objectAtIndex:i];
-        TTInputBarItem *item = source.baritem;
-        TTInputPanelBarItem *panelItem = [TTInputPanelBarItem panelItemWithSource:source];
+        UIView *panelItem = source.barView;
         [bar addSubview:panelItem];
         
         [panelItem mas_makeConstraints:^(MASConstraintMaker *make) {
             
-            make.top.equalTo(bar.mas_top).offset(item.margin.top);
-            make.height.mas_equalTo(item.height);
+//            make.top.equalTo(bar.mas_top).offset(source.barItemMargin.top);
+//            make.bottom.equalTo(bar.mas_bottom).offset(-source.barItemMargin.bottom);
+            make.centerY.equalTo(bar.mas_centerY);
+            make.height.mas_equalTo(source.barItemSize.height);
             
-            if (lastInputItem) {
-                make.left.equalTo(lastPanelItem.mas_right).offset(item.margin.left+lastInputItem.margin.right);
+            if (lastPanelItem) {
+                make.left.equalTo(lastPanelItem.mas_right).offset(source.barItemMargin.left+lastSoure.barItemMargin.right);
             }else {
-                make.left.equalTo(bar.mas_left).offset(item.margin.left);
+                make.left.equalTo(bar.mas_left).offset(source.barItemMargin.left);
             }
             
             
-            if (item.flex == TTInputLayoutFlexFix) {
-                make.width.mas_equalTo(item.width);
-            }else if (item.flex == TTInputLayoutFlexGreater) {
-                make.width.mas_greaterThanOrEqualTo(item.width);
-            }else if (item.flex == TTInputLayoutFlexLesser) {
-                make.width.mas_lessThanOrEqualTo(item.width);
+            if (source.flex == TTInputLayoutFlexFix) {
+                make.width.mas_equalTo(source.barItemSize.width);
+            }else if (source.flex == TTInputLayoutFlexGreater) {
+                make.width.mas_greaterThanOrEqualTo(source.barItemSize.width);
+            }else if (source.flex == TTInputLayoutFlexLesser) {
+                make.width.mas_lessThanOrEqualTo(source.barItemSize.width);
             }else {
-                make.width.mas_equalTo(item.width);
+                make.width.mas_equalTo(source.barItemSize.width);
             }
             
             if (i == itemIndex) {//布局到了最后一个
                 //                make.right.equalTo(bar.mas_right).offset(-(item.margin.right + space));
-                make.right.equalTo(bar.mas_right).offset(-lastInputItem.margin.right);
+                make.right.equalTo(bar.mas_right).offset(-lastSoure.barItemMargin.right);
             }
+            
+            [bar mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.lessThanOrEqualTo(panelItem.mas_top).offset(-source.barItemMargin.top);
+            }];
+            
         }];
         
         
-        lastInputItem = item;
+        
+        lastSoure = source;
         lastPanelItem = panelItem;
     }
     

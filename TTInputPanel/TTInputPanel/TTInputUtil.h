@@ -5,7 +5,7 @@
 //  Created by simp on 2017/10/27.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface TTInputUtil : NSObject
 

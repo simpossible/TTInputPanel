@@ -91,7 +91,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "TTInputPanel", "TTInputPanel/**/*.{h,m}","TTInputPanel/*.{h,m}"  
+  s.source_files  = "TTInputPanel", "TTInputPanel/**/*.{h,m}","TTInputPanel/*.{h,m}","ttemoji/*.{h,m}","ttemoji/**/*.{h,m}" 
   s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
@@ -124,15 +124,15 @@ Pod::Spec.new do |s|
   # s.libraries = "iconv", "xml2"
   s.prefix_header_contents = '#ifndef TTInputPanel_pch
 #define TTInputPanel_pch
-
+#define MYCUSTOMPREFIX @"EMOJI"
 #import <UIKit/UIKit.h>
-#import <Masonry.h>
+//#import <Masonry.h>
 
-#import "TTInputPanel.h"
-#import "TTInputBar.h"
-#import "TTInputPanelBar.h"
-#import "TTInputSource.h" 
-#import "TTInput.h"
+//import "TTInputPanel.h"
+//import "TTInputBar.h"
+//import "TTInputPanelBar.h"
+//import "TTInputSource.h" 
+//#import "TTInput.h"
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 

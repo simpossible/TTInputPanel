@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) UICollectionView * pageCollectionView;
 
+@property (nonatomic, strong) NSArray<TTInputSourceItem *> *sourceItems;	
+
 @end
 
 @implementation TTInputSourcePage
@@ -20,6 +22,13 @@
 - (instancetype)initFromDic:(NSDictionary *)dic {
     if(self = [super init]) {
         [self dealpageDic:dic];
+    }
+    return self;
+}
+
+- (instancetype)init {
+    if (self = [super init]) {
+        _useItemLayout = YES;
     }
     return self;
 }
@@ -43,42 +52,56 @@
     }
     self.sourceItems = ttItems;
     
-    [self generateView];
+
 }
 
-- (void)generateView {
-    self.pageView = [[UIView alloc] init];
-    [self initialPageCollection];
-    
+- (CGFloat)itemBoxWidth {
+    return _itemMargin.left + _itemMargin.right + _itemSize.width;
 }
 
-- (void)initialPageCollection {
-    
-    UICollectionViewFlowLayout *flow = [[UICollectionViewFlowLayout alloc] init];
-    flow.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    
-    self.pageCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flow];
-    [self.pageView addSubview:self.pageCollectionView];
-    
-    [self.pageCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(UIEdgeInsetsZero);
-    }];
-    
-    
-    self.pageCollectionView.delegate = self;
-    self.pageCollectionView.dataSource = self;
-
-    [self.pageCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"aaa"];
+- (CGFloat)itemBoxHeight {
+    return _itemMargin.top + _itemMargin.bottom + _itemSize.height;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.sourceItems.count;
+
+- (void)setSelected:(BOOL)selected {
+    _selected = selected;
+    if ([self.delegate respondsToSelector:@selector(pageSelectedChanged)]) {
+        [self.delegate pageSelectedChanged];
+    }
 }
 
-// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"aaa" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor greenColor];
-    return cell;
+
+- (void)loadItems {
+    if (!self.sourceItems) {
+        NSMutableArray *arary = [NSMutableArray array];
+        
+        for (int i = 0; i < self.itemCount; i ++ ) {
+            TTInputIndex index;
+            index.page = self.index;
+            index.row = i;
+            TTInputSourceItem *item = [self.datasource itemForPageAtIndex:index atSource:self.source];
+            [arary addObject:item];
+        }
+        self.sourceItems = arary;
+    }
+}
+
+- (TTInputSourceItem *)itemAtIndex:(NSInteger)index {
+    return [self.sourceItems objectAtIndex:index];
+}
+
+- (void)insertItem:(TTInputSourceItem *)item atIndex:(NSInteger)index {
+    NSMutableArray *arary = (NSMutableArray *)self.sourceItems;
+    [arary insertObject:item atIndex:index];
+}
+
+- (void)appendItem:(TTInputSourceItem *)item {
+    NSMutableArray *arary = (NSMutableArray *)self.sourceItems;
+    [arary addObject:item];
+}
+
+- (void)setIndex:(NSUInteger)index {
+    _index = index;
 }
 @end

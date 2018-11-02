@@ -6,9 +6,8 @@
 //  Copyright © 2017年 simp. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "TTInputSource.h"
-#import "TTInputBarItem.h"
+#import <UIKit/UIKit.h>
+
 
 @class TTInputSource;
 @class TTInputBarItem;
@@ -90,3 +89,98 @@ FOUNDATION_EXTERN NSString * const TTInputSizeHeight;
 
 
 FOUNDATION_EXTERN NSString * const TTInputBundle;
+
+
+typedef struct {
+    NSInteger page;
+    NSInteger row;
+} TTInputIndex;
+
+@class TTInputSource;
+@class TTInputSourceItem;
+@class TTinputMenuItem;
+@class TTPageNormalLayout;
+@class TTInputSourcePage;
+
+@protocol TTInputProtocol <NSObject>
+
+@required
+
+- (NSInteger)numberOfSourceForInput;
+
+
+
+- (TTInputSource *)sourceAtIndex:(NSInteger)index;
+
+- (CGFloat)TTInputBarHeight;
+
+- (UIColor *)TTInputBarColor;
+
+/**是否处理自己消失的界面逻辑 如果这时候其他界面需要展开就 return NO*/
+- (BOOL)sourceShouldDeFocus:(TTInputSource *)souce;
+
+- (BOOL)sourceDidBeFocus:(TTInputSource *)souce;
+
+- (void)inputLayouted;
+
+/**高度实时变化的通知*/
+- (void)inputHeightChangingFrom:(CGFloat)oheight toHeight:(CGFloat)nheight;
+
+- (void)inputWillChangeToHeight:(CGFloat)height;
+
+- (void)inputWillChangeByHeight:(CGFloat)height;
+@end
+
+
+@protocol TTInputSourcesProtocol <NSObject>
+
+@end
+
+
+@protocol TTInputNormalSourceProtocol <TTInputSourcesProtocol>
+
+- (CGFloat)ttinputNormalSourceMenuHeight;
+
+- (NSInteger)numberOfPageForSource:(TTInputSource *)source;
+
+- (NSInteger)itemNumerInPageIndex:(NSInteger)index atSource:(TTInputSource *)source;
+
+/**获取page
+ *  如果 有了 page 就不会走下面的 page 属性了
+ *  需要将 margin。item margin 等 赋值
+ */
+- (TTInputSourcePage *)inputNormalPageForSource:(TTInputSource *)source atIndex:(NSInteger)index;
+
+- (UIEdgeInsets)marginForPageIndex:(NSInteger)index atSource:(TTInputSource *)source;
+
+- (UIEdgeInsets)itemMarginForPageIndex:(NSInteger)index atSource:(TTInputSource *)source;
+
+- (CGSize)itemSizeForPageAtIndex:(NSInteger)index atSource:(TTInputSource *)source;
+
+- (TTInputSourceItem *)itemForPageAtIndex:(TTInputIndex)index atSource:(TTInputSource *)source;
+
+//- (void)sourceItemChooesed:(TTInputSourceItem *)item;
+
+- (void)itemSelected:(TTInputSourceItem *)item atIndex:(TTInputIndex)index forsource:(TTInputSource *)source;
+
+- (UIImage *)unFocusImageForSourceBarItem:(TTInputSource *)source;
+
+- (UIImage *)focusImageForSourcceBarItem:(TTInputSource *)source;
+
+- (BOOL)shouldShowMenuForSource:(TTInputSource *)source;
+
+- (NSArray<TTinputMenuItem *> *)itemsForMenuForSource:(TTInputSource *)source withExsitItems:(NSArray *)items;
+
+- (UIImage *)pageIconForMenu:(TTInputSource *)source atIndex:(NSInteger)index;
+
+- (CGSize)pageIconSizeForMenu:(TTInputSource *)source atIndex:(NSInteger)index;
+
+- (TTPageNormalLayout *)normalLayouForSource:(TTInputSource *)source;
+
+/**支持自定义cell 的注册到 collectionview 数组里面是 cell 类字串*/
+- (NSArray<NSString *> *)normalCellIdentifiersForSource:(TTInputSource *)source;
+@end
+
+
+
+extern TTInputIndex indexForPage(NSInteger page,NSInteger row);

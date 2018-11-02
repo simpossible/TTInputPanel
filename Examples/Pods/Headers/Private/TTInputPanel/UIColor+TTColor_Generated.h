@@ -1,0 +1,1 @@
+../../../../../TTInputPanel/ttemoji/util/UIColor+TTColor_Generated.h

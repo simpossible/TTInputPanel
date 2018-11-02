@@ -1,0 +1,27 @@
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#else
+#ifndef FOUNDATION_EXPORT
+#if defined(__cplusplus)
+#define FOUNDATION_EXPORT extern "C"
+#else
+#define FOUNDATION_EXPORT extern
+#endif
+#endif
+#endif
+
+#ifndef TTInputPanel_pch
+#define TTInputPanel_pch
+#define MYCUSTOMPREFIX @"EMOJI"
+#import <UIKit/UIKit.h>
+//#import <Masonry.h>
+
+//import "TTInputPanel.h"
+//import "TTInputBar.h"
+//import "TTInputPanelBar.h"
+//import "TTInputSource.h" 
+//#import "TTInput.h"
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* TTInputPanel_pch */

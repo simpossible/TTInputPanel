@@ -62,3 +62,10 @@ NSString * const TTInputSizeHeight = @"height";
 
 
 NSString * const TTInputBundle = @"ttinput";
+
+TTInputIndex indexForPage(NSInteger page,NSInteger row) {
+    TTInputIndex i;
+    i.page = page;
+    i.row = row;
+    return i;
+}

@@ -9,6 +9,8 @@ target 'TTInputPanelDemo' do
   
   pod 'TTInputPanel',:path=>'../TTInputPanel'
   pod 'Masonry'
+  pod 'SDWebImage'
+  pod 'YYKit'
 
   target 'TTInputPanelDemoTests' do
     inherit! :search_paths

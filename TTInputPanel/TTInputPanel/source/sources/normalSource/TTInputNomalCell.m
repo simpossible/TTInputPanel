@@ -6,8 +6,7 @@
 //
 
 #import "TTInputNomalCell.h"
-#import "Masonry.h"
-
+#import <Masonry/Masonry.h>
 @interface TTInputNomalCell ()
 
 @property (nonatomic, strong) UIImageView * img;
@@ -39,7 +38,13 @@
 
 - (void)setItem:(TTInputSourceItem *)item {
     _item = item;
+    [item loadItemImage];
     self.img.image = item.itemImg;
 }
 
+- (void)diddisAppear {
+    TTInputSourceItem *item = self.item;
+    item.itemImg = nil;
+    self.img.image = nil;
+}
 @end

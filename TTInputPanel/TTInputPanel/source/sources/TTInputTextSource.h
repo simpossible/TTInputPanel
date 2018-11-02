@@ -5,16 +5,27 @@
 //  Created by simp on 2017/10/18.
 //
 
-#import <TTInputPanel/TTInputPanel.h>
+#import "TTInput.h"
+@class TTInputTextSource;
+
 
 @protocol TTInputTextSourceProtocol <TTInputSourceProtocol>
 
-- (void)toChangeSourceHeight:(CGFloat)height time:(CGFloat)time animateOption:(UIViewAnimationOptions)options;
+/**完成编辑后*/
+- (void)textSourceEndEdit:(TTInputSource *)source;;
+
+- (void)textView:(UITextView *)textView willTextInRange:(NSRange)range replacementText:(NSString *)text;
 
 @end
 
 @interface TTInputTextSource : TTInputSource
 
-@property (nonatomic, weak) id <TTInputTextSourceProtocol> delegate;
+@property (nonatomic, strong, readonly) UITextView * textView;
+
+- (void)dissMissPlaceHolder;
+
+- (void)barItemRecover;
+
+- (void)textViewDidChanged;
 
 @end

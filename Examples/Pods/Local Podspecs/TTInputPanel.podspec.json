@@ -1,0 +1,27 @@
+{
+  "name": "TTInputPanel",
+  "version": "0.0.1",
+  "summary": "A short description of TTInputPanel.",
+  "description": "TTInputPanel 输入框",
+  "homepage": "https://github.com/simpossible/TTInputPanel",
+  "license": "MIT",
+  "authors": {
+    "simpossible": "963571744@git.cloud.tencent.com"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source": {
+    "git": "https://github.com/simpossible/TTInputPanel",
+    "tag": "0.0.1"
+  },
+  "source_files": [
+    "TTInputPanel",
+    "TTInputPanel/**/*.{h,m}",
+    "TTInputPanel/*.{h,m}",
+    "ttemoji/*.{h,m}",
+    "ttemoji/**/*.{h,m}"
+  ],
+  "exclude_files": "Classes/Exclude",
+  "prefix_header_contents": "#ifndef TTInputPanel_pch\n#define TTInputPanel_pch\n#define MYCUSTOMPREFIX @\"EMOJI\"\n#import <UIKit/UIKit.h>\n//#import <Masonry.h>\n\n//import \"TTInputPanel.h\"\n//import \"TTInputBar.h\"\n//import \"TTInputPanelBar.h\"\n//import \"TTInputSource.h\" \n//#import \"TTInput.h\"\n// Include any system framework and library headers here that should be included in all compilation units.\n// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.\n\n#endif /* TTInputPanel_pch */"
+}

@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import <TTInput.h>
 #import <TTInputPanel.h>
-#import <Masonry.h>
+#import <Masonry/Masonry.h>
 
 @interface ViewController ()
 

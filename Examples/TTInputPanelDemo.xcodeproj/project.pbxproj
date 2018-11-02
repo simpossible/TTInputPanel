@@ -189,8 +189,6 @@
 				A4C1C5291F726CBF00F9DFD8 /* Sources */,
 				A4C1C52A1F726CBF00F9DFD8 /* Frameworks */,
 				A4C1C52B1F726CBF00F9DFD8 /* Resources */,
-				AF5EE4061A19C3064CD74971 /* [CP] Embed Pods Frameworks */,
-				986F3562C0B5B3214A238F73 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -209,8 +207,6 @@
 				A4C1C5411F726CBF00F9DFD8 /* Sources */,
 				A4C1C5421F726CBF00F9DFD8 /* Frameworks */,
 				A4C1C5431F726CBF00F9DFD8 /* Resources */,
-				2D78854993C2230131E5B3F3 /* [CP] Embed Pods Frameworks */,
-				6F277803D01665C11E2BF4D2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -230,8 +226,6 @@
 				A4C1C54C1F726CBF00F9DFD8 /* Sources */,
 				A4C1C54D1F726CBF00F9DFD8 /* Frameworks */,
 				A4C1C54E1F726CBF00F9DFD8 /* Resources */,
-				73314FA9F469E7E8A9EA28A9 /* [CP] Embed Pods Frameworks */,
-				8B9FF2EFDC471E11AB24F46C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -315,96 +309,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2D78854993C2230131E5B3F3 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TTInputPanelDemoTests/Pods-TTInputPanelDemoTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6F277803D01665C11E2BF4D2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TTInputPanelDemoTests/Pods-TTInputPanelDemoTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		73314FA9F469E7E8A9EA28A9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TTInputPanelDemoUITests/Pods-TTInputPanelDemoUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8B9FF2EFDC471E11AB24F46C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TTInputPanelDemoUITests/Pods-TTInputPanelDemoUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		986F3562C0B5B3214A238F73 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TTInputPanelDemo/Pods-TTInputPanelDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AF5EE4061A19C3064CD74971 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TTInputPanelDemo/Pods-TTInputPanelDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B6F708137CB7EEEB5E2B6518 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

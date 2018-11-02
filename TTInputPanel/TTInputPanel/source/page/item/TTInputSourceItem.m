@@ -24,15 +24,26 @@
     return self;
 }
 
-- (void)dealpageDic:(NSDictionary *)dic {
-    self.itemImgName = [dic objectForKey:@"itemimg"];
-    self.tag = [[dic objectForKey:@"tag"] integerValue];
-    
-    NSString *path = [[NSBundle mainBundle] pathForResource:TTInputBundle ofType:@"bundle"];
-    if(path){
-        NSString *imgpath = [NSString stringWithFormat:@"%@/%@",path,self.itemImgName];
-        self.itemImg = [UIImage imageNamed:imgpath];
+- (instancetype)init {
+    if (self = [super init]) {
+        _identifier = @"TTInputNomalCell";
     }
+    return self;
+}
+
+- (void)dealpageDic:(NSDictionary *)dic {
+//    self.itemImgName = [dic objectForKey:@"itemimg"];
+//    self.tag = [[dic objectForKey:@"tag"] integerValue];
+//    
+//    NSString *path = [[NSBundle mainBundle] pathForResource:TTInputBundle ofType:@"bundle"];
+//    if(path){
+//        NSString *imgpath = [NSString stringWithFormat:@"%@/%@",path,self.itemImgName];
+//        self.itemImg = [UIImage imageNamed:imgpath];
+//    }
+}
+
+- (void)loadItemImage {
+    
 }
 
 
@@ -42,5 +53,9 @@
 
 - (CGFloat)boxHeight {
     return _margin.top + _margin.bottom + _itemSize.height;
+}
+
+- (NSString *)description {
+    return self.identifier;
 }
 @end
